@@ -1,0 +1,197 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed">
+	        <!-- START HEADING -->
+	    
+	        <!-- END HEADING -->
+
+	        <div class="block-content">
+	        		<div class="app-heading app-heading-small"></div>
+                    <div>
+                        <ul class="nav nav-pills">
+                         <!--
+                            <li class="active">
+	                            <a href="#pills-1" data-toggle="tab" aria-expanded="true">
+	                            	{{ 'USER_PLURAL_LABEL' | translate}}
+	                            </a>
+                            </li>
+                           
+                            <li>
+                            	<a href="#pills-2" data-toggle="tab" aria-expanded="false">	
+                            		{{ 'GROUPS_PLURAL_LABEL' | translate}}
+                            	</a>
+                            </li>-->
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="pills-1">
+                                <div class="row">
+									<div class="app-heading app-heading-small">
+								        <div class="title">
+								            <h5>{{ 'USER_PLURAL_LABEL' | translate}}</h5>
+								            <p>{{ 'LIST_LABEL' | translate}}</p>
+								        </div>
+								    </div>
+						           	<div class="dropdown ">
+					                    <div class="btn-group"  data-toggle="dropdown" >
+					                        <button type="button" class="btn btn-default dropdown-toggle">
+					                        {{ 'ACTIONS_LABEL' | translate}}
+					                        </button>
+					                        <button type="button" class="btn btn-defaul dropdown-toggle" >
+					                        	<span class="caret"></span>
+					                        </button>                                            
+					                    </div>
+					                    <ul  class="dropdown-menu"> 
+					                        <li><a ui-sref="root.user_new">{{ 'NEW_LABEL' | translate}}</a></li> 
+					                    </ul>
+					                </div>
+					               	<div class="col-md-10">
+						            	<div class="form-group ">
+						                    <div class="input-group">
+						                        <div class="input-group-addon"><span class="fa fa-search"></span></div>
+						                        <input type="text" ng-model="model.query" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'USER_PLURAL_LABEL' | translate}}">
+						                        <span class="input-group-btn">
+									                <button  ng-click="search()" class="btn btn-primary" type="button">Go!</button>
+									            </span>
+						                    </div>
+						                </div>
+						            </div>
+					                <div class="col-md-12 padding-top-20">
+					                	
+										<div class="col-md-3" ng-repeat="item in filteredTodos" data-id="{{item.id}}">
+					                        <div class="contact contact-rounded contact-bordered contact-xlg ">
+					                   
+					                            <img src="/admin/assets/img/logo.jpg">
+					                            <div class="contact-container">
+					                                <span>{{item.role}}</span>
+					                                <p>{{item.username}}</p>
+					                                <br>
+					                                <br>
+					                              	<div class="row">
+					                              		<a ui-sref="root.user_edit({id:item.id})" class="btn btn-primary">
+					                        				<i class="fa fa-pencil-square-o"></i>
+					                                    	{{ 'EDIT_LABEL' | translate}}
+						                                </a>
+						                                <a ng-if="!item.is_superuser" ng-click="DELETE(item.id)" class="btn btn-danger">
+						                                  <i class="fa fa-trash"></i>
+						                                </a>
+					                              	</div>
+					                               
+					                            </div>
+					                        </div>
+					                    </div>
+								    </div>
+								    <nav ng-show="todos.length > itemsPerPage">
+
+						            	<paging
+										  page="currentPage" 
+										  page-size="itemsPerPage" 
+										  total="todos.length"
+										
+										  show-prev-next="true"
+										  show-first-last="true"
+										  class="pagination pagination-noborder"
+											paging-action="pageChanged(page)"
+										  >
+										</paging>  
+						       
+					             	</nav>
+					            </div>
+
+                               
+                            </div>
+                            <div class="tab-pane" id="pills-2">
+                                <div class="app-heading app-heading-small">
+								    <div class="title">
+								        <h5>{{ 'GROUPS_PLURAL_LABEL' | translate}}</h5>
+								        <p>{{ 'LIST_LABEL' | translate}}</p>
+								    </div>
+								</div>
+						        <div class="col-md-12">
+						        	<div class="form-group ">
+						                <div class="input-group">
+						                    <div class="input-group-addon"><span class="fa fa-search"></span></div>
+						                    <input type="text" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'GROUPS_PLURAL_LABEL' | translate}}">
+						                    <span class="input-group-btn">
+					                            <button class="btn btn-primary" type="button">Go!</button>
+					                        </span>
+						                </div>
+						            </div>
+						        </div>
+						      	<div class="col-md-12 padding-top-20">
+					                	
+								    <table class="table">
+									    <thead>
+									        <tr>
+									          
+									            <th>{{ 'TITLE_LABEL' | translate}}</th>
+									            <th>{{ 'PUBLISHED_LABEL' | translate}}</th>
+									            <th>{{ 'CREATED_LABEL' | translate}}</th>
+									            <th>{{ 'UPDATED_LABEL' | translate}}</th>
+									            <th>{{ 'ACTIONS_LABEL' | translate}}</th>
+									        </tr>
+									    </thead>
+								    	<tbody>
+								        <tr ng-repeat="item in filteredTodos" data-id="{{item.id}}">
+								                
+								                <td width="55%" >
+								                    <a ui-sref="post_edit({id:item.id})" >
+								                        <strong >{{item.title}}</strong>
+								                    </a>
+								                </td>
+								                <td>
+								                    <span class="label label-success">
+								                        {{item.status}}
+								                    </span>
+								                </td>
+								                <td>{{item.created}}</td>
+								                <td>{{item.updated}}</td>
+								                <td>
+								                    <a ui-sref="root.group_edit({id:item.id})" class="btn btn-primary">
+								                        {{ 'EDIT_LABEL' | translate}}
+								                    </a>
+								                    <a ng-click="post_delete(item.id)" class="btn btn-danger">
+								                        {{ 'DELETE_LABEL' | translate}}
+								                    </a>
+
+								                </td>
+								            </tr>
+								          
+								        </tr>
+								         
+								    </tbody>
+								</table>
+										
+								    </div>
+						         <nav>
+
+						            	<paging
+										  page="currentPage" 
+										  page-size="itemsPerPage" 
+										  total="todos.length"
+										
+										  show-prev-next="true"
+										  show-first-last="true"
+										  class="pagination pagination-noborder"
+											paging-action="pageChanged(page)"
+										  >
+										</paging>  
+						       
+					             	</nav>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    
+           
+
+
+
+
+	     
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>

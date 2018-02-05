@@ -1,0 +1,61 @@
+{% extends "layouts/default.html" %}
+{% load posts_tags %}
+{% load set_var %}
+{% block title %} Autor Info {{autor}} {% endblock %}
+{% block description %} ver los post del autor {{autor}} {% endblock %}
+{% block content %}
+
+
+<!--=================================
+Blog
+=================================-->
+
+<section class="blog">
+	<div class="container">
+		{% for post in posts %}
+          {% include "includes/__posts.html" %}             
+        {% endfor %}
+
+        
+        {% if posts.has_other_pages %}
+   
+     
+        <ul class="pagination">
+          <li>
+            <a rel="nofollow" href="{% url 'posts_autor' slug=autor %}">
+              &laquo;
+            </a>
+          </li>
+          {% if posts.has_previous %}
+          <li>
+            <a rel="nofollow" href="{% url 'posts_autor' slug=autor page=posts.previous_page_number %}">
+              <i class="icon-angle-left"></i>
+            </a>
+          </li>
+          {% endif %}
+
+          {% for i in posts.main_range %}
+              <li {% if adverts.number == i %} class="active" {%endif%}>
+                  <a rel="nofollow" href="{% url 'posts_autor' slug=autor page=i %}">
+                    {{i}}
+                  </a>          
+              </li>         
+          {% endfor %}     
+          {% if posts.has_next %}
+            <li>
+              <a rel="nofollow" href="{% url 'posts_autor' slug=autor page=posts.next_page_number %}">
+                <i class="icon-angle-right"></i>
+              </a>
+            </li>
+          {% endif %}
+          <li>
+            <a rel="nofollow" href="{% url 'posts_autor' slug=autor page=posts.paginator.num_pages %}">
+               &raquo;
+            </a>
+          </li>
+        </ul>  
+    	{% endif %} 
+    </div>
+</section>    
+
+{% endblock %}

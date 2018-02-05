@@ -1,0 +1,106 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed">
+	        <!-- START HEADING -->
+	        <div class="app-heading app-heading-small">
+	            <div class="title">
+	                <h5>{{ 'CATEGORY_PLURAL_LABEL' | translate}}</h5>
+	                <p>{{ 'LIST_LABEL' | translate}}</p>
+	            </div>
+	        </div>
+	        <!-- END HEADING -->
+
+	        <div class="block-content">
+	         	<div class="row">
+					<div class="dropdown ">
+	                    <div class="btn-group"  data-toggle="dropdown" >
+	                        <button type="button" class="btn btn-default dropdown-toggle">
+	                        {{ 'ACTIONS_LABEL' | translate}}
+	                        </button>
+	                        <button type="button" class="btn btn-defaul dropdown-toggle" >
+	                        	<span class="caret"></span>
+	                        </button>                                            
+	                    </div>
+	                    <ul  class="dropdown-menu"> 
+	                        <li>
+	                        	<a ui-sref="root.category_new">{{ 'NEW_LABEL' | translate}}</a>
+	                        </li> 
+	                    </ul>
+	                </div>
+	               	<div class="col-md-10">
+	               		<div class="form-group ">
+	                    
+	                        <div class="input-group">
+	                            <div class="input-group-addon"><span class="fa fa-search"></span></div>
+	                            <input type="text" ng-model="model.query" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'POST_PLURAL_LABEL' | translate}}">
+	                            <span class="input-group-btn">
+									<button  ng-click="search()" class="btn btn-primary" type="button">Go!</button>
+								</span>
+	                        </div>
+	                    </div>
+	               	</div>
+		                
+
+                </div>
+
+              
+
+
+			    <table class="table">
+				    <thead>
+				        <tr>
+				            <th>{{ 'TITLE_LABEL' | translate}}</th>
+				            <th>{{ 'ACTIONS_LABEL' | translate}}</th>
+				        </tr>
+				    </thead>
+			    	<tbody>
+			        <tr ng-repeat="item in filteredTodos" data-id="{{item.id}}">
+			                
+			                <td width="75%" >
+			                    <a ui-sref="root.category_edit({id:item.id})" class="btn btn-default preview">
+			                        <strong >{{item.title}}</strong>
+			                    </a>
+			                </td>
+
+			                <td>
+			                    <a ui-sref="root.category_edit({id:item.id})" class="btn btn-primary">
+			                    	<i class="fa fa-pencil-square-o"></i>			                       
+			                        {{ 'EDIT_LABEL' | translate}}
+			                    </a>
+			                    <a ng-click="DELETE(item.id)" class="btn btn-danger">
+			                        <i class="fa fa-trash"></i>
+			                    </a>
+
+			                </td>
+			            </tr>
+			          
+			        </tr>
+			         
+			    </tbody>
+			</table>
+
+
+	   
+	            <nav ng-show="todos.length > itemsPerPage">
+
+
+	            	<paging
+					  page="currentPage" 
+					  page-size="itemsPerPage" 
+					  total="todos.length"
+					  pg-href="#/categories/page/{page}"
+					  show-prev-next="true"
+					  show-first-last="true"
+					  class="pagination pagination-noborder"
+						paging-action="pageChanged(page)"
+					  >
+					</paging>  
+	       
+             	</nav>
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>

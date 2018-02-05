@@ -1,0 +1,15 @@
+{% load navigation_tags %}
+{% load tz %}
+{% get_navigation_items "footer" as footer %}
+<div class="footer-basic">
+        <footer>
+            <nav>
+            	<ul class="list-inline">
+            		<li><a href="/politica-de-cookies">Política de cookies</a></li>
+            		<li><a href="/informacion-legal">Información legal</a></li>
+            		<li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+            	</ul>
+            </nav>
+            <p class="copyright">Gamajuegos © {% now "Y" %}</p>
+        </footer>
+    </div>

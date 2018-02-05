@@ -1,0 +1,182 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed block">
+	        <!-- START HEADING -->
+	        <div class="app-heading app-heading-small">
+	            <div class="title">
+	                <h5>{{ 'MEDIA_LABEL' | translate}}</h5>
+	                <p>{{ 'EDIT_LABEL' | translate}}</p>
+	            </div>
+	        </div>
+	        <!-- END HEADING -->
+
+	        <div class="block-content ">
+
+
+				<div>
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                        	<a href="#pills-1"  data-toggle="tab" aria-expanded="true">
+                        		{{ 'CONTENT_LABEL' | translate}}
+                        	</a>
+                        </li>
+                     
+                        <li class="">
+                            <a href="#pills-5"  data-toggle="tab" aria-expanded="false">
+                                {{ 'TAGS_LABEL' | translate}}
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="#pills-3"  data-toggle="tab" aria-expanded="false">
+                                {{ 'MEDIA_ALBUM_LABEL' | translate}}
+                            </a>
+                        </li>
+                      
+                      
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="pills-1">
+                            
+                           	<div class="row clearfix">
+					    		<div class="form-group">
+					                <label class="control-label">{{ 'TITLE_LABEL' | translate}}</label>
+					                <input class="form-control"  ng-model="model.title" type="text">
+					                <br>
+					            </div>
+					        </div>
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                    <label class="control-label">{{ 'IMAGE_LABEL' | translate}}</label>
+                                    <input class="form-control"  ng-model="model.image" type="text">
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                    <label class="control-label">{{ 'CONTENT_LABEL' | translate}}</label>
+                                    <textarea class="form-control"  ng-model="model.content" ></textarea> 
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                    <img ng-src="{{model.image}}" />
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+					     
+                        </div>
+                        <div class="tab-pane" id="pills-2">
+
+                            <div class="input-group">
+                                <input class="form-control" ng-model="query" placeholder="{{'SEARCH_FOR_LABEL' | translate}}" type="text">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" ng-click="search()" type="button">Go!</button>
+                                </span>
+                            </div>
+                            <div class="row form-group app-radio">
+
+                                <div class="col-md-3" ng-repeat="item in images" data-id="{{item.id}}" >
+                                    <div class="contact contact-rounded contact-bordered contact-xlg ">
+                                        <img   style="height: 58px" ng-src="{{item.img}}">
+                                        <div class="contact-container">
+                                            
+                                            <p>{{item.title}}</p>
+                                            <br>
+                                          
+
+                                            <!-- Trigger -->
+                                            <button type="button"  data-clipboard-text="{{item.img}}" class="btn btn-primary">
+                                                <i class="fa fa-clipboard"></i>
+                                            </button>
+                                          
+                                            <br>
+                                            <br>
+                                           <div class="app-radio success inline"> 
+                                                <label>
+                                                    <input ng-model="item.featured_checked"  type="checkbox" name="app-radio-3"
+                                                    ng-change="featured_image(item)"
+
+                                                    >
+                                                    {{'FEATURED_LABEL' | translate}}
+                                                    <span></span>
+                                                </label> 
+                                            </div>
+                                            <div class="app-radio success inline"> 
+                                                <label>
+                                                    <input  ng-model="item.thumb_checked"  type="checkbox" name="app-radio-3"
+                                                    ng-change="thumb_checked(item)"
+                                                    > 
+
+                                                    {{'THUMBNAIL_LABEL' | translate}}
+
+                                                    <span></span>
+                                                </label> 
+                                            </div>
+                                           
+                                           
+                                            &nbsp;
+                                            <label>
+                                                <input type="radio" name="app-radio-1" value="1" checked>
+                                              
+                                            </label>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                               
+ 
+                                                                                                       
+                            </div>
+                                    
+                           
+                        </div>
+                        <div class="tab-pane" id="pills-3">
+
+                           	<div class="col-md-2 "  ng-repeat="item in album">
+                           
+                                <div class="app-checkbox" > 
+                                    <label>
+                                    	<input ng-model="item.checked"  name="app-checkbox-1" type="checkbox"> 
+                                    	{{item.title}}
+                                        <span></span>
+                                    </label> 
+                                </div>
+                               
+                            </div>
+                        </div>
+                         <div class="tab-pane" id="pills-5">
+
+                            <div class="col-md-2 " ng-repeat="item in tags">
+                           
+                                <div  class="app-checkbox" > 
+                                    <label>
+                                        <input ng-model="item.checked"  name="app-checkbox-1" type="checkbox"> 
+                                        {{item.title}}
+                                        <span></span>
+                                    </label> 
+                                </div>
+                               
+                            </div>
+                        </div>
+                     
+                    </div>
+                    <br>
+                    <button ng-click="Save()" class="btn btn-primary">
+                         {{ 'SAVE_LABEL' | translate}}
+
+                    </button>
+                </div>
+
+
+	        
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>

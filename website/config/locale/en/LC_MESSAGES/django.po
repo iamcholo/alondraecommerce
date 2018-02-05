@@ -1,0 +1,299 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-23 19:38-0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: blog/admin.py:12 blog/admin.py:25 blog/admin.py:39
+msgid "BASIC_LABEL"
+msgstr "Basic"
+
+#: blog/admin.py:13 blog/admin.py:26 blog/admin.py:59
+msgid "SEO_LABEL"
+msgstr "Seo"
+
+msgid "BASIC_SEO"
+msgstr "Seo"
+
+
+#: blog/admin.py:44
+msgid "PUBLISHING_LABEL"
+msgstr "Publishing"
+
+#: blog/admin.py:49
+msgid "MEDIA_LABEL"
+msgstr "Media"
+
+#: blog/admin.py:53
+msgid "RELATED_LABEL"
+msgstr "Related"
+
+#: blog/models.py:9
+msgid "CREATED_LABEL"
+msgstr "Created"
+
+#: blog/models.py:10
+msgid "MODIFIED_LABEL"
+msgstr "Modified"
+
+#: blog/models.py:17
+msgid "SLUG_LABEL"
+msgstr "Slug"
+
+#: blog/models.py:23
+msgid "META_TITLE_LABEL"
+msgstr "Meta title"
+
+#: blog/models.py:29
+msgid "META_DESCRIPTION_LABEL"
+msgstr "Meta Description"
+
+#: blog/models.py:40
+msgid "PARENT_LABEL"
+msgstr "Parent"
+
+#: blog/models.py:47 blog/models.py:65
+msgid "NAME_LABEL"
+msgstr "Name"
+
+#: blog/models.py:54
+msgid "BLOG_CATEGORY_TITLE"
+msgstr "Category"
+
+#: blog/models.py:55 blog/models.py:92
+msgid "BLOG_CATEGORY_TITLE_PLURAL"
+msgstr "Categories"
+
+#: blog/models.py:72
+msgid "GLOBALY_TAG_TITLE"
+msgstr "Tag"
+
+
+msgid "GLOBALY_TAG_TITLE_PLURAL"
+msgstr "Tags"
+
+#: blog/models.py:83
+msgid "AUTOR_LABEL"
+msgstr "Autor"
+
+#: blog/models.py:108
+msgid "RELATED_ARTICLES_LABEL"
+msgstr "Related Articles"
+
+#: blog/models.py:114
+msgid "TITLE_LABEL"
+msgstr "Title"
+
+#: blog/models.py:120
+msgid "EXCERPT_LABEL"
+msgstr "Excerpt"
+
+#: blog/models.py:124
+msgid "CONTENT_LABEL"
+msgstr "Content"
+
+#: blog/models.py:128
+msgid "PUBLISH_LABEL"
+msgstr "Publish"
+
+#: blog/models.py:133
+msgid "IS_FEATURED_LABEL"
+msgstr "Is Featured?"
+
+#: blog/models.py:138
+msgid "IS_ON_FEED_LABEL"
+msgstr "is on Feed?"
+
+#: blog/models.py:143
+msgid "THUNBNAIL_LABEL"
+msgstr "Thumbnail"
+
+#: blog/models.py:148
+msgid "FEATURED_IMAGE_LABEL"
+msgstr "Featured image"
+
+#: blog/models.py:153
+msgid "BLOG_ARTICLE_TITLE"
+msgstr "Article"
+
+#: blog/models.py:154
+msgid "BLOG_ARTICLE_TITLE_PLURAL"
+msgstr "Articles"
+
+msgid "MEDIA_ALBUM_TITLE"
+msgstr "Media Album"
+
+msgid "MEDIA_ALBUM_TITLE_PLURAL"
+msgstr "Media Albums"
+
+msgid "MEDIA_IMAGE_TITLE"
+msgstr "Media Image"
+
+msgid "MEDIA_IMAGE_TITLE_PLURAL"
+msgstr "Media Images"
+
+msgid "IMAGE_LABEL"
+msgstr "Image"
+
+msgid "RATTING_LABEL"
+msgstr "Ratting"
+
+msgid "EMAIL_LABEL"
+msgstr "Email"
+
+msgid "MESSAGE_LABEL"
+msgstr "Message"
+
+msgid "CONTACTS_TITLE"
+msgstr "Contact"
+
+msgid "CONTACTS_TITLE_PLURAL"
+msgstr "Contacts"
+
+msgid "PORTFOLIO_ITEM_TITLE"
+msgstr "Portfolio Item"
+
+msgid "PORTFOLIO_ITEM_TITLE_PLURAL"
+msgstr "Portfolio Items"
+
+msgid "PORTFOLIO_ITEM_IMAGE_TITLE"
+msgstr "Portfolio Item Image"
+
+msgid "PORTFOLIO_ITEM_IMAGE_TITLE_PLURAL"
+msgstr "Portfolio Item Images"
+
+msgid "RELATED_OBJECT_LABEL"
+msgstr "Related Object"
+
+msgid "CONTENT_TYPE_LABEL"
+msgstr "Content Type "
+
+msgid "NAVIGATION_ITEM_LABEL"
+msgstr "Navigation Item"
+
+msgid "NAVIGATION_ITEM_PLURAL_LABEL"
+msgstr "Navigation Items"
+
+msgid "GLOBALY_URLS_TITLE"
+msgstr "Url Item"
+
+msgid "GLOBALY_URLS_TITLE_PLURAL"
+msgstr "Url Items"
+
+msgid "ATL_TEXT_LABEL"
+msgstr "Alt Text"
+
+msgid "IS_NAV_LABEL"
+msgstr "Is in navigation?"
+
+msgid "SITE_NAME_LABEL"
+msgstr "Site Name"
+
+msgid "SITE_LINK_LABEL"
+msgstr "Site Url/Link"
+
+msgid "GLOBAL_CONFIG_TITLE"
+msgstr "Global Config"
+
+msgid "GLOBAL_CONFIG_TITLE_PLURAL"
+msgstr "Global Configs"
+
+msgid "CATEGORY_TITLE"
+msgstr "Category"
+
+msgid "POST_ITEM_TITLE"
+msgstr "Post"
+
+msgid "POST_CATEGORY_ARTICLE_TITLE"
+msgstr "Category Article"
+
+msgid "POST_CATEGORY_ARTICLE_TITLE_PLURAL"
+msgstr "Category Articles"
+
+msgid "POST_CATEGORY_PAGE_TITLE"
+msgstr "Category Page"
+
+msgid "POST_CATEGORY_PAGE_TITLE_PLURAL"
+msgstr "Category Pages"
+
+msgid "POST_CATEGORY_VIDEO_TITLE"
+msgstr "Category Video"
+
+msgid "POST_CATEGORY_VIDEO_TITLE_PLURAL"
+msgstr "Category Videos"
+
+msgid "POST_ARTICLE_TITLE"
+msgstr "Article"
+
+msgid "POST_ARTICLE_TITLE_PLURAL"
+msgstr "Article"
+
+msgid "POST_PAGE_TITLE"
+msgstr "Page"
+
+msgid "POST_PAGE_TITLE_PLURAL"
+msgstr "Pages"
+
+msgid "POST_VIDEO_TITLE"
+msgstr "Video"
+
+msgid "POST_VIDEO_TITLE_PLURAL"
+msgstr "Videos"
+
+msgid "SELECT_FILE_IMAGE_LABEL"
+msgstr "Select File Image"
+
+msgid "SELECT_MEDIA_IMAGE_LABEL"
+msgstr "Select Media Image"
+
+msgid "NAVIGATION_POSITION_TITLE"
+msgstr "Navigation Position"
+
+msgid "NAVIGATION_POSITION_TITLE_PLURAL"
+msgstr "Navigation Positions"
+
+msgid "NAVIGATION_ITEM_TITLE"
+msgstr "Navigation Item"
+
+msgid "NAVIGATION_ITEM_TITLE_PLURAL"
+msgstr "Navigation Items"
+
+msgid "RELATED_ITEM_LABEL"
+msgstr "Item"
+
+msgid "NICK_LABEL"
+msgstr "Nick"
+
+msgid "SELECT_MEDIA_ALBUM_LABEL"
+msgstr "Insert Media Album"
+
+msgid "COMMENTS_TITLE"
+msgstr "Comment"
+
+msgid "COMMENTS_TITLE_PLURAL"
+msgstr "Comments"
+
+msgid "AN_ERROR_OCURRED_LABEL"
+msgstr "AN ERROR OCURRED PLEASE CHECK THE FIELDS"
+
+msgid "ANONYMUS_LABEL"
+msgstr "Anonymus User"
+
+msgid "IP_ADDRESS_LABEL"
+msgstr "Ip Address"
+
+
+

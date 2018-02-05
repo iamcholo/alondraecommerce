@@ -1,0 +1,167 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} | archivos {% endblock %}
+{% block description %} | archivos {% endblock %}
+{% load set_var %}
+{% load posts_tags %}
+{% load globaly_tags %}
+
+{% load humanize %} 
+{% load tz %}
+{% block mainwidth %}{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block content %}
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="font-bold">Historial de Archivos en Gamajuegos</h1></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="font-bold border-bottom padding-bottom-20">Por categorías </h2></div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3">
+                                    <h5 class="font-bold">Categorias Principales</h5>
+                                    <ul class="yellow-font no-style list">
+                                        <li> <a href="/noticias">Noticias </a></li>
+                                        <li> <a href="/guias">Guias Y Trucos </a></li>
+                                        <li> <a href="/tutoriales">Tutoriales </a></li>
+                                        <li> <a href="/videos">Videos </a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <h5 class="font-bold">Categorias Principales</h5>
+                                    <ul class="yellow-font no-style list">
+                                        <li> <a href="#">Analisis </a></li>
+                                        <li>Guias y Trucos</li>
+                                        <li>Eventos </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <h5 class="font-bold">Generos </h5>
+                                    <ul class="yellow-font no-style list">
+                                        <li> <a href="/casual-games">Genero Casual </a></li>
+                                        <li> <a href="/accion">Acción </a></li>
+                                        <li> <a href="/rpg">RPG </a></li>
+                                        <li> <a href="/fps">Fps </a></li>
+                                        <li> <a href="/conduccion">Conducción </a></li>
+                                        <li> <a href="/deportes">Deportes </a></li>
+                                        <li> <a href="/aventuras-plataformas">Aventuras - Plataformas </a></li>
+                                        <li> <a href="/simuladors">Simuladores </a></li>
+                                        <li> <a href="/Estrategia">Estrategia </a></li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h2 class="font-bold border-bottom padding-bottom-20">Nube de tags </h2>
+                            <div class="yellow-font no-style list list-inline tags">
+                                {% get_tags as tags %}
+                                {% for tag in tags %}
+                                    {% count_articles_by_tag "post" tag.slug as amount %}
+                                    <a href="{% url "posts_tags" slug=tag.slug %}" class="{% if amount > 25 %}popular {% endif %}"> 
+                                        {{tag.name}}
+                                        <span> {{amount}}</span> 
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <h2 class="font-bold border-bottom padding-bottom-20">Por meses </h2>
+                            <div class="row">
+                                {% get_articles_by_year as articles_by_year %}
+                                {% for c in articles_by_year %}
+                                <div class="col-md-3 col-sm-4">
+                                    <h5 class="font-bold">{{c.year}} </h5>
+                                    <ul class="yellow-font no-style list">
+                                        <li>
+                                            <a href="{% url 'year_month_archive' year=c.year month='12' %}">
+                                                Diciembre {{c.year}} 
+                                                {% count_articles_by_month "post" 12 as count_month %}
+                                                <span>({{count_month}}) </span>
+                                            </a>
+                                        </li>
+                                        <li> 
+                                            <a href="{% url 'year_month_archive' year=c.year month='11' %}">
+                                                Noviembre {{c.year}} 
+                                                {% count_articles_by_month "post" 11 as count_month %}
+                                                <span>({{count_month}}) </span>
+                                            </a>
+                                        </li>
+                                        <li> 
+                                            <a href="{% url 'year_month_archive' year=c.year month='10' %}">Octubre {{c.year}} 
+                                                {% count_articles_by_month "post" 10 as count_month %}
+                                                <span>({{count_month}}) </span>
+                                            </a>
+                                         </li>
+                                        <li> 
+                                            <a href="{% url 'year_month_archive' year=c.year month='09' %}">Septiembre {{c.year}} 
+                                                {% count_articles_by_month "post" 09 as count_month %}
+                                                <span>({{count_month}}) </span>
+                                            </a>
+                                        </li>
+                                        <li> 
+                                            <a href="{% url 'year_month_archive' year=c.year month='08' %}">Agosto {{c.year}} 
+                                                {% count_articles_by_month "post" 08 as count_month %}
+                                                <span>({{count_month}}) </span> 
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'year_month_archive' year=c.year month='07' %}">Julio {{c.year}} 
+                                                {% count_articles_by_month "post" 07 as count_month %}
+                                                <span>({{count_month}}) </span> 
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'year_month_archive' year=c.year month='06' %}">Junio {{c.year}} 
+                                                {% count_articles_by_month "post" 06 as count_month %}
+                                                <span>({{count_month}}) </span>  
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'year_month_archive' year=c.year month='05' %}">Mayo {{c.year}} 
+                                                {% count_articles_by_month "post" 05 as count_month %}
+                                                <span>({{count_month}}) </span>  
+
+                                            </a>
+                                        </li>
+                                        <li> 
+                                            <a href="{% url 'year_month_archive' year=c.year month='04' %}">Abril {{c.year}} 
+                                                {% count_articles_by_month "post" 04 as count_month %}
+                                                <span>({{count_month}}) </span> 
+                                            </a>
+                                        </li>
+                                        <li> 
+                                            <a href="{% url 'year_month_archive' year=c.year month='03' %}">Marzo {{c.year}} 
+                                                {% count_articles_by_month "post" 03 as count_month %}
+                                                <span>({{count_month}}) </span>
+                                            </a>
+                                        </li>
+                                        <li> 
+                                            <a href="{% url 'year_month_archive' year=c.year month='02' %}">Febrero {{c.year}} 
+                                                {% count_articles_by_month "post" 02 as count_month %}
+                                                <span>({{count_month}}) </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'year_month_archive' year=c.year month='01' %}">Enero {{c.year}} 
+                                                {% count_articles_by_month "post" 01 as count_month %}
+                                                <span>({{count_month}}) </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
+{% endblock %}

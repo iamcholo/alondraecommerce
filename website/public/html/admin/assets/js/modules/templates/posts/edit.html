@@ -1,0 +1,250 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed block">
+	        <!-- START HEADING -->
+	        <div class="app-heading app-heading-small">
+	            <div class="title">
+	                <h5>{{ 'POST_PLURAL_LABEL' | translate}}</h5>
+	                <p>{{ 'EDIT_LABEL' | translate}}</p>
+	            </div>
+	        </div>
+	        <!-- END HEADING -->
+
+	        <div class="block-content ">
+
+
+				<div>
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                        	<a href="#pills-1"  data-toggle="tab" aria-expanded="true">
+                        		{{ 'CONTENT_LABEL' | translate}}
+                        	</a>
+                        </li>
+                        <li class="">
+                            <a href="#pills-4"  data-toggle="tab" aria-expanded="false">
+                                {{ 'SEO_LABEL' | translate}}
+                            </a>
+                        </li>
+                        <li class="">
+                        	<a href="#pills-2" data-toggle="tab" aria-expanded="false">                        	
+                        		{{ 'MEDIA_LABEL' | translate}}
+                        	</a>
+                        </li>
+                        <li class="">
+                        	<a href="#pills-3"  data-toggle="tab" aria-expanded="false">
+                        		{{ 'CATEGORIES_LABEL' | translate}}
+                        	</a>
+                        </li>
+                        <li class="">
+                            <a href="#pills-5"  data-toggle="tab" aria-expanded="false">
+                                {{ 'TAGS_LABEL' | translate}}
+                            </a>
+                        </li>
+                      
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="pills-1">
+                           	<div class="row clearfix">
+					    		<div class="form-group">
+					                <label class="control-label">{{ 'TITLE_LABEL' | translate}}</label>
+					                <input class="form-control" ng-keyup="ChangeTitle()"  ng-model="model.title" type="text">
+					                <br>
+					            </div>
+					        </div>
+					     	<div class="row clearfix">
+                                <simplemde ng-model="model.content"  confirm-action="confirmAction()"></simplemde>
+					        </div>
+                            <div class="row clearfix">
+                                <br>
+                                <textarea ng-model="model.excerpt" placeholder="{{EXCERPT_LABEL| translate}}"  class="form-control"></textarea>
+                            </div>
+                            <div class="row clearfix">
+                                <br>
+                                <datepicker ng-model="model.publish_date"></datepicker>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                <br>
+                                    <label class="control-label">{{ 'THUMBNAIL_LABEL' | translate}}</label>
+                                    <input class="form-control"  ng-model="model.thumbnail" type="text">
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                    <label class="control-label">{{ 'THUMBNAIL_TEXT_LABEL' | translate}}</label>
+                                    <input class="form-control"  ng-model="model.thumbnail_text" type="text">
+                                    <br>
+                                </div>
+                            </div>
+     
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                    <label class="control-label">{{ 'FEATURED_IMAGE_LABEL' | translate}}</label>
+                                    <input class="form-control"  ng-model="model.featured_image" type="text">
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                    <label class="control-label">{{ 'FEATURED_IMAGE_TEXT_LABEL' | translate}}</label>
+                                    <input class="form-control"  ng-model="model.featured_image_text" type="text">
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <div class="app-checkbox"> 
+                                        <label>
+                                            <input name="app-checkbox-2" ng-model="model.publish" type="checkbox"> 
+                                            {{ 'PUBLISH_LABEL' | translate}} <span>  </span>
+                                        </label> 
+                                    </div>
+                                    <div class="app-checkbox"> 
+                                        <label>                                       
+
+                                            <input name="app-checkbox-3" ng-model="model.is_on_feed" type="checkbox"> 
+                                            {{ 'ON_FEED_LABEL' | translate}} <span>  </span>
+                                        </label> 
+                                    </div>
+                                      <div class="app-checkbox"> 
+                                        <label>
+                                            <input name="app-checkbox-1" ng-model="model.is_featured" type="checkbox"> 
+                                            {{ 'FEATURED_LABEL' | translate}} <span>  </span>
+                                        </label> 
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        <div class="tab-pane" id="pills-2">
+
+                            <div class="input-group">
+                                <input class="form-control" ng-model="query" placeholder="{{'SEARCH_FOR_LABEL' | translate}}" type="text">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" ng-click="search()" type="button">Go!</button>
+                                </span>
+                            </div>
+                            <div class="row form-group app-radio">
+
+                                <div class="col-md-3" ng-repeat="item in images" data-id="{{item.id}}" >
+                                    <div class="contact contact-rounded contact-bordered contact-xlg ">
+                                        <img   style="height: 58px" ng-src="{{item.img}}">
+                                        <div class="contact-container">
+                                            
+                                            <p>{{item.title}}</p>
+                                            <br>
+                                          
+
+                                            <!-- Trigger -->
+                                            <button type="button"  data-clipboard-text="{{item.img}}" class="btn btn-primary">
+                                                <i class="fa fa-clipboard"></i>
+                                            </button>
+                                          
+                                            <br>
+                                            <br>
+                                           <div class="app-radio success inline"> 
+                                                <label>
+                                                    <input ng-model="item.featured_checked"  type="checkbox" name="app-radio-3"
+                                                    ng-change="featured_image(item)"
+
+                                                    >
+                                                    {{'FEATURED_LABEL' | translate}}
+                                                    <span></span>
+                                                </label> 
+                                            </div>
+                                            <div class="app-radio success inline"> 
+                                                <label>
+                                                    <input  ng-model="item.thumb_checked"  type="checkbox" name="app-radio-3"
+                                                    ng-change="thumb_checked(item)"
+                                                    > 
+
+                                                    {{'THUMBNAIL_LABEL' | translate}}
+
+                                                    <span></span>
+                                                </label> 
+                                            </div>
+                                           
+                                           
+                                            &nbsp;
+                                            <label>
+                                                <input type="radio" name="app-radio-1" value="1" checked>
+                                              
+                                            </label>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                               
+ 
+                                                                                                       
+                            </div>
+                                    
+                           
+                        </div>
+                        <div class="tab-pane" id="pills-3">
+
+                           	<div class="col-md-2 "  ng-repeat="item in todos">
+                           
+                                <div class="app-checkbox" > 
+                                    <label>
+                                    	<input ng-model="item.checked"  name="app-checkbox-1" type="checkbox"> 
+                                    	{{item.title}}
+                                        <span></span>
+                                    </label> 
+                                </div>
+                               
+                            </div>
+                        </div>
+                         <div class="tab-pane" id="pills-5">
+
+                            <div class="col-md-2 " ng-repeat="item in tags">
+                           
+                                <div  class="app-checkbox" > 
+                                    <label>
+                                        <input ng-model="item.checked"  name="app-checkbox-1" type="checkbox"> 
+                                        {{item.title}}
+                                        <span></span>
+                                    </label> 
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="pills-4">
+
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                    <label class="control-label">{{ 'META_TITLE_LABEL' | translate}}</label>
+                                    <input class="form-control" ng-model="model.meta_title" type="text">
+                                    <br>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">
+                                    {{ 'SLUG_LABEL' | translate}}</label>
+                                    <input class="form-control" ng-model="model.slug" type="text">
+                                    <br>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">
+                                    {{ 'META_DESCRIPTION_LABEL' | translate}}</label>
+                                    <textarea class="form-control" ng-model="model.meta_description" type="text"></textarea> 
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <button ng-click="Save()" class="btn btn-primary">
+                         {{ 'SAVE_LABEL' | translate}}
+
+                    </button>
+                </div>
+
+
+	        
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>

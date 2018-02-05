@@ -1,0 +1,113 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed">
+	        <!-- START HEADING -->
+	        <div class="app-heading app-heading-small">
+	            <div class="title">
+	                <h5>{{ 'COMMENTS_LABEL' | translate}}</h5>
+	                <p>{{ 'LIST_LABEL' | translate}}</p>
+	            </div>
+	        </div>
+	        <!-- END HEADING -->
+
+	        <div class="block-content">
+	         	<div class="row">
+					
+	               	<div class="col-md-12">
+	               		<div class="form-group ">
+	                    
+	                        <div class="input-group">
+	                            <div class="input-group-addon">
+	                            	<span class="fa fa-search"></span>
+	                            </div>
+	                            <input type="text" ng-model="model.query" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'COMMENTS_LABEL' | translate}}">
+	                            <span class="input-group-btn">
+                                    <button ng-click="search()" class="btn btn-primary" type="button">Go!</button>
+                                </span>
+	                        </div>
+	                    </div>
+	               	</div>
+		                
+
+                </div>
+
+              
+
+
+			    <table class="table">
+				    <thead>
+				        <tr>
+				            <th>{{ 'THUMB_LABEL' | translate}}</th>
+				            <th>{{ 'TITLE_LABEL' | translate}}</th>
+				            <th>{{ 'PUBLISHED_LABEL' | translate}}</th>
+				            <th>{{ 'CREATED_LABEL' | translate}}</th>
+				            <th>{{ 'UPDATED_LABEL' | translate}}</th>
+				            <th>{{ 'ACTIONS_LABEL' | translate}}</th>
+				        </tr>
+				    </thead>
+			    	<tbody>
+			        <tr ng-repeat="item in filteredTodos" data-id="{{item.id}}">
+			                <td class="app-timeline-item" width="20px;">
+			                    <div class=" padding-top-20" style="height: 102px;">
+			                        <div class="contact contact-rounded contact-bordered contact-xlg margin-bottom-0">
+			                           <img  ng-src="{{item.img}}"  alt="...">
+			                        </div>
+			                    </div>
+			                        
+			                </td>
+			                <td width="55%" >
+			                    <a ui-sref="root.comments_edit({id:item.id})" class="btn btn-default preview">
+			                        <strong >{{item.email}}</strong>
+			                    </a>
+			                </td>
+			                <td>
+			                    <span class="label label-success">
+			                        {{item.status}}
+			                    </span>
+			                </td>
+			                <td>{{item.created}}</td>
+			                <td>{{item.updated}}</td>
+			                <td>
+
+			                       
+			                    <a ui-sref="root.comments_edit({id:item.id})" class="btn btn-primary">
+			                    	<i class="fa fa-pencil-square-o"></i>
+			                        {{ 'EDIT_LABEL' | translate}}
+			                    </a>
+			                    <a ng-click="comments_delete(item.id)" class="btn btn-danger">
+			                    	 <i class="fa fa-trash"></i>
+			              		</a>
+
+			                </td>
+			            </tr>
+			          
+			        </tr>
+			         
+			    </tbody>
+			</table>
+
+
+	   
+	            <nav ng-show="todos.length > itemsPerPage">
+
+
+	            	<paging
+					  page="currentPage" 
+					  page-size="itemsPerPage" 
+					  total="todos.length"
+					  pg-href="#/comments/page/{page}"
+					  show-prev-next="true"
+					  show-first-last="true"
+					  class="pagination pagination-noborder"
+						paging-action="pageChanged(page)"
+					  >
+					</paging>  
+	       
+             	</nav>
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>

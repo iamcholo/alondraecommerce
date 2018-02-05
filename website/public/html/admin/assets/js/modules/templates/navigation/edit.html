@@ -1,0 +1,126 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed block">
+	        <!-- START HEADING -->
+	        <div class="app-heading app-heading-small">
+	            <div class="title">
+	                <h5>{{ 'NAVIGATION_PLURAL_LABEL' | translate}}</h5>
+	                <p>{{ 'EDIT_LABEL' | translate}}</p>
+	            </div>
+	        </div>
+	        <!-- END HEADING -->
+
+	        <div class="block-content ">
+
+
+				<div>
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                        	<a href="#pills-1"  data-toggle="tab" aria-expanded="true">
+                        		{{ 'NAVIGATION_PLURAL_LABEL' | translate}}
+                        	</a>
+                        </li>
+                        <li class="">
+                        	<a href="#pills-2" data-toggle="tab" aria-expanded="false">                        	
+                        		{{ 'NAVIGATION_ITEMS_PLURAL_LABEL' | translate}}
+                        	</a>
+                        </li>
+                     
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="pills-1">
+                           	<div class="row clearfix">
+					    		<div class="form-group">
+					                <label class="control-label">{{ 'TITLE_LABEL' | translate}}</label>
+					                <input class="form-control"  ng-model="model.name" type="text">
+					                <br>
+					            </div>
+					        </div>
+					     
+                             <div class="form-group">
+                                    <div class="app-checkbox"> 
+                                        <label>
+                                            <input name="app-checkbox-1" ng-model="model.publish" type="checkbox"> 
+                                            {{ 'PUBLISH_LABEL' | translate}} <span>  </span>
+                                        </label> 
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="tab-pane" id="pills-2">
+
+                            <div class="input-group">
+                                <input class="form-control" ng-model="query" placeholder="{{'SEARCH_FOR_LABEL' | translate}}" type="text">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" ng-click="search()" type="button">Go!</button>
+                                </span>
+                            </div>
+                           <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>{{ 'NAVIGATION_ITEMS_PLURAL_LABEL' | translate}}</h5>
+                                        <div class="dd" id="nestable">
+                                           
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h5>{{ 'POST_PLURAL_LABEL' | translate}}</h5>
+                                        <div class="dd" id="nestable2">
+                                            <ol class="dd-list">
+                                                <li class="dd-item" data-id="{{item.id}}" data-nav="{{item.nav_type}}"  ng-repeat="item in posts " >
+                                                    <div class="dd-handle">{{item.title}}</div>
+                                                </li>
+
+                                               
+                                            </ol>
+                                        </div>
+                                        
+
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h5>{{ 'CATEGORY_PLURAL_LABEL' | translate}}</h5>
+                                        <div class="dd" id="nestable3">
+                                            <ol class="dd-list">
+                                                <li class="dd-item" data-id="{{item.id}}" data-nav="{{item.nav_type}}"  ng-repeat="item in categories" >
+                                                    <div class="dd-handle">{{item.title}}</div>
+                                                </li>
+                                             
+                                            </ol>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h5>{{ 'PAGES_PLURAL_LABEL' | translate}}</h5>
+                                        <div class="dd" id="nestable4">
+                                            <ol class="dd-list">
+                                                <li class="dd-item" data-id="{{item.id}}" data-nav="{{item.nav_type}}"  ng-repeat="item in pages" >
+                                                    <div class="dd-handle">{{item.title}}</div>
+                                                </li>
+                                             
+                                            </ol>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                    
+                           
+                        </div>
+                       
+                      
+                    </div>
+                 
+                    <button ng-click="Save()" class="btn btn-primary" style="margin-top: 25px;">
+                         {{ 'SAVE_LABEL' | translate}}
+
+                    </button>
+                </div>
+
+
+	        
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>

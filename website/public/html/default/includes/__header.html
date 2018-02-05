@@ -1,0 +1,86 @@
+{% load mptt_tags %}
+{% load navigation_tags %}
+{% get_navigation_items "top" as topnav %}
+<div id="search_form" class="padding-top-20 padding-bottom-20 background-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{% url "search" %}" class="form-inline">
+                    <div class="form-group col-md-8 col-xs-10">
+                        <input class="form-control" name="q" type="text" placeholder="Buscar">
+                    </div>
+                    <button class="btn  no-style font-white" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <nav class="navbar navbar-default navigation-clean">
+        <div class="container">
+            
+            <div class="inline">
+              <a href="/"><img src="/assets/img/logo.png"></a>
+            </div>
+              <div
+                class=" pull-right reponsive buttons" >
+                <ul class="nav navbar-nav">
+                    <li class="home"><a href="/"  ><i class="fa fa-home"></i></a></li>
+                    
+                    <li role="presentation"><a href="https://www.youtube.com/channel/UCcCrg_UREhn6hVabWMC07fg"><i class="fa fa-youtube-play"></i> </a></li>
+                    <li role="presentation"><a href="https://facebook.com/gamajuegostv"><i class="fa fa-facebook"></i> </a></li>
+                     <li role="presentation"><a href="https://twitter.com/gamajuego"><i class="fa fa-twitter"></i> </a></li>
+                    <li role="presentation"><a href="{% url 'rss' %}"><i class="fa fa-feed"></i> </a></li>
+                    <li class="pull-right hidden-sm hidden-md hidden-lg margin-right-15"><a data-toggle="collapse" data-target="#navcol-1" class="navbar-toggle collapsed"><i class="fa fa-reorder"></i></a></li>
+                </ul>
+        </div>
+            <div
+                class="collapse navbar-collapse " id="navcol-1">
+                <ul class="nav navbar-nav subnav hide-sm">
+                     {% recursetree topnav %}
+                         {% url "page_details" slug=node.slug as home_url  %}
+                          <li {% if request.get_full_path == home_url %}class="active"{% endif %}{% if not node.is_leaf_node %}class="dropdown"{% endif %}>
+                            <a href="{{home_url}}"
+                              {% if not node.is_leaf_node %}
+                                class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                              {% endif %}
+                            >
+                              {{ node.title }} 
+                              {% if not node.is_leaf_node %}
+                                <span class="caret"></span>
+                              {% endif %}
+                            </a>
+                            {% if not node.is_leaf_node %}
+                            <ul class="dropdown-menu" role="menu">
+                                 {{ children }}
+                            </ul>
+                            {% endif %}
+                          </li>
+                        {% endrecursetree %}
+                    {% url "games"  as home_url  %}
+                          <li {% if request.get_full_path == home_url %}class="active"{% endif %}>
+                            <a href="{{home_url}}">
+                              Juegos
+                            </a>
+                          </li>
+                           {% url "games_engines"  as home_url  %}
+                          <li {% if request.get_full_path == home_url %}class="active"{% endif %}>
+                            <a href="{{home_url}}">
+                              Motores de Juegos
+                            </a>
+                          </li>
+                           {% url "videos"  as home_url  %}
+                          <li {% if request.get_full_path == home_url %}class="active"{% endif %}>
+                            <a href="{{home_url}}">
+                              Videos
+                            </a>
+                          </li>
+                </ul>
+        </div>
+          
+</div>
+</nav>
+</div>
+

@@ -1,0 +1,113 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed">
+	        <!-- START HEADING -->
+	        <div class="app-heading app-heading-small">
+	            <div class="title">
+	                <h5>{{ 'THEMES_LABEL' | translate}}</h5>
+	                <p>{{ 'LIST_LABEL' | translate}}</p>
+	            </div>
+	        </div>
+	        <!-- END HEADING -->
+
+	        <div class="block-content">
+	         	<div class="row">
+					<div class="dropdown ">
+	                    <div class="btn-group"  data-toggle="dropdown" >
+	                        <button type="button" class="btn btn-default dropdown-toggle">
+	                        {{ 'ACTIONS_LABEL' | translate}}
+	                        </button>
+	                        <button type="button" class="btn btn-defaul dropdown-toggle" >
+	                        	<span class="caret"></span>
+	                        </button>                                            
+	                    </div>
+	                    <ul  class="dropdown-menu"> 
+	                        <li><a ui-sref="post_new">{{ 'NEW_LABEL' | translate}}</a></li> 
+	                    </ul>
+	                </div>
+	               	<div class="col-md-10">
+	               		<div class="form-group ">
+	                    
+	                        <div class="input-group">
+	                            <div class="input-group-addon"><span class="fa fa-search"></span></div>
+	                            <input type="text" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'THEMES_LABEL' | translate}}">
+	                            <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">Go!</button>
+                                </span>
+	                        </div>
+	                    </div>
+	               	</div>
+		                
+
+                </div>
+
+              
+
+
+			    <table class="table">
+				    <thead>
+				        <tr>
+				            <th>{{ 'THUMB_LABEL' | translate}}</th>
+				            <th>{{ 'TITLE_LABEL' | translate}}</th>
+				            <th>{{ 'PUBLISHED_LABEL' | translate}}</th>
+				            <th>{{ 'ACTIONS_LABEL' | translate}}</th>
+				        </tr>
+				    </thead>
+			    	<tbody>
+			        <tr ng-repeat="item in filteredTodos" data-id="{{item.id}}">
+			                <td class="app-timeline-item" width="20px;">
+			                    <div class=" padding-top-20" style="height: 102px;">
+			                        <div class="contact contact-rounded contact-bordered contact-xlg margin-bottom-0">
+			                           <img  ng-src="{{item.img}}"  alt="...">
+			                        </div>
+			                    </div>
+			                        
+			                </td>
+			                <td width="55%" >
+			                    <a ui-sref="post_edit({id:item.id})" class="btn btn-default preview">
+			                        <strong >{{item.title}}</strong>
+			                    </a>
+			                </td>
+			                <td>
+			                    <span class="label label-success">
+			                        {{item.status}}
+			                    </span>
+			                </td>
+			               
+			                <td>
+			                    <a class="btn btn-primary">
+			                        <span class="fa fa-check"></span>
+			                    </a>
+			                </td>
+			            </tr>
+			          
+			        </tr>
+			         
+			    </tbody>
+			</table>
+
+
+	   
+	             <nav ng-show="todos.length > itemsPerPage">
+
+
+	            	<paging
+					  page="currentPage" 
+					  page-size="itemsPerPage" 
+					  total="todos.length"
+					  pg-href="#/themes/page/{page}"
+					  show-prev-next="true"
+					  show-first-last="true"
+					  class="pagination pagination-noborder"
+						paging-action="pageChanged(page)"
+					  >
+					</paging>  
+	       
+             	</nav>
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>

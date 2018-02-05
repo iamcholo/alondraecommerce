@@ -1,0 +1,34 @@
+    <div class="app-login-box">                                        
+        <div class="app-login-box-user"><img src="/admin/assets/img/logo.jpg" alt="John Doe"></div>
+        <div class="app-login-box-title">
+            <div class="title">Already a member?</div>
+            <div class="subtitle">Sign in to your account</div>                        
+        </div>
+        <div class="app-login-box-container">
+            <form  method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control"  ng-model="model.username" name="login" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" ng-model="model.password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6">
+                            <div class="app-checkbox">
+                               &nbsp;
+                            </div>
+                        </div>
+                        <div  class="col-md-6 col-xs-6">
+                            <a class="btn btn-success btn-block"  ng-click="login()">Sign In</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+        
+    </div>
+
+  

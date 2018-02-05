@@ -1,0 +1,89 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed block">
+	        <!-- START HEADING -->
+	        <div class="app-heading app-heading-small">
+	            <div class="title">
+	                <h5>{{ 'CATEGORY_PLURAL_LABEL' | translate}}</h5>
+	                <p>{{ 'EDIT_LABEL' | translate}}</p>
+	            </div>
+	        </div>
+	        <!-- END HEADING -->
+
+	        <div class="block-content ">
+
+
+				<div>
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                        	<a href="#pills-1"  data-toggle="tab" aria-expanded="true">
+                        		{{ 'CONTENT_LABEL' | translate}}
+                        	</a>
+                        </li>
+
+                        <li class="">
+                            <a href="#pills-4"  data-toggle="tab" aria-expanded="false">
+                                {{ 'SEO_LABEL' | translate}}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="pills-1">
+                           	<div class="row clearfix">
+					    		<div class="form-group">
+					                <label class="control-label">
+                                        {{ 'TITLE_LABEL' | translate}}
+                                    </label>
+					                <input class="form-control" ng-keyup="ChangeTitle()"  ng-model="model.name" type="text">
+					              
+					            </div>
+                                <div class="form-group">
+                                    <div class="app-checkbox"> 
+                                        <label>
+                                            <input name="app-checkbox-1" ng-model="model.publish" type="checkbox"> 
+                                            {{ 'PUBLISH_LABEL' | translate}} <span>  </span>
+                                        </label> 
+                                    </div>
+                                </div>
+					        </div>
+					     	
+                        </div>
+     
+                        <div class="tab-pane" id="pills-4">
+
+                            <div class="row clearfix">
+                                <div class="form-group">
+                                    <label class="control-label">{{ 'META_TITLE_LABEL' | translate}}</label>
+                                    <input class="form-control" ng-model="model.meta_title" type="text">
+                                    <br>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">
+                                    {{ 'SLUG_LABEL' | translate}}</label>
+                                    <input class="form-control" ng-model="model.slug" type="text">
+                                    <br>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">
+                                    {{ 'META_DESCRIPTION_LABEL' | translate}}</label>
+                                    <textarea class="form-control" ng-model="model.meta_description" type="text"></textarea> 
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button ng-click="save()" class="btn btn-primary">
+                         {{ 'SAVE_LABEL' | translate}}
+
+                    </button>
+                </div>
+
+
+	        
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>

@@ -1,0 +1,16 @@
+<div>
+	<div id="holder" class="dropzone dz-clickable">
+	   	<div class="dz-default dz-message">
+	   		<div class="dropzone-preupload-title">{{ 'DROP_FILES_LABEL' | translate}}</div> 
+	   		<p>{{'UNLOADED_FILES_LABEL' | translate}}</p>
+	   	</div>
+		<input type="file" id="id_files" class="hide" >
+	</div>
+	<br>
+	<div ng-show="progresss > 0" style="margin-top:25px;" class="progress">
+	  <div class="progress-bar" role="progressbar" aria-valuenow="{{progresss}}"
+	  aria-valuemin="0" aria-valuemax="100" style="width:{{progresss}}%">
+	    <span class="sr-only">{{progresss}}% Complete</span>
+	  </div>
+	</div>
+</div>

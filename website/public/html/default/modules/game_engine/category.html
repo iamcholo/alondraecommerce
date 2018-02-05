@@ -1,0 +1,83 @@
+{% extends "layouts/default.html" %}
+{% load posts_tags %}
+{% block title %} | {{category.meta_title}} {% endblock %}
+{% block description %} | {{category.meta_description}} {% endblock %}
+{% load set_var %}
+{% load humanize %} 
+{% load tz %}
+
+{% block content %}
+
+
+<!--=================================
+Blog
+=================================-->
+        <div class="row no-row padding-top-10 border-bottom padding-bottom-10 margin-bottom-20">
+          <div class="col-md-12">
+              <h3>Motores de Juegos</h3>
+
+          </div>
+        </div>
+         <br>
+         <div style="display: flex; flex-wrap:  wrap;" >
+        {% for post in posts %}
+          {% if forloop.counter == 1 and forloop.counter < posts|length and page <= 1 %} 
+            <div class="col-md-12 hidden-xs text-left padding-top-10 padding-bottom-10 container-relative recalculate-font-size margin-bottom-20 ">
+                  <img class="img-responsive box-inner-shadow" src="{{post.featured_image}}">
+                  <div class="text margin-20">
+                    <a href="{% url "page_details" slug=post.slug %}" class="title font-bold font-white">{{post.title}}</a>
+                    <p class="paragraph font-white">{{post.excerpt}} </p>
+                  </div>
+            </div>
+          {% else %}
+              <div class="col-md-4 clearfix">
+
+                <div class=" padding-top-20 padding-bottom-20">
+                    <div class="col-md-12">
+                      <img class="img-responsive" src="{{post.featured_image}}">
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                             <a href="{% url "page_details" slug=post.slug %}" class="title">{{post.title}}</a>
+                        </div>
+                        
+                        <div>
+                            <p>{{post.excerpt}} </p>
+                        </div>
+                    </div>
+                    
+                </div>
+              </div>
+          {% endif %}
+
+
+
+
+        {% empty %}
+            <div class="col-md-12">
+                <div class="padding-top-20 padding-bottom-20">
+                    <h3 class="no-style font-bold">
+                    <i class="glyphicon glyphicon-exclamation-sign"></i> 
+                    Oops lo sentimos pero no hay resultados 
+                    </h3>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        {% if posts.has_other_pages %}
+
+
+        <div class="col-md-12 padding-top-20 padding-bottom-20">
+            {% if posts.has_next %}
+              <a rel="nofollow"  href="{% url 'games_engines' page=posts.next_page_number %}" class="btn btn-primary pull-right"> Antiguos</a>
+            {% endif %}
+            {% if posts.has_previous %}
+              <a rel="nofollow" href="{% url 'games_engines'  page=posts.previous_page_number %}" class="btn  btn-primary pull-right margin-right">Recientes</a>
+            {% endif %}
+            <a rel="nofollow" class="btn btn-default"><i class="glyphicon glyphicon-tag"></i> Archivos </a>
+        </div>
+
+        {% endif %} 
+
+
+{% endblock %}
