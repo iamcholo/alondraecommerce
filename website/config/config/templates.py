@@ -14,11 +14,10 @@ TEMPLATES = [
             'context_processors': [        
                 'django.template.context_processors.debug',
                 'user.context_processors.user',
-                'user_site.context_processors.user_site',
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                 'sitemap.context_processors.get_domain',
+                'sitemap.context_processors.get_domain',
                 'django.template.context_processors.static',
 
             ],
