@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from navigation.models import NavigationPosition
-from user_site.models import UserSite
+
 from django.contrib.auth.models import User
 from navigation.models import NavigationItem
 from django.contrib.contenttypes.models import ContentType

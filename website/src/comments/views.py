@@ -6,7 +6,7 @@ from utilities.paginator import paginator
 from utilities.network import get_client_ip
 from django.shortcuts import get_object_or_404
 from comments.forms import CommentsModelForm
-from user_site.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from posts.models import PostItem
 from comments.models import Comments
 from django.contrib import messages
