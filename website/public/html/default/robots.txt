@@ -1,3 +1,0 @@
-Sitemap: {{current_domain}}/sitemap_index.xml
-User-agent: *
-Disallow: /archivos/

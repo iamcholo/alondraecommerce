@@ -14,18 +14,14 @@ INSTALLED_APPS = (
     'captcha',
     'widget_tweaks',
     'mptt',
-    #'form_utils',
     'user',
-    'user_site',
     'rss',
     'sitemap',
     'utilities',   
     'globaly',   
     'posts',
     'media',
-    'global_config',
     'navigation',
-    #'contact_form',
     'comments',   
 
 )

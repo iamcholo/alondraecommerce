@@ -1,9 +1,0 @@
-<?xml-stylesheet type='text/xsl' href='{% url "sitemap_xsl_theme_dated" %}'?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-	{% for post in posts %}
-	<url>
-		<loc>{{ baseurl }}/sitemap/{{post.title}}-pt-{{post.year}}-{{post.month}}.xml</loc>
-		<lastmod>{{post.created|date:"Y-m-d" }}</lastmod>		
-	</url>
-	{% endfor %}
-</urlset>

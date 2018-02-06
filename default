@@ -7,15 +7,15 @@ server {
    access_log off;
 
    location /assets/ {
-       alias /home/development/Desktop/www/PYTHON/gamajuegosblog/website/public/html/default/assets/;
+       alias /home/development/Desktop/www/PYTHON/catalog/website/public/html/default/assets/;
    }
 
    location /admin/assets/ {
-      alias /home/development/Desktop/www/PYTHON/gamajuegosblog/website/public/html/admin/assets/;
+      alias /home/development/Desktop/www/PYTHON/catalog/website/public/html/admin/assets/;
   }
 
    location /assets/media/uploads/ {
-       alias /home/development/Desktop/www/PYTHON/gamajuegosblog/website/public/content/media/uploads/;
+       alias /home/development/Desktop/www/PYTHON/catalog/website/public/content/media/uploads/;
    }
    
    location / {
