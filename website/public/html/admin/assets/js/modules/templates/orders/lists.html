@@ -1,11 +1,13 @@
+
 <div class="row">
+
 	<div class="col-md-12">
     
 	    <div class="block block-condensed">
 	        <!-- START HEADING -->
 	        <div class="app-heading app-heading-small">
 	            <div class="title">
-	                <h5>{{ 'ORDER_PLURAL_LABEL' | translate}}</h5>
+	                <h5>{{ 'ORDERS_PLURAL_LABEL' | translate}}</h5>
 	                <p>{{ 'LIST_LABEL' | translate}}</p>
 	            </div>
 	        </div>
@@ -19,10 +21,10 @@
 	                    
 	                        <div class="input-group">
 	                            <div class="input-group-addon"><span class="fa fa-search"></span></div>
-	                            <input type="text" ng-model="model.query" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'ORDER_PLURAL_LABEL' | translate}}">
+	                            <input type="text" ng-model="model.query" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'ORDERS_PLURAL_LABEL' | translate}}">
 	                            <span class="input-group-btn">
-									<button  ng-click="search()" class="btn btn-primary" type="button">Go!</button>
-								</span>
+					                <button  ng-click="search()" class="btn btn-primary" type="button">Go!</button>
+					            </span>
 	                        </div>
 	                    </div>
 	               	</div>
@@ -36,7 +38,10 @@
 			    <table class="table">
 				    <thead>
 				        <tr>
-				            <th>{{ 'TITLE_LABEL' | translate}}</th>
+				            
+				            <th>{{ 'ORDER_NUMBER_LABEL' | translate}}</th>
+				           
+				            
 				            <th>{{ 'ACTIONS_LABEL' | translate}}</th>
 				        </tr>
 				    </thead>
@@ -44,22 +49,21 @@
 			        <tr ng-repeat="item in filteredTodos" data-id="{{item.id}}">
 			                
 			                <td width="75%" >
-			                    <a ui-sref="root.taxes_edit({id:item.id})" class="btn btn-default preview">
+			                    <a ui-sref="root.orders_view({id:item.id})" class="btn btn-default preview">
 			                        <strong >{{item.title}}</strong>
 			                    </a>
 			                </td>
 
+			             
 			                <td>
-			                    <a ui-sref="root.taxes_edit({id:item.id})" class="btn btn-primary">
-			                    	<i class="fa fa-pencil-square-o"></i>			                       
-			                        {{ 'EDIT_LABEL' | translate}}
+			                    <a ui-sref="root.orders_view({id:item.id})" class="btn btn-primary">
+			                    	<i class="fa fa-pencil-square-o"></i>
+			                        {{ 'VIEW_LABEL' | translate}}
 			                    </a>
-			                    <a ng-click="DELETE(item.id)" class="btn btn-danger">
-			                        <i class="fa fa-trash"></i>
-			                    </a>
+			                  
 
 			                </td>
-			            </tr>
+			          
 			          
 			        </tr>
 			         
@@ -75,7 +79,7 @@
 					  page="currentPage" 
 					  page-size="itemsPerPage" 
 					  total="todos.length"
-					  pg-href="#/tags/page/{page}"
+					  pg-href="#/orders/page/{page}"
 					  show-prev-next="true"
 					  show-first-last="true"
 					  class="pagination pagination-noborder"

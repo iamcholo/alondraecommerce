@@ -175,6 +175,10 @@ class PostItem(BaseArticle, BaseDateTime, BaseThumbnailFeatured, BaseSeo):
             _('PRICE_LABEL'),
              default=0.0
         )   
+    qty = models.IntegerField(
+            _('QTY_LABEL'),
+             default=0
+        )   
 
 
     def __unicode__(self):

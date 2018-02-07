@@ -84,13 +84,15 @@ define(['angular','clipboard'],function(angular,clipboard){
 		};
 
 	}]).controller('PostsEditCtrl', 
-	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media',
-	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media) 
+	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media','Taxes','pvpCountries',
+	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media,Taxes,pvpCountries) 
 	  {
 
 	  	new clipboard('.btn');
 	  	$scope.model = {
 	  		'title':'',
+	  		'price':0.00,
+	  		'qty': 0,
 	  		'publish': true,
 	  		'post_type': 'post',
 	  		'is_featured': true,
@@ -100,6 +102,7 @@ define(['angular','clipboard'],function(angular,clipboard){
 	  		'thumbnail_text':'',
 	  		'featured_image':'',
             'featured_image_text':'',
+            'taxes_lists':[],
 	  		'categories_lists': [], 
 	  		'tags_lists': [], 
 	  		'content':'',
@@ -110,7 +113,12 @@ define(['angular','clipboard'],function(angular,clipboard){
 	  	} 
 	  	$scope.query = '';
 		$scope.name = '';
-
+		$scope.showCountry = function(name)
+	  	{
+	  		return pvpCountries.getCountries().filter(function(item){
+				return item.alpha2 == name;
+			})[0].name;
+	  	}
 	  	$scope.search = function()
 	  	{	if($scope.query.length > 0)
 	  		{
@@ -133,8 +141,11 @@ define(['angular','clipboard'],function(angular,clipboard){
 
 	  	Posts.Get( $stateParams.id ).then(function successCallback(response){
 	  			$scope.model.title = response.data.title;
+	  			$scope.model.price = response.data.price;
+	  			$scope.model.qty = response.data.qty;
 	  			$scope.model.categories_lists = response.data.categories_lists;	 
-	  			$scope.model.tags_lists = response.data.tags_lists;	 			
+	  			$scope.model.tags_lists = response.data.tags_lists;	
+	  			$scope.model.taxes_lists = response.data.taxes_lists;	
 	  			$scope.model.publish = response.data.publish;
 	  			$scope.model.publish_date = response.data.publish_date;	 
 	  			$scope.model.is_featured = response.data.is_featured;
@@ -150,7 +161,7 @@ define(['angular','clipboard'],function(angular,clipboard){
 	  			$scope.model.slug = response.data.slug;
 	  			$scope.makeTodos();
 	  			$scope.makeTodosMedia();
-
+	  			$scope.makeTodosTaxes();
 			}, function errorCallback(response) {});
 	  	
 
@@ -200,6 +211,27 @@ define(['angular','clipboard'],function(angular,clipboard){
         	}, function errorCallback(response) {});
 		};
 
+		$scope.makeTodosTaxes = function()
+		{
+			$scope.taxes = [];
+		    Taxes.list().then(function successCallback(response)
+		    {
+	         	angular.forEach(response.data, function(value, key){
+	         			checked =  $scope.model.taxes_lists.filter(function(item){
+				              	return item.id === value.id;
+				          	});
+
+				 	this.push({
+			        	id: value.id,
+				        title: value.percent,
+				        city: value.city,
+				        country: value.country,
+				        checked: checked.length > 0,
+				        
+			      	});
+				},$scope.taxes);
+        	}, function errorCallback(response) {});
+		};
 	 
 	  	$scope.makeTodosMedia = function()
 		{
@@ -259,6 +291,10 @@ define(['angular','clipboard'],function(angular,clipboard){
               return item.checked === true;
           	});
 
+          	$scope.model.taxes_lists = $scope.taxes.filter(function(item){        
+              return item.checked === true;
+          	});
+
 		  	$scope.model.id = $stateParams.id;
 
 		  	if(featured_image.length > 0)
@@ -277,12 +313,14 @@ define(['angular','clipboard'],function(angular,clipboard){
 		}
 
 	}]).controller('PostsNewCtrl', 
-	[ '$scope','$state','$translate','$stateParams','Games','Posts','Tags','Category','Media',
-	  function ($scope,$state,$translate,$stateParams,Games,Posts,Tags,Category,Media) 
+	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media','Taxes','pvpCountries',
+	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media, Taxes,pvpCountries) 
 	  {
 	  	new clipboard('.btn');
 	  	$scope.model = {
 	  		'title':'',
+	  		'price':0.00,
+	  		'qty': 0,
 	  		'publish': true,
 	  		'post_type': 'post',
 	  		'is_featured': true,
@@ -301,6 +339,12 @@ define(['angular','clipboard'],function(angular,clipboard){
 	  		'meta_description':''
 	  	} 
 		$scope.query = '';
+		$scope.showCountry = function(name)
+	  	{
+	  		return pvpCountries.getCountries().filter(function(item){
+				return item.alpha2 == name;
+			})[0].name;
+	  	}
 	  	$scope.search = function()
 	  	{	if($scope.query.length > 0)
 	  		{
@@ -328,6 +372,9 @@ define(['angular','clipboard'],function(angular,clipboard){
           	$scope.model.tag_lists = $scope.tags.filter(function(item){        
               return item.checked === true;
           	});
+          	$scope.model.taxes_lists = $scope.taxes.filter(function(item){        
+              return item.checked === true;
+          	});
 	  		Posts.New($scope.model).then(function successCallback(response)
 		    {
 		    	$state.go('root.post_edit',{'id':response.data.id});
@@ -352,10 +399,25 @@ define(['angular','clipboard'],function(angular,clipboard){
         	}, function errorCallback(response) {});
 		};
 
+
+
 		$scope.makeTodos = function()
 		{
 			$scope.todos = [];
 			$scope.tags = [];
+			$scope.taxes = [];
+		    Taxes.list().then(function successCallback(response)
+		    {
+	         	angular.forEach(response.data, function(value, key){
+				 	this.push({
+			        	id: value.id,
+				        title: value.percent,
+				        city: value.city,
+				        country: value.country,
+				        checked: false,
+			      	});
+				},$scope.taxes);
+        	}, function errorCallback(response) {});
 		    Category.list().then(function successCallback(response)
 		    {
 	         	angular.forEach(response.data, function(value, key){
@@ -376,15 +438,13 @@ define(['angular','clipboard'],function(angular,clipboard){
 		    {
 		    	angular.forEach(response.data, function(value, key){
 
-	         			checked =  $scope.model.tags_lists.filter(function(item){
-				              	return item.id === value.id;
-				          	});
+	         			
 					     			
 					 	this.push({
 				        	id: value.id,
 					        title: value.name,
 					        status: value.publish,
-					        checked: checked.length > 0,
+					        checked: false,
 					        created: value.created,
 					        modified: value.modified,
 				      	});
@@ -394,6 +454,7 @@ define(['angular','clipboard'],function(angular,clipboard){
 	  	$scope.makeTodos();
 
 	  	$scope.makeTodosMedia();
+	  	
 	}]);
   
 });

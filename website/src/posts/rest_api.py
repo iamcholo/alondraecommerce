@@ -43,6 +43,7 @@ class PostCategorySerializer(serializers.HyperlinkedModelSerializer):
 class PostItemSerializer(serializers.HyperlinkedModelSerializer):
     categories_lists = PostCategorySerializer(source='categories', many=True, read_only = True)
     tags_lists = GlobalyTagsSerializer(source='tags', many=True, read_only = True)
+    taxes_lists = GlobalyTagsSerializer(source='taxes', many=True, read_only = True)
     autor_id = serializers.ReadOnlyField(source='autor.id')
 
     class Meta:
@@ -52,6 +53,7 @@ class PostItemSerializer(serializers.HyperlinkedModelSerializer):
             'autor_id',
             'categories_lists',
             'tags_lists',
+            'taxes_lists',
             'title',
             'slug',
             'meta_title',

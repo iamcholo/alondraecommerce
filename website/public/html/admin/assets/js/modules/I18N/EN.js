@@ -89,6 +89,8 @@ define(['angular'],function(angular){
             'CITY_LABEL': "City",
             'COUNTRY_LABEL': "Country",
             'PERCENT_LABEL': "Percent",
+            'QTY_LABEL': 'Quantity',
+            'PRICE_LABEL': 'Price',
       });
      
       $translateProvider.preferredLanguage('en');

@@ -90,6 +90,8 @@ define(['angular'],function(angular){
             'CITY_LABEL': "Ciudad",
             'COUNTRY_LABEL': "Pais",
             'PERCENT_LABEL': "Porcentaje",
+            'QTY_LABEL': 'Cantidad',
+            'PRICE_LABEL': 'Precio'
       });
      
       $translateProvider.preferredLanguage('ES');
