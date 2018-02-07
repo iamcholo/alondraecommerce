@@ -1,8 +1,8 @@
 define(['angular'],function(angular){
 
-angular.module('app.services.custom.games', [] )
-.service('Games', [ 
-    '$q', '$http',  '$rootScope','$cookies', 
+angular.module('app.services.tags', [] )
+.service('Tags', [ 
+    '$q', '$http',  '$rootScope', '$cookies',
     function ($q, $http, $rootScope,$cookies) 
   {
     // AngularJS will instantiate a singleton by calling "new" on this function
@@ -24,47 +24,46 @@ angular.module('app.services.custom.games', [] )
                 withCredentials: this.use_session,
                 method: method.toUpperCase(),
                 //headers: {'X-CSRFToken': $cookies['csrftoken']},
-                headers: {
+               headers: {
                     'Authorization': 'Token ' + $cookies.get('access_token'),
                     'Content-Type': 'application/json'
                 },
+                //transformRequest: angular.identity,
                 params: params,
                 data: data
             });
         },
         'list': function(){
             return this.request({
-                'method': "POST",
-                'url': "/games/",
-                 'data': {'post_type': 'game'}            
+                'method': "GET",
+                'url': "/tags/"              
             });
         },
         'New': function(data){
-            console.log(data)
             return this.request({
                 'method': "POST",
-                'url': "/game/",
+                'url': "/tag/",
                 'data': data              
             });
         },
         'Update': function(data){
             return this.request({
                 'method': "PUT",
-                'url': "/game/",
+                'url': "/tag/",
                 'data': data       
             });
         },
         'Get': function(id){
             return this.request({
                 'method': "POST",
-                'url': "/game/details/",
+                'url': "/tag/details/",
                 'data': {'id':id,}                 
             });
         },
         'Delete': function(id){
             return this.request({
                 'method': "DELETE",
-                'url': "/game/", 
+                'url': "/tag/", 
                 'data': {'id':id}             
             });
         },

@@ -124,7 +124,7 @@ def tax(request):
  
     if request.method == 'PUT':
         serializer = TaxesSerializer(
-            discount,
+            tax,
             data=request.data,
             context={'request': request}
         )
