@@ -115,7 +115,7 @@ require.config({
           'taxes_controllers',
           'taxes_routers',
           'taxes_services',
-          'discount_services',
+          'discounts_services',
           'comments_services',         
           'files_directive',
           'clipboard',
