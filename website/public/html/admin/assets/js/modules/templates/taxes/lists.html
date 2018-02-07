@@ -46,14 +46,10 @@
 
               
 
-
+                <br>
+                <br>
 			    <table class="table">
-				    <thead>
-				        <tr>
-				            <th>{{ 'TITLE_LABEL' | translate}}</th>
-				            <th>{{ 'ACTIONS_LABEL' | translate}}</th>
-				        </tr>
-				    </thead>
+				  
 			    	<tbody>
 			        <tr ng-repeat="item in filteredTodos" data-id="{{item.id}}">
 			                
@@ -61,6 +57,17 @@
 			                    <a ui-sref="root.taxes_edit({id:item.id})" class="btn btn-default preview">
 			                        <strong >{{item.title}}</strong>
 			                    </a>
+			                </td>
+
+			                 <td >
+			                    
+			                        <strong >{{item.city}}</strong>
+			                   
+			                </td>
+			                   <td >
+			                    
+			                        <strong >{{showCountry(item.country)}}</strong>
+			                   
 			                </td>
 
 			                <td>

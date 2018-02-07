@@ -1,8 +1,9 @@
 define(['angular'],function(angular){
  	angular.module('app.controllers.taxes', [])
+ 	
  	.controller('TaxesListCtrl', 
-	[ '$scope','$state','$translate','Taxes',
-	  function ($scope,$state,$translate, Taxes) 
+	[ '$scope','$state','$translate','Taxes','pvpCountries',
+	  function ($scope,$state,$translate, Taxes,pvpCountries) 
 	  {
 
 	  	$scope.filteredTodos = [];
@@ -12,10 +13,13 @@ define(['angular'],function(angular){
 	  	$scope.search = function()
 	  	{	if($scope.model.query.length > 0)
 	  		{
+
+
+
 	  			$scope.todos = $scope.todos.filter(function(item){
 	  			re = new RegExp($scope.model.query);
 
-				return re.test(item.title) ;
+				return re.test(item.country) ;
 				});
 				$scope.figureOutTodosToDisplay(1);
 	  		}else
@@ -24,7 +28,12 @@ define(['angular'],function(angular){
 	  		}
 	  		
 	  	}
-
+	  	$scope.showCountry = function(name)
+	  	{
+	  		return pvpCountries.getCountries().filter(function(item){
+				return item.alpha2 == name;
+			})[0].name;
+	  	}
 		$scope.makeTodos = function()
 		{
 			$scope.todos = [];
@@ -34,8 +43,10 @@ define(['angular'],function(angular){
 	         	angular.forEach(response.data, function(value, key){
 				 	this.push({
 			        	id: value.id,
-				        title: value.name,
-				        status: value.publish,
+				        title: value.percent,
+				        city: value.city,
+				        country: value.country,
+				        
 			      	});
 			      	if(response.data.length-1 >= key)
 			      	{

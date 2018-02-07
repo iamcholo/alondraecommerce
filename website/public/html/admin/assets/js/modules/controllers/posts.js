@@ -1,5 +1,6 @@
 define(['angular','clipboard'],function(angular,clipboard){
  	angular.module('app.controllers.posts', [])
+ 	
  	.controller('PostsListCtrl', 
 	[ '$scope','$state','$translate','Posts',
 	  function ($scope,$state,$translate, Posts) 

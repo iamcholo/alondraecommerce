@@ -38,11 +38,11 @@ class TaxesSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 @permission_classes((IsAuthenticated,))
 def taxes_list(request):
         
-    if request.method == 'POST':
+    if request.method == 'GET':
         media = Taxes.objects.all()
         serializer = TaxesSerializer(
             media, 
