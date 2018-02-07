@@ -39,6 +39,8 @@ POST_TYPES_CHOICES = (
     ('forum', 'Forum'),
 )
 
+
+
 class PostCategory(MPTTModel, BaseDateTime, BasePublish, BaseSeo):
 
     parent = TreeForeignKey(
@@ -160,6 +162,10 @@ class PostItem(BaseArticle, BaseDateTime, BaseThumbnailFeatured, BaseSeo):
             default="post"
         )
 
+    price = models.FloatField(
+            _('PRICE_LABEL'),
+               
+        )
 
 
     def __unicode__(self):
