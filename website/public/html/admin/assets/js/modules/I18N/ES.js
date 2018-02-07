@@ -20,8 +20,8 @@ define(['angular'],function(angular){
             'THUMB_LABEL': 'Thumb',
             'PUBLISHED_LABEL': 'Publicado',
             'SAVE_LABEL': 'Guardar',
-            'POST_LABEL': 'Post',
-            'POST_PLURAL_LABEL': 'Posts',
+            'POST_LABEL': 'Articulo',
+            'POST_PLURAL_LABEL': 'Articulos',
             'SEARCH_LABEL': 'Buscar', 
             'CONTENT_LABEL': 'Contenido',  
             'CATEGORIES_LABEL': 'Categorias',
@@ -81,6 +81,7 @@ define(['angular'],function(angular){
             'TAX_LABEL':'Impuesto',
             'TAXES_LABEL':'Impuestos',
             'ORDER_LABEL':'Orden de Compra',
+            'ORDER_NUMBER_LABEL': 'Numero de orden de compra',
             'ORDER_PLURAL_LABEL':'Ordenes de Compra',
             'DISCOUNT_LABEL':'Descuento',
             'DISCOUNT_PLURAL_LABEL':'Descuentos',
@@ -95,6 +96,7 @@ define(['angular'],function(angular){
             'ADD_LABEL':'Agregar',
             'START_DATE_LABEL': "Fecha de inicio",
             'END_DATE_LABEL':'Fecha de Finalizacion',
+
       });
      
       $translateProvider.preferredLanguage('ES');
