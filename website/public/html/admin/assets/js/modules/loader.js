@@ -60,6 +60,9 @@ require.config({
       "services":"modules/services",
       "dashboard":"modules/dashboard",
       //custom games
+      "orders_controllers": "modules/controllers/orders",
+      "orders_routers": "modules/routes/orders",
+      "orders_services": "modules/services/orders",
 
       "media_album_controllers": "modules/controllers/media_album",
       "media_album_routers": "modules/routes/media_album",
@@ -124,6 +127,12 @@ require.config({
           'navigation_services',
           'navigation_items_services',
    
+
+   
+          'orders_controllers',
+          'orders_routers',
+          'orders_services',
+
           'media_album_controllers',
           'media_album_routers',
           'media_album_services',
@@ -307,7 +316,16 @@ require.config({
       },
       //custom
 
- 
+      'orders_controllers': {
+        deps: ['angular']
+      },
+      'orders_routers': {
+        deps: ['angular']
+      },
+      'orders_services': {
+        deps: ['angular']
+      },
+
 
 
       'media_album_controllers': {

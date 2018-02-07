@@ -30,6 +30,7 @@ define(
         'app.controllers.themes',        
         'app.controllers.login',
         'app.controllers.navigation',
+        'app.controllers.orders',
         'app.services.user',
         'app.services.login',
         'app.services.posts',
@@ -43,6 +44,7 @@ define(
         'app.services.media_album',
         'app.services.navigation',
         'app.services.navigation_items',
+        'app.services.orders',
         'app.routes.posts',
         'app.routes.pages',
         'app.routes.media',
@@ -56,6 +58,7 @@ define(
         'app.routes.root',
         'app.routes.login',
         'app.routes.navigation',
+        'app.routes.orders',
         'app.I18N.EN',
         'app.I18N.ES',
       ]);
