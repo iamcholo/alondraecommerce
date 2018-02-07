@@ -24,7 +24,7 @@
 	                    </div>
 	                    <ul  class="dropdown-menu"> 
 	                        <li>
-	                        	<a ui-sref="root.tags_new">{{ 'NEW_LABEL' | translate}}</a>
+	                        	<a ui-sref="root.taxes_new">{{ 'NEW_LABEL' | translate}}</a>
 	                        </li> 
 	                    </ul>
 	                </div>
@@ -58,13 +58,13 @@
 			        <tr ng-repeat="item in filteredTodos" data-id="{{item.id}}">
 			                
 			                <td width="75%" >
-			                    <a ui-sref="root.tags_edit({id:item.id})" class="btn btn-default preview">
+			                    <a ui-sref="root.taxes_edit({id:item.id})" class="btn btn-default preview">
 			                        <strong >{{item.title}}</strong>
 			                    </a>
 			                </td>
 
 			                <td>
-			                    <a ui-sref="root.tags_edit({id:item.id})" class="btn btn-primary">
+			                    <a ui-sref="root.taxes_edit({id:item.id})" class="btn btn-primary">
 			                    	<i class="fa fa-pencil-square-o"></i>			                       
 			                        {{ 'EDIT_LABEL' | translate}}
 			                    </a>

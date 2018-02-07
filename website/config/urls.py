@@ -16,18 +16,12 @@ urlpatterns = [
         ), 
         name='admin'
     ),
-    url(r'^archivos/$',
-        TemplateView.as_view(
-            template_name='archive.html', 
-            content_type='text/html'
-        ), 
-        name='archive'
-    ),
-    url(r'', include('posts.urls2')),
-    url(r'^', include("sitemap.urls")),
-    url(r'^', include("rss.urls")),
+    
+    #url(r'', include('posts.urls2')),
+    #url(r'^', include("sitemap.urls")),
+    #url(r'^', include("rss.urls")),
     #url(r'^mediaframework/', include("media.urls")),
-    url(r'^comments/', include("comments.urls2")),
+    #url(r'^comments/', include("comments.urls2")),
     #url(r'^admin/kawai/', include(admin.site.urls)),
   
 

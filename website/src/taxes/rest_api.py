@@ -23,7 +23,7 @@ from django.db.models import Max
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-from posts.models import PostItem
+
 
 class TaxesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

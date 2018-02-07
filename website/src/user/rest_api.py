@@ -80,7 +80,12 @@ def login(request):
 def user_list(request):
         
     if request.method == 'GET':
-        users = User.objects.all()
+        users = []
+        if request.user.is_superuser == False:
+            users = User.objects.filter(id=request.user.id)
+        else:
+            users = User.objects.all()
+        
         serializer = UserSerializer(
             users, 
             many=True,
@@ -237,13 +242,12 @@ def user_create(request):
                     )
                 
                 return Response(serializer.data)
+   
             return Response(
-                serializer.errors, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        return Response(
-            status=status.HTTP_404_NOT_FOUND
-        )            
+                    serializer.errors, 
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+    return Response(status=status.HTTP_204_NO_CONTENT)           
 
 
 

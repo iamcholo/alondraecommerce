@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.html import format_html
 from utilities.image_base64 import encode_image_2
 from utilities.models import BaseDateTime
+from posts.models import PostItem
 # Create your models here.
 
 class Discounts(BaseDateTime):

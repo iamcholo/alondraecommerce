@@ -8,6 +8,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'corsheaders',
+    'django_countries',
     'rest_framework',
     'rest_framework.authtoken',
     'django_markup',
@@ -20,7 +21,10 @@ INSTALLED_APPS = (
     'utilities',   
     'globaly',   
     'posts',
+
+    'taxes',
     'media',
+    'discount',
     'navigation',
     'comments',   
 
