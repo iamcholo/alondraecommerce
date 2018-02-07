@@ -13,6 +13,7 @@ from utilities.models import BaseArticle
 from utilities.models import BaseThumbnailFeatured
 from utilities.models import BasePublish
 from utilities.models import BaseSeo
+from taxes.models import Taxes
 from globaly.models import GlobalyTags
 from globaly.models import get_meta
 from media.models import MediaAlbum
@@ -132,6 +133,14 @@ class PostItem(BaseArticle, BaseDateTime, BaseThumbnailFeatured, BaseSeo):
             related_name='post_item_related_tags', 
             blank=True
         )
+
+    taxes = models.ManyToManyField(
+            Taxes,
+            verbose_name=_('TAXES_TITLE_PLURAL'),
+            related_name='post_item_related_taxes', 
+            blank=True
+        )
+    
     
     related_posts = models.ManyToManyField(
             'self',
