@@ -225,7 +225,7 @@ define(['angular','clipboard'],function(angular,clipboard){
 					this.push({
 						'id':value.id,
 						'editable':false,
-						'amount':value.amount,
+						'percent':value.percent,
 						'start_date': value.start_date,
 						'end_date': value.end_date,
 					});
