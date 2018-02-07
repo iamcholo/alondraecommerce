@@ -93,21 +93,12 @@ define(['angular'],function(angular){
 			'percent': 0.00,
 	  	} 
 
-	  	
-	  	$scope.ChangeTitle = function()
-	  	{
-	  		$scope.model.meta_title = $scope.model.name
-	  		$scope.model.slug = window.string_to_slug($scope.model.name)
-	  	}
-
 
 	  	Taxes.Get( $stateParams.id ).then(function successCallback(response){
-	  			$scope.model.name = response.data.name;
-	  			$scope.model.publish = response.data.publish;
-	  			$scope.model.content = response.data.content;
-	  			$scope.model.meta_title = response.data.meta_title;
-	  			$scope.model.meta_description = response.data.meta_description;
-	  			$scope.model.slug = response.data.slug;
+	  			$scope.model.city = response.data.city;
+	  			$scope.model.country = response.data.country;
+	  			$scope.model.percent = response.data.percent;
+	  		
 
 			}, function errorCallback(response) {});
 	  	
