@@ -91,7 +91,10 @@ define(['angular'],function(angular){
             'COUNTRY_LABEL': "Pais",
             'PERCENT_LABEL': "Porcentaje",
             'QTY_LABEL': 'Cantidad',
-            'PRICE_LABEL': 'Precio'
+            'PRICE_LABEL': 'Precio',
+            'ADD_LABEL':'Agregar',
+            'START_DATE_LABEL': "Fecha de inicio",
+            'END_DATE_LABEL':'Fecha de Finalizacion',
       });
      
       $translateProvider.preferredLanguage('ES');

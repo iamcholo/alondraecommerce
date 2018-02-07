@@ -14,7 +14,7 @@ define(['angular','jquery'],function(angular,jquery){
               ngId : '@' ,
             },            
 
-            templateUrl: '/assets/js/modules/templates/includes/datepicker.html',
+            templateUrl: '/admin/assets/js/modules/templates/includes/datepicker.html',
             link: function($scope, elem, attr, ctrl) {
 
             },
