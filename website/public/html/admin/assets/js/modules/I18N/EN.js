@@ -86,6 +86,9 @@ define(['angular'],function(angular){
             'EXCERPT_LABEL':'Excerpt',
             'MEDIA_ALBUM_PLURAL_LABEL':'Media Albums',
             'MEDIA_ALBUM_LABEL':'Media Album',
+            'CITY_LABEL': "City",
+            'COUNTRY_LABEL': "Country",
+            'PERCENT_LABEL': "Percent",
       });
      
       $translateProvider.preferredLanguage('en');

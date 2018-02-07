@@ -87,11 +87,10 @@ define(['angular'],function(angular){
 	  {
 
 	  	$scope.model = { 
-	  		'name':'', 
-	  		'publish': true,
-	  		'slug':'',
-	  		'meta_title':'',
-	  		'meta_description':''
+	  		
+	  		'city': '',
+			'country': 'USA',
+			'percent': 0.00,
 	  	} 
 
 	  	
@@ -124,19 +123,13 @@ define(['angular'],function(angular){
 	  {
 
 	  	$scope.model = {
-	  		'name':'',
-	  		'publish': true,
-	  		'slug':'',
-	  		'meta_title':'',
-	  		'meta_description':''
+	  		
+	  		'city': '',
+			'country': 'USA',
+			'percent':0.00,
 	  	} 
 
-	  	$scope.ChangeTitle = function()
-	  	{
-	  		$scope.model.meta_title = $scope.model.name
-	  		$scope.model.slug = window.string_to_slug($scope.model.name)
-	  	}
-
+	  
 	  	$scope.save = function()
 		{
 		  

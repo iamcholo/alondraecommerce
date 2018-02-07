@@ -3,7 +3,7 @@ require.config({
       "jquery": "vendor/dashboard/jquery/jquery.min",
       "bootstrap":"vendor/dashboard/bootstrap/bootstrap.min",
       "jquery_migrate": "vendor/dashboard/jquery/jquery-migrate.min",
-  
+      "country_picker": "vendor/country-picker.min",
       "simplemde": "modules/directives/simplemde",
       "dropzone_directive": "modules/directives/dropzone",
       "datepicker_directive": "modules/directives/datepicker",
@@ -75,6 +75,7 @@ require.config({
         deps: [
           'angular',
           'angular_cookies',
+          'country_picker',
           'paging',
           'simplemde',
           'dropzone_directive',
@@ -145,6 +146,11 @@ require.config({
        "angular_cookies": {
         deps: ["angular"]
       },
+      "country_picker": {
+        deps: ["angular"]
+      },
+
+      
      
      
       'router': {

@@ -13,27 +13,13 @@
 
 	        <div class="block-content">
 	         	<div class="row">
-					<div class="dropdown ">
-	                    <div class="btn-group"  data-toggle="dropdown" >
-	                        <button type="button" class="btn btn-default dropdown-toggle">
-	                        	{{ 'ACTIONS_LABEL' | translate}}
-	                        </button>
-	                        <button type="button" class="btn btn-defaul dropdown-toggle" >
-	                        	<span class="caret"></span>
-	                        </button>                                            
-	                    </div>
-	                    <ul  class="dropdown-menu"> 
-	                        <li>
-	                        	<a ui-sref="root.taxes_new">{{ 'NEW_LABEL' | translate}}</a>
-	                        </li> 
-	                    </ul>
-	                </div>
+					
 	               	<div class="col-md-10">
 	               		<div class="form-group ">
 	                    
 	                        <div class="input-group">
 	                            <div class="input-group-addon"><span class="fa fa-search"></span></div>
-	                            <input type="text" ng-model="model.query" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'POST_PLURAL_LABEL' | translate}}">
+	                            <input type="text" ng-model="model.query" class="form-control" placeholder="{{ 'SEARCH_LABEL' | translate}} {{ 'ORDER_PLURAL_LABEL' | translate}}">
 	                            <span class="input-group-btn">
 									<button  ng-click="search()" class="btn btn-primary" type="button">Go!</button>
 								</span>

@@ -164,8 +164,8 @@ class PostItem(BaseArticle, BaseDateTime, BaseThumbnailFeatured, BaseSeo):
 
     price = models.FloatField(
             _('PRICE_LABEL'),
-               
-        )
+             default=0.0
+        )   
 
 
     def __unicode__(self):

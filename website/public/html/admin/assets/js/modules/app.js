@@ -10,7 +10,8 @@ define(
       var app = angular.module('app', [
         'ui.router',
         'bw.paging',
-         'ngCookies',
+        'ngCookies',
+        'puigcerber.countryPicker',
         'cms-simplemde',
         'dropzone',
         'datepicker',
