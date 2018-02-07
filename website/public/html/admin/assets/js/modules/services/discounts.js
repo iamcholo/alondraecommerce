@@ -33,37 +33,38 @@ angular.module('app.services.discounts', [] )
                 data: data
             });
         },
-        'list': function(){
+        'list': function(product_id){
             return this.request({
-                'method': "GET",
-                'url': "/tags/"              
+                'method': "POST",
+                'url': "/discounts/" ,
+                 'data': {'product_id':product_id,}            
             });
         },
         'New': function(data){
             return this.request({
                 'method': "POST",
-                'url': "/tag/",
+                'url': "/discount/",
                 'data': data              
             });
         },
         'Update': function(data){
             return this.request({
                 'method': "PUT",
-                'url': "/tag/",
+                'url': "/discount/",
                 'data': data       
             });
         },
         'Get': function(id){
             return this.request({
                 'method': "POST",
-                'url': "/tag/details/",
+                'url': "/discount/details/",
                 'data': {'id':id,}                 
             });
         },
         'Delete': function(id){
             return this.request({
                 'method': "DELETE",
-                'url': "/tag/", 
+                'url': "/discount/", 
                 'data': {'id':id}             
             });
         },

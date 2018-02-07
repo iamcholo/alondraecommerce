@@ -30,8 +30,6 @@ class DiscountsSerializer(serializers.HyperlinkedModelSerializer):
         model = Discounts
         fields =    (
             'id',
-            'product',
-            'title',
             'percent',
             'start_date',
             'end_date',
@@ -46,7 +44,7 @@ def discounts_list(request):
         
     if request.method == 'POST':
         media = Discounts.objects.filter(
-            product_pk=request.data.get(
+            product__pk=request.data.get(
                 'product_id',
                 None
             )

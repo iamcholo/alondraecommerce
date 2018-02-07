@@ -11,6 +11,9 @@ from rest_framework import generics
 from posts.models import PostCategory
 from posts.models import PostItem
 from globaly.models import GlobalyTags
+from taxes.models import Taxes
+from taxes.rest_api import TaxesSerializer
+
 from globaly.rest_api import GlobalyTagsSerializer
 from media.models import MediaAlbum,MediaImage
 from django.contrib.auth.models import User
@@ -43,7 +46,7 @@ class PostCategorySerializer(serializers.HyperlinkedModelSerializer):
 class PostItemSerializer(serializers.HyperlinkedModelSerializer):
     categories_lists = PostCategorySerializer(source='categories', many=True, read_only = True)
     tags_lists = GlobalyTagsSerializer(source='tags', many=True, read_only = True)
-    taxes_lists = GlobalyTagsSerializer(source='taxes', many=True, read_only = True)
+    taxes_lists = TaxesSerializer(source='taxes', many=True, read_only = True)
     autor_id = serializers.ReadOnlyField(source='autor.id')
 
     class Meta:
@@ -116,27 +119,24 @@ def post_details(request):
 def post(request):
     
     if request.method == 'POST':
+        data= {}
+        data.update({
+            "title": "please write the project title",
+            "slug": "please-write-the-project-title",
+            "meta_title": "please write the project title",
+            "meta_description": "",
+            "content": "sample text",        
+            "publish": False,
+            'price': 0.00,
+            'currency':'USD',
+            'status':'pending',
+        })
         serializer = PostItemSerializer(
-            data=request.data,
+            data=data,
             context={'request': request}
         )
         if serializer.is_valid():
-              
-            if request.data.has_key('categories_lists'):
-                d = request.data['categories_lists']
-                data = [ value.get('id') for value in d]
-              
-                categories = PostCategory.objects.filter(                   
-                    pk__in=data
-                )
-                
-                serializer.save(
-                    autor=request.user,
-                    categories=categories                      
-                )
-               
-            else:
-                serializer.save(autor=request.user)
+            serializer.save(autor=request.user)
 
             return Response(serializer.data)
         return Response(
@@ -161,48 +161,43 @@ def post(request):
                 context={'request': request}
             )
             if serializer.is_valid():
-                if request.data.has_key('categories_lists') or \
-                request.data.has_key('tag_lists'):
-                    if request.data.has_key('categories_lists') and \
-                        not request.data.has_key('tag_lists'):
-                        d = request.data['categories_lists']
-                        data = [ value.get('id') for value in d]
-                        categories = PostCategory.objects.filter(                   
-                            pk__in=data
-                        )
-                        serializer.save(
-                            categories=categories                      
-                        )
+                serializer.save()
+                if request.data.has_key('categories_lists'):
+                    d = request.data['categories_lists']
+                    data = [ value.get('id') for value in d]
+                    categories = PostCategory.objects.filter(                   
+                        pk__in=data
+                    )
+                    serializer.save(
+                        categories=categories                      
+                    )
 
-                    if request.data.has_key('categories_lists') and \
-                        request.data.has_key('tag_lists'):
-                        d = request.data['categories_lists']
-                        t = request.data['tag_lists']
-                        data = [ value.get('id') for value in d]
-                        datat = [ value.get('id') for value in t]
-                        tags = GlobalyTags.objects.filter(                   
-                            pk__in=datat
-                        )
-                        categories = PostCategory.objects.filter(                   
-                            pk__in=data
-                        )
-                        serializer.save(
-                            categories=categories,
-                            tags=tags  
-                        )
-                    if request.data.has_key('tag_lists') and \
-                        not request.data.has_key('categories_lists'):
-                        t = request.data['tag_lists']
-                        data = [ value.get('id') for value in t]
-                        tags = GlobalyTags.objects.filter(                   
-                            pk__in=data
-                        )
-                        serializer.save(
-                           tags=tags                     
-                        )
+               
+                if request.data.has_key('tag_lists'):
+                 
+                    t = request.data['tag_lists']
+                    data = [ value.get('id') for value in t]
+                    tags = GlobalyTags.objects.filter(                   
+                        pk__in=data
+                    )
+                    serializer.save(
+                       tags=tags                     
+                    )
 
-                else:
-                    serializer.save()
+                           
+                if request.data.has_key('taxes_lists'):
+                 
+                    t = request.data['taxes_lists']
+                    data = [ value.get('id') for value in t]
+                    taxes = Taxes.objects.filter(                   
+                        pk__in=data
+                    )
+                    serializer.save(
+                       taxes=taxes                     
+                    )
+
+                  
+                    
                 instance = serializer.instance
                 try:
                     f1 = Q(app_label='posts')

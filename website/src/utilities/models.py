@@ -12,7 +12,7 @@ class BaseDateTime(models.Model):
 class BaseSeo(models.Model):
     slug = models.CharField(
             _('SLUG_LABEL'),
-            unique=True,
+            #unique=True,
             max_length=255,
 
         )

@@ -84,8 +84,8 @@ define(['angular','clipboard'],function(angular,clipboard){
 		};
 
 	}]).controller('PostsEditCtrl', 
-	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media','Taxes','pvpCountries',
-	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media,Taxes,pvpCountries) 
+	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media','Taxes','pvpCountries','Discounts',
+	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media,Taxes,pvpCountries,Discounts) 
 	  {
 
 	  	new clipboard('.btn');
@@ -111,6 +111,13 @@ define(['angular','clipboard'],function(angular,clipboard){
 	  		'meta_title':'',
 	  		'meta_description':''
 	  	} 
+
+	  	$scope.model2 = {
+	  		'product_id': $stateParams.id ,
+	  		'percent':0.00,
+	  		'start_date':'',
+	  		'end_date': '',
+		} 
 	  	$scope.query = '';
 		$scope.name = '';
 		$scope.showCountry = function(name)
@@ -173,6 +180,7 @@ define(['angular','clipboard'],function(angular,clipboard){
 		{
 			$scope.todos = [];
 			$scope.tags = [];
+			$scope.discounts = [];
 		    Category.list().then(function successCallback(response)
 		    {
 		    	angular.forEach(response.data, function(value, key){
@@ -209,6 +217,21 @@ define(['angular','clipboard'],function(angular,clipboard){
 				      	});
 			      	},$scope.tags);
         	}, function errorCallback(response) {});
+
+
+
+	  		Discounts.list($stateParams.id).then(function successCallback(response){
+	  			angular.forEach(response.data, function(value, key){
+					this.push({
+						'id':value.id,
+						'editable':false,
+						'amount':value.amount,
+						'start_date': value.start_date,
+						'end_date': value.end_date,
+					});
+				},$scope.discounts);
+			}, function errorCallback(response) {});
+
 		};
 
 		$scope.makeTodosTaxes = function()
@@ -312,6 +335,57 @@ define(['angular','clipboard'],function(angular,clipboard){
 		 	Posts.Update($scope.model);
 		}
 
+		$scope.AddDiscounts = function()
+		{
+			if($scope.model2.percent > 0 && $scope.model2.start_date.length > 0 && $scope.model2.end_date.length > 0)
+			{
+				Discounts.New($scope.model2).then(function successCallback(response){
+					$scope.discounts.push({
+						'id':response.data.id,
+						'editable':false,
+						'percent':response.data.percent,
+						'start_date': response.data.start_date,
+						'end_date': response.data.end_date,
+					});
+				}, function errorCallback(response) {});
+			}	
+		}
+		$scope.edit_Discount = function(id)
+		{
+			var item = $scope.discounts.filter(function(item){
+	  				
+					return item.id == id ;
+				});
+			if(item.length > 0)
+			{
+				item[0].editable = true;
+			}
+		}
+		
+		$scope.SaveDiscount = function(id)
+		{
+			var item = $scope.discounts.filter(function(item){
+	  				
+					return item.id == id ;
+				});
+			if(item.length > 0)
+			{
+				item[0].editable = false;
+				Discounts.Update(item[0]);
+			}
+		}
+
+
+		$scope.DELETE_Discount = function(id)
+		{
+			$scope.discounts = $scope.discounts.filter(function(item){
+	  				
+					return item.id != id ;
+				});
+			Discounts.Delete(id);
+		}
+		
+
 	}]).controller('PostsNewCtrl', 
 	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media','Taxes','pvpCountries',
 	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media, Taxes,pvpCountries) 
@@ -339,6 +413,14 @@ define(['angular','clipboard'],function(angular,clipboard){
 	  		'meta_description':''
 	  	} 
 		$scope.query = '';
+
+			Posts.New($scope.model).then(function successCallback(response)
+		    {
+		    	$state.go('root.post_edit',{'id':response.data.id});
+
+		    }, function errorCallback(response) {});;
+
+
 		$scope.showCountry = function(name)
 	  	{
 	  		return pvpCountries.getCountries().filter(function(item){
@@ -381,6 +463,48 @@ define(['angular','clipboard'],function(angular,clipboard){
 
 		    }, function errorCallback(response) {});;
 	  	}
+
+	  	$scope.AddDiscounts = function()
+		{
+			if($scope.model2.amount > 0 && $scope.model2.start_date.length > 0 && $scope.model2.end_date.length > 0)
+			{
+				//pending
+					$scope.discounts.push({
+						
+						'editable':false,
+						'amount':response.data.amount,
+						'start_date': response.data.start_date,
+						'end_date': response.data.end_date,
+					});
+				
+			}	
+		}
+		$scope.edit_Discount = function(id)
+		{
+			var item = $scope.discounts.filter(function(item){
+	  				
+					return item.id == id ;
+				});
+			if(item.length > 0)
+			{
+				item[0].editable = true;
+				
+
+			}
+		}
+
+		$scope.DELETE_Discount = function(id)
+		{
+			$scope.discounts = $scope.discounts.filter(function(item){
+	  				
+					return item.id != id ;
+				});
+			Discounts.Delete(id);
+		}
+		
+
+
+
 		$scope.makeTodosMedia = function()
 		{
 			$scope.images = [];

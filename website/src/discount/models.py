@@ -15,13 +15,9 @@ class Discounts(BaseDateTime):
             null=True,
             blank=True,
             on_delete=models.CASCADE,
-            related_name='post_item_autor'
+            related_name='discount_item_product'
         )
-    title = models.CharField(
-            _('TITLE_LABEL'),
-            max_length=255,
-            blank=True      
-        )
+
     percent = models.FloatField(
             _('PERCENTAJE_LABEL'),
             max_length=255,
@@ -30,7 +26,7 @@ class Discounts(BaseDateTime):
     start_date = models.DateTimeField(
         _('STAR_DATE_LABEL'),
        
-         blank=True      
+         
         )
 
     end_date = models.DateTimeField(
@@ -38,7 +34,7 @@ class Discounts(BaseDateTime):
             blank=True
         )
     def __unicode__(self):
-        return self.title
+        return str(self.percent)
 
 
     class Meta:
