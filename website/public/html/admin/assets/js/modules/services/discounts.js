@@ -1,7 +1,7 @@
 define(['angular'],function(angular){
 
-angular.module('app.services.tags', [] )
-.service('Tags', [ 
+angular.module('app.services.discounts', [] )
+.service('Discounts', [ 
     '$q', '$http',  '$rootScope', '$cookies',
     function ($q, $http, $rootScope,$cookies) 
   {

@@ -1,8 +1,8 @@
 define(['angular'],function(angular){
- 	angular.module('app.controllers.tags', [])
- 	.controller('TagsListCtrl', 
-	[ '$scope','$state','$translate','Tags',
-	  function ($scope,$state,$translate, Tags) 
+ 	angular.module('app.controllers.taxes', [])
+ 	.controller('TaxesListCtrl', 
+	[ '$scope','$state','$translate','Taxes',
+	  function ($scope,$state,$translate, Taxes) 
 	  {
 
 	  	$scope.filteredTodos = [];
@@ -29,7 +29,7 @@ define(['angular'],function(angular){
 		{
 			$scope.todos = [];
 			$scope.filteredTodos = [];
-		    Tags.list().then(function successCallback(response)
+		    Taxes.list().then(function successCallback(response)
 		    {
 	         	angular.forEach(response.data, function(value, key){
 				 	this.push({
@@ -54,7 +54,7 @@ define(['angular'],function(angular){
 
 		$scope.DELETE = function(id)
 		{
-			Tags.Delete(id).then(function successCallback(response){
+			Taxes.Delete(id).then(function successCallback(response){
 				$scope.makeTodos(); 
 			}, function errorCallback(response) {});
 		}
@@ -81,9 +81,9 @@ define(['angular'],function(angular){
 		  $scope.figureOutTodosToDisplay(page);
 		};
 
-	}]).controller('TagsEditCtrl', 
-	[ '$scope','$state','$translate','$stateParams','Tags',
-	  function ($scope,$state,$translate,$stateParams,Tags) 
+	}]).controller('TaxesEditCtrl', 
+	[ '$scope','$state','$translate','$stateParams','Taxes',
+	  function ($scope,$state,$translate,$stateParams,Taxes) 
 	  {
 
 	  	$scope.model = { 
@@ -97,12 +97,12 @@ define(['angular'],function(angular){
 	  	
 	  	$scope.ChangeTitle = function()
 	  	{
-	  		 $scope.model.meta_title = $scope.model.name
-	  		 $scope.model.slug = window.string_to_slug($scope.model.name)
+	  		$scope.model.meta_title = $scope.model.name
+	  		$scope.model.slug = window.string_to_slug($scope.model.name)
 	  	}
 
 
-	  	Tags.Get( $stateParams.id ).then(function successCallback(response){
+	  	Taxes.Get( $stateParams.id ).then(function successCallback(response){
 	  			$scope.model.name = response.data.name;
 	  			$scope.model.publish = response.data.publish;
 	  			$scope.model.content = response.data.content;
@@ -115,12 +115,12 @@ define(['angular'],function(angular){
 	  	$scope.save = function()
 	  {
 	  	$scope.model.id = $stateParams.id;
-	  	Tags.Update($scope.model);
+	  	Taxes.Update($scope.model);
 	  }
 
-	}]).controller('TagsNewCtrl', 
-	[ '$scope','$state','$translate','Tags',
-	  function ($scope,$state,$translate, Tags) 
+	}]).controller('TaxesNewCtrl', 
+	[ '$scope','$state','$translate','Taxes',
+	  function ($scope,$state,$translate, Taxes) 
 	  {
 
 	  	$scope.model = {
@@ -133,16 +133,16 @@ define(['angular'],function(angular){
 
 	  	$scope.ChangeTitle = function()
 	  	{
-	  		 $scope.model.meta_title = $scope.model.name
-	  		 $scope.model.slug = window.string_to_slug($scope.model.name)
+	  		$scope.model.meta_title = $scope.model.name
+	  		$scope.model.slug = window.string_to_slug($scope.model.name)
 	  	}
 
 	  	$scope.save = function()
 		{
 		  
-		  	Tags.New($scope.model).then(function successCallback(response)
+		  	Taxes.New($scope.model).then(function successCallback(response)
 		    {
-		    	$state.go('root.tags_edit',{'id':response.data.id});
+		    	$state.go('root.taxes_edit',{'id':response.data.id});
 
 		    }, function errorCallback(response) {});;;
 		}

@@ -24,9 +24,9 @@ require.config({
       "navigation_controllers": "modules/controllers/navigation",
       "category_controllers": "modules/controllers/category",
       "tags_controllers": "modules/controllers/tags",
+      "taxes_controllers": "modules/controllers/taxes",
       "media_controller": "modules/controllers/media",
       "users_controller": "modules/controllers/users",
-      "groups_controller": "modules/controllers/groups",
       "themes_controllers": "modules/controllers/themes",
       "comments_controller": "modules/controllers/comments",
       "login_controller": "modules/controllers/login",
@@ -37,9 +37,9 @@ require.config({
       "navigation_routers": "modules/routes/navigation",
       "user_routers": "modules/routes/users",     
       "media_routers": "modules/routes/media", 
-      "groups_routers": "modules/routes/groups",
       "themes_routers": "modules/routes/themes",
       "tags_routers": "modules/routes/tags",
+      "taxes_routers": "modules/routes/taxes",
       "comments_routers": "modules/routes/comments",
       "login_routers": "modules/routes/login",
       "login_services": "modules/services/login",
@@ -52,23 +52,14 @@ require.config({
       "comments_services": "modules/services/comments",
       "category_services": "modules/services/category",
       "tags_services": "modules/services/tags",
+      "taxes_services": "modules/services/taxes",
+      "discounts_services": "modules/services/discounts",
       "I18N_EN":"modules/I18N/EN",
       "I18N_ES":"modules/I18N/ES",
       "directives":"modules/directives",
       "services":"modules/services",
       "dashboard":"modules/dashboard",
       //custom games
-      "custom_games_controllers": "modules/controllers/custom/games",
-      "custom_games_routers": "modules/routes/custom/games",
-      "custom_games_services": "modules/services/custom/games",
-
-      "custom_video_controllers": "modules/controllers/custom/video",
-      "custom_video_routers": "modules/routes/custom/video",
-      "custom_video_services": "modules/services/custom/video",
-
-      "custom_games_engine_controllers": "modules/controllers/custom/game_engine",
-      "custom_games_engine_routers": "modules/routes/custom/game_engine",
-      "custom_games_engine_services": "modules/services/custom/game_engine",
 
       "media_album_controllers": "modules/controllers/media_album",
       "media_album_routers": "modules/routes/media_album",
@@ -97,8 +88,7 @@ require.config({
           'media_controller',
           'media_routers',
           'media_services',
-          'groups_controller',
-          'groups_routers',
+
           'login_controller',
           'login_routers',          
           'login_services',
@@ -122,6 +112,10 @@ require.config({
           'tags_controllers',
           'tags_routers',
           'tags_services',
+          'taxes_controllers',
+          'taxes_routers',
+          'taxes_services',
+          'discount_services',
           'comments_services',         
           'files_directive',
           'clipboard',
@@ -129,15 +123,7 @@ require.config({
           'navigation_routers',
           'navigation_services',
           'navigation_items_services',
-          'custom_games_engine_controllers',
-          'custom_games_engine_routers',
-          'custom_games_engine_services',
-          'custom_games_controllers',
-          'custom_games_routers',
-          'custom_games_services',
-          'custom_video_controllers',
-          'custom_video_routers',
-          'custom_video_services',
+   
           'media_album_controllers',
           'media_album_routers',
           'media_album_services',
@@ -216,15 +202,11 @@ require.config({
       'comments_routers': {
         deps: ['angular']
       },
-      'groups_controller': {
-        deps: ['angular']
-      },
+      
       'login_controller': {
         deps: ['angular']
       },
-      'groups_routers': {
-        deps: ['angular']
-      },
+   
       'user_routers': {
         deps: ['angular']
       },
@@ -281,6 +263,22 @@ require.config({
       },
 
 
+      'taxes_controllers': {
+        deps: ['angular']
+      },
+
+      'taxes_routers': {
+        deps: ['angular']
+      },
+      
+      'taxes_services': {
+        deps: ['angular']
+      },
+      'discounts_services': {
+        deps: ['angular']
+      },
+
+
       'comments_services': {
         deps: ['angular']
       },
@@ -309,37 +307,7 @@ require.config({
       },
       //custom
 
-      'custom_games_controllers': {
-        deps: ['angular']
-      },
-      'custom_games_routers': {
-        deps: ['angular']
-      },
-      'custom_games_services': {
-        deps: ['angular']
-      },
-
-      'custom_game_engine_controllers': {
-        deps: ['angular']
-      },
-      'custom_game_engine_routers': {
-        deps: ['angular']
-      },
-      'custom_game_engine_services': {
-        deps: ['angular']
-      },
-
-
-      'custom_video_controllers': {
-        deps: ['angular']
-      },
-      'custom_video_routers': {
-        deps: ['angular']
-      },
-      'custom_video_services': {
-        deps: ['angular']
-      },
-      
+ 
 
 
       'media_album_controllers': {

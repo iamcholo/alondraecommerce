@@ -1,7 +1,7 @@
 define(['angular'],function(angular){
 
-angular.module('app.services.tags', [] )
-.service('Tags', [ 
+angular.module('app.services.taxes', [] )
+.service('Taxes', [ 
     '$q', '$http',  '$rootScope', '$cookies',
     function ($q, $http, $rootScope,$cookies) 
   {
@@ -36,34 +36,34 @@ angular.module('app.services.tags', [] )
         'list': function(){
             return this.request({
                 'method': "GET",
-                'url': "/tags/"              
+                'url': "/taxes/"              
             });
         },
         'New': function(data){
             return this.request({
                 'method': "POST",
-                'url': "/tag/",
+                'url': "/tax/",
                 'data': data              
             });
         },
         'Update': function(data){
             return this.request({
                 'method': "PUT",
-                'url': "/tag/",
+                'url': "/tax/",
                 'data': data       
             });
         },
         'Get': function(id){
             return this.request({
                 'method': "POST",
-                'url': "/tag/details/",
+                'url': "/tax/details/",
                 'data': {'id':id,}                 
             });
         },
         'Delete': function(id){
             return this.request({
                 'method': "DELETE",
-                'url': "/tag/", 
+                'url': "/tax/", 
                 'data': {'id':id}             
             });
         },

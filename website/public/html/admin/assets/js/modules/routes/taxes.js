@@ -1,46 +1,46 @@
 define(['angular'],function(angular){
 
-    angular.module('app.routes.tags', ['ui.router']).config([
+    angular.module('app.routes.taxes', ['ui.router']).config([
       '$stateProvider', '$urlRouterProvider',"$locationProvider",
       function($stateProvider, $urlRouterProvider, $locationProvider) 
       {
         $stateProvider
-        .state('root.tags',
+        .state('root.taxes',
         {
-          url: '/tags',
+          url: '/taxes',
           views: {
           'content': {
-              templateUrl: '/admin/assets/js/modules/templates/tags/lists.html',
-              controller: 'TagsListCtrl',
+              templateUrl: '/admin/assets/js/modules/templates/taxes/lists.html',
+              controller: 'TaxesListCtrl',
             } 
           }
          
         })
-        .state('root.tags.current', {
+        .state('root.taxes.current', {
           url: '/page/{page:int}',
           params: {
             page:{ value: 1}
           },
         })
-        .state('root.tags_edit', {
-          url: '/tags/edit/{id:int}',
+        .state('root.taxes_edit', {
+          url: '/taxes/edit/{id:int}',
           params: {
             id:{ value: 0}
           },
           views: {
           'content': {
-              controller: 'TagsEditCtrl',
-              templateUrl: '/admin/assets/js/modules/templates/tags/edit.html',
+              controller: 'TaxesEditCtrl',
+              templateUrl: '/admin/assets/js/modules/templates/taxes/edit.html',
             } 
           }
          
         })  
-        .state('root.tags_new', {
-          url: '/tags/new',
+        .state('root.taxes_new', {
+          url: '/taxes/new',
           views: {
           'content': {
-              controller: 'TagsNewCtrl',
-              templateUrl: '/admin/assets/js/modules/templates/tags/edit.html',
+              controller: 'TaxesNewCtrl',
+              templateUrl: '/admin/assets/js/modules/templates/taxes/edit.html',
             } 
           }
         });
