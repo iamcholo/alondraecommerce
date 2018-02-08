@@ -68,6 +68,11 @@ require.config({
       "media_album_routers": "modules/routes/media_album",
       "media_album_services": "modules/services/media_album",
 
+
+      "attributes_controllers": "modules/controllers/attributes",
+      "attributes_routers": "modules/routes/attributes",
+      "attributes_services": "modules/services/attributes",
+
     },
     baseUrl: '/admin/assets/js/',
     shim: {
@@ -133,6 +138,11 @@ require.config({
           'orders_controllers',
           'orders_routers',
           'orders_services',
+
+
+          'attributes_controllers',
+          'attributes_routers',
+          'attributes_services',
 
           'media_album_controllers',
           'media_album_routers',
@@ -343,6 +353,20 @@ require.config({
       'media_album_services': {
         deps: ['angular']
       },
+
+      'attributes_controllers': {
+        deps: ['angular']
+      },
+      'attributes_routers': {
+        deps: ['angular']
+      },
+      'attributes_services': {
+        deps: ['angular']
+      },
+
+
+
+
 
 
     },
