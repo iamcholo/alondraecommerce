@@ -98,6 +98,14 @@ define(['angular'],function(angular){
             'END_DATE_LABEL':'Fecha de Finalizacion',
             'ATTRIBUTES_LABEL': 'Atributo de Producto',
             'ATTRIBUTES_PLURAL_LABEL': 'Atributos Producto',
+            'TYPE_LABEL':'Tipo',
+            'CHOICES': 'Opciones',
+            'TEXT': 'Texto',
+            'SELECTABLE': 'Seleccionable',
+            'ENABLE_PRICES': 'Prices Enabled',
+            'DATE': 'Fecha',
+            'VALUES_LABEL': 'Valores del campo',
+
       });
      
       $translateProvider.preferredLanguage('ES');

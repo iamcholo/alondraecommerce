@@ -87,29 +87,31 @@ define(['angular'],function(angular){
 	  {
 
 	  	$scope.model = { 
+	  		'id':$stateParams.id ,
 	  		'name':'', 
-	  		'publish': true,
-	  		'slug':'',
-	  		'meta_title':'',
-	  		'meta_description':''
+	  		'priceable': true,
+	  		'archetype':'choices',
+	  		'archetype_types':[],
 	  	} 
 
+	  	$translate(['CHOICES', 'TEXT', 'SELECTABLE','DATE',]).then(function (translations) {
+			  
+			    $scope.model.archetype_types = [
+			    	{'id':'choices','label':translations.CHOICES},
+		  			{'id':'text','label':translations.TEXT},
+		  			{'id':'selectable','label':translations.SELECTABLE},
+		  			{'id':'date','label':translations.DATE},
+			    ]
+			   
+			  }, function (translationIds) {
+			 
+		});
 	  	
-	  	$scope.ChangeTitle = function()
-	  	{
-	  		 $scope.model.meta_title = $scope.model.name
-	  		 $scope.model.slug = window.string_to_slug($scope.model.name)
-	  	}
-
 
 	  	Attributes.Get( $stateParams.id ).then(function successCallback(response){
 	  			$scope.model.name = response.data.name;
-	  			$scope.model.publish = response.data.publish;
-	  			$scope.model.content = response.data.content;
-	  			$scope.model.meta_title = response.data.meta_title;
-	  			$scope.model.meta_description = response.data.meta_description;
-	  			$scope.model.slug = response.data.slug;
-
+	  			$scope.model.priceable = response.data.priceable;
+	  			$scope.model.archetype = response.data.archetype;
 			}, function errorCallback(response) {});
 	  	
 	  	$scope.save = function()
@@ -122,27 +124,28 @@ define(['angular'],function(angular){
 	[ '$scope','$state','$translate','Attributes',
 	  function ($scope,$state,$translate, Attributes) 
 	  {
-
-	  	$scope.model = {
-	  		'name':'',
-	  		'publish': true,
-	  		'slug':'',
-	  		'meta_title':'',
-	  		'meta_description':''
+		$scope.model = { 
+	  		'name':'', 
+	  		'priceable': true,
+	  		'archetype':'choices',
+	  		'archetype_types':[],
 	  	} 
-
-	  	$scope.ChangeTitle = function()
-	  	{
-	  		 $scope.model.meta_title = $scope.model.name
-	  		 $scope.model.slug = window.string_to_slug($scope.model.name)
-	  	}
+		$translate(['CHOICES', 'TEXT', 'SELECTABLE','DATE',]).then(function (translations){
+			$scope.model.archetype_types = [
+				{'id':'choices','label':translations.CHOICES},
+		  		{'id':'text','label':translations.TEXT},
+		  		{'id':'selectable','label':translations.SELECTABLE},
+		  		{'id':'date','label':translations.DATE},
+			]
+			   
+		}, function (translationIds) {});
 
 	  	$scope.save = function()
 		{
 		  
 		  	Attributes.New($scope.model).then(function successCallback(response)
 		    {
-		    	$state.go('root.Attributes_edit',{'id':response.data.id});
+		    	$state.go('root.attributes_edit',{'id':response.data.id});
 
 		    }, function errorCallback(response) {});;;
 		}

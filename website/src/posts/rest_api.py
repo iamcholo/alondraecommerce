@@ -11,6 +11,7 @@ from rest_framework import generics
 from posts.models import PostCategory
 from posts.models import PostItem
 from posts.models import Attributes,ProductAttributes
+from media.rest_api import MediaAlbumSerializer
 from globaly.models import GlobalyTags
 from taxes.models import Taxes
 from taxes.rest_api import TaxesSerializer
@@ -76,6 +77,7 @@ class PostItemSerializer(serializers.HyperlinkedModelSerializer):
     categories_lists = PostCategorySerializer(source='categories', many=True, read_only = True)
     tags_lists = GlobalyTagsSerializer(source='tags', many=True, read_only = True)
     taxes_lists = TaxesSerializer(source='taxes', many=True, read_only = True)
+    album_lists = MediaAlbumSerializer(source='album', many=True, read_only = True)
     autor_id = serializers.ReadOnlyField(source='autor.id')
 
     class Meta:
@@ -86,6 +88,7 @@ class PostItemSerializer(serializers.HyperlinkedModelSerializer):
             'categories_lists',
             'tags_lists',
             'taxes_lists',
+            'album_lists',
             'title',
             'slug',
             'meta_title',
@@ -225,6 +228,16 @@ def post(request):
                        taxes=taxes                     
                     )
 
+                if request.data.has_key('album_lists'):
+                 
+                    t = request.data['album_lists']
+                    data = [ value.get('id') for value in t]
+                    album = MediaAlbum.objects.filter(                   
+                        pk__in=data
+                    )
+                    serializer.save(
+                       album=album                     
+                    )
                   
                     
                 instance = serializer.instance

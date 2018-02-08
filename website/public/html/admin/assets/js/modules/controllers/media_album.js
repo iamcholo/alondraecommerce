@@ -28,8 +28,8 @@ define(['angular','jquery'],function(angular,jquery){
 		}
 
 	}]).controller('MediaAlbumNewCtrl', 
-	[ '$scope','$state','$translate','$stateParams','Games','Tags','Category','MediaAlbum',
-	  function ($scope,$state,$translate,$stateParams,Games,Tags,Category,MediaAlbum) 
+	[ '$scope','$state','$translate','$stateParams','Tags','Category','MediaAlbum',
+	  function ($scope,$state,$translate,$stateParams,Tags,Category,MediaAlbum) 
 	  {
 	  
 	  	$scope.model = {

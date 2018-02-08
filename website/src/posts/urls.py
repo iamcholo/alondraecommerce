@@ -16,6 +16,9 @@ urlpatterns = [
 	url(r'^category/{0,1}$', views.category),
 	url(r'^category/details/{0,1}$', views.category_details),
 	url(r'^categories/{0,1}$', views.categories_list),
+	url(r'^attributes/{0,1}$', views.attributes_list),
+	url(r'^attribute/{0,1}$', views.attribute),
+	url(r'^attribute/details/{0,1}$', views.attribute_details),
 ]
 
 

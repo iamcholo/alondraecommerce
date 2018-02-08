@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-#from django.contrib.auth.models import User
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import format_html
@@ -49,11 +48,6 @@ ATTRIBUTES_TYPES_CHOICES = (
     ('date', 'Date'),
 
 )
-
-
-
-
-
 
 class PostCategory(MPTTModel, BaseDateTime, BasePublish, BaseSeo):
 
@@ -404,39 +398,8 @@ class Attributes(BaseDateTime):
         verbose_name_plural = _('ATTRIBUTES_TITLE_PLURAL')
         get_latest_by = 'created'
         ordering = ('-id',)
-        db_table = 'posts'
-        app_label = 'attributes'
-
-class Attributes(BaseDateTime):
-
-    archetype = models.CharField(
-            max_length=20,
-            choices=ATTRIBUTES_TYPES_CHOICES,
-            default="text"
-        )
-    
-    name = models.CharField(
-            _('NAME_LABEL'),
-            max_length=255,        
-            blank=True      
-        )
-    
-    priceable = models.BooleanField(
-            _('PRICEABLE_LABEL'),
-            default=True
-        )
-
-    def __unicode__(self):
-        return self.name
-
-
-    class Meta:
-        verbose_name = _('ATTRIBUTES_TITLE')
-        verbose_name_plural = _('ATTRIBUTES_TITLE_PLURAL')
-        get_latest_by = 'created'
-        ordering = ('-id',)
-        db_table = 'posts'
-        app_label = 'posts_attributes'
+        db_table = 'attributes'
+        app_label = 'posts'
 
 
 class ProductAttributes(BaseDateTime,BaseThumbnailFeatured):
@@ -474,9 +437,9 @@ class ProductAttributes(BaseDateTime,BaseThumbnailFeatured):
 
 
     class Meta:
-        verbose_name = _('ATTRIBUTES_TITLE')
-        verbose_name_plural = _('ATTRIBUTES_TITLE_PLURAL')
+        verbose_name = _('PRODUCT_ATTRIBUTES_TITLE')
+        verbose_name_plural = _('PRODUCT_ATTRIBUTES_TITLE_PLURAL')
         get_latest_by = 'created'
         ordering = ('-id',)
-        db_table = 'posts'
-        app_label = 'posts_product_attributes'
+        db_table = 'posts_product_attributes'
+        app_label = 'posts'

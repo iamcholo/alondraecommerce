@@ -32,6 +32,17 @@
                         	</a>
                         </li>
                         <li class="">
+                            <a href="#pills-8" data-toggle="tab" aria-expanded="false">                         
+                                {{ 'MEDIA_ALBUM_LABEL' | translate}}
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#pills-10" data-toggle="tab" aria-expanded="false">                         
+                                {{ 'ATTRIBUTES_PLURAL_LABEL' | translate}}
+                            </a>
+                        </li>
+                        
+                        <li class="">
                         	<a href="#pills-3"  data-toggle="tab" aria-expanded="false">
                         		{{ 'CATEGORIES_LABEL' | translate}}
                         	</a>
@@ -41,6 +52,8 @@
                                 {{ 'TAGS_LABEL' | translate}}
                             </a>
                         </li>
+
+                        
                         <li class="">
                             <a href="#pills-6"  data-toggle="tab" aria-expanded="false">
                                 {{ 'TAXES_LABEL' | translate}}
@@ -254,6 +267,21 @@
                                
                             </div>
                         </div>
+                           <div class="tab-pane" id="pills-8">
+
+                            <div class="col-md-2 "  ng-repeat="item in album">
+                           
+                                <div class="app-checkbox" > 
+                                    <label>
+                                        <input ng-model="item.checked"  name="app-checkbox-1" type="checkbox"> 
+                                        {{item.title}} &nbsp;
+                                     
+                                        <span></span>
+                                    </label> 
+                                </div>
+                               
+                            </div>
+                        </div>
                         <div class="tab-pane" id="pills-4">
 
                             <div class="row clearfix">
@@ -309,6 +337,94 @@
 
                                 </div>
                                 <h1>{{ 'DISCOUNT_PLURAL_LABEL' | translate}}</h1>
+                                <table style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ 'DISCOUNT_LABEL' | translate}}</th>
+                                            <th>{{ 'START_DATE_LABEL' | translate}}</th>
+                                            <th>{{ 'END_DATE_LABEL' | translate}}</th>
+                                            <th>{{ 'ACTIONS_LABEL' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in discounts" data-id="{{item.id}}">
+                                            <td style="padding: 15px">
+                                                <span ng-show="item.editable == false">
+                                                    {{item.percent}}%
+                                                </span>
+                                                <div ng-show="item.editable == true" class="form-group">
+                                                   
+                                                    <input class="form-control"  ng-model="item.percent" type="text">
+                                                   
+                                                </div>
+                                            </td>
+                                            <td style="padding: 15px">
+                                                <span ng-show="item.editable == false">
+                                                    {{item.start_date}}
+                                                </span>
+                                                 <div ng-show="item.editable == true" class="form-group">
+                                                   
+                                                    <datepicker ng-id="d_start_date_{{item.id}}" ng-model="item.start_date"></datepicker>
+                                                </div>
+
+                                            </td>
+                                            <td style="padding: 15px">
+                                                <span ng-show="item.editable == false">
+                                                    {{item.end_date}}
+                                                </span>
+                                                 <div ng-show="item.editable == true" class="form-group">
+                                                    
+                                                    <datepicker ng-id="d_end_date_{{item.id}}" ng-model="item.end_date"></datepicker>
+                                                </div>
+
+                                            </td>
+                                            <td style="padding: 15px">
+                                                <a ng-show="item.editable == false " ng-click="edit_Discount(item.id)" class="btn btn-primary">
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                    {{ 'EDIT_LABEL' | translate}}
+                                                </a>
+                                                <a ng-show="item.editable == false " ng-click="DELETE_Discount(item.id)" class="btn btn-danger">
+                                                     <i class="fa fa-trash"></i>
+                                                </a>
+                                                <button ng-show="item.editable == true" ng-click="SaveDiscount(item.id)" class="btn btn-primary">
+                                                    {{ 'SAVE_LABEL' | translate}}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <br>
+                              
+                                 
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="pills-10">
+                            <div class="clearfix">
+                           
+                                <div class="col-md-3" style="padding: 10px;">
+
+                                   <div class="form-group">
+                                        <label class="control-label">{{ 'ATTRIBUTES_LABEL' | translate}}</label>
+                                        <input class="form-control"  ng-model="model2.percent" type="text">
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="padding: 10px;">
+                                    <div class="form-group">
+                                        <label class="control-label">{{ 'START_DATE_LABEL' | translate}}</label>
+                                        <datepicker ng-id="start_date" ng-model="model2.start_date"></datepicker>
+                                    </div>
+
+                                </div>
+                              
+                                <div class="col-md-3" style="padding: 34px 0px;">
+                                    <button ng-click="AddDiscounts()" class="btn btn-primary">
+                                        {{ 'ADD_LABEL' | translate}}
+                                    </button>
+
+                                </div>
+                               
                                 <table style="width: 100%;">
                                     <thead>
                                         <tr>

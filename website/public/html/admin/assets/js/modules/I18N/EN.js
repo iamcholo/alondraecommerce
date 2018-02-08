@@ -95,8 +95,15 @@ define(['angular'],function(angular){
             'ADD_LABEL':'Add',
             'START_DATE_LABEL': "Start Date",
             'END_DATE_LABEL':'End Date',
-            'ATTRIBUTES_LABEL': 'Attribute',
-            'ATTRIBUTES_PLURAL_LABEL': 'Attributes',
+            'ATTRIBUTES_LABEL': 'Product Attribute',
+            'ATTRIBUTES_PLURAL_LABEL': 'Product Attributes',
+            'TYPE_LABEL':'Type',
+            'CHOICES': 'Choices',
+            'TEXT': 'Text',
+            'SELECTABLE': 'Seletable',
+            'ENABLE_PRICES': 'Enable Prices',
+            'DATE': 'Date',
+            'VALUES_LABEL': 'Field Values',
       });
      
       $translateProvider.preferredLanguage('en');

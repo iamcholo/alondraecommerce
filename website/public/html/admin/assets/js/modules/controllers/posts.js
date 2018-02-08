@@ -84,8 +84,8 @@ define(['angular','clipboard'],function(angular,clipboard){
 		};
 
 	}]).controller('PostsEditCtrl', 
-	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media','Taxes','pvpCountries','Discounts',
-	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media,Taxes,pvpCountries,Discounts) 
+	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media','MediaAlbum','Taxes','pvpCountries','Discounts',
+	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media,MediaAlbum,Taxes,pvpCountries,Discounts) 
 	  {
 
 	  	new clipboard('.btn');
@@ -105,6 +105,8 @@ define(['angular','clipboard'],function(angular,clipboard){
             'taxes_lists':[],
 	  		'categories_lists': [], 
 	  		'tags_lists': [], 
+	  		'album_lists': [],
+
 	  		'content':'',
 	  		'excerpt':'',
 	  		'slug':'',
@@ -153,6 +155,7 @@ define(['angular','clipboard'],function(angular,clipboard){
 	  			$scope.model.categories_lists = response.data.categories_lists;	 
 	  			$scope.model.tags_lists = response.data.tags_lists;	
 	  			$scope.model.taxes_lists = response.data.taxes_lists;	
+	  			$scope.model.album_lists = response.data.album_lists;	
 	  			$scope.model.publish = response.data.publish;
 	  			$scope.model.publish_date = response.data.publish_date;	 
 	  			$scope.model.is_featured = response.data.is_featured;
@@ -181,6 +184,7 @@ define(['angular','clipboard'],function(angular,clipboard){
 			$scope.todos = [];
 			$scope.tags = [];
 			$scope.discounts = [];
+			$scope.album = [];
 		    Category.list().then(function successCallback(response)
 		    {
 		    	angular.forEach(response.data, function(value, key){
@@ -231,6 +235,27 @@ define(['angular','clipboard'],function(angular,clipboard){
 					});
 				},$scope.discounts);
 			}, function errorCallback(response) {});
+
+
+	  		MediaAlbum.list().then(function successCallback(response){
+	  			angular.forEach(response.data, function(value, key){
+
+	         		checked = $scope.model.album_lists.filter(function(item){
+				          	return item.id === value.id;
+				      	});
+
+					this.push({
+						id: value.id,
+				        title: value.title,
+				        checked: checked.length > 0,
+				        status: value.publish,
+				        created: value.created,
+				        modified: value.modified,
+					});
+				},$scope.album);
+			}, function errorCallback(response) {});
+
+
 
 		};
 
@@ -318,19 +343,24 @@ define(['angular','clipboard'],function(angular,clipboard){
               return item.checked === true;
           	});
 
+          	$scope.model.album_lists = $scope.album.filter(function(item){        
+              return item.checked === true;
+          	});
+
+
 		  	$scope.model.id = $stateParams.id;
 
 		  	if(featured_image.length > 0)
 		  	{
 		  		$scope.model.featured_image = featured_image[0].img;
 		  		$scope.model.featured_image_text =  thumbnail[0].title;
-		  		console.log(featured_image[0].img)
+		  		
 		  	}
 		  	if(thumbnail.length > 0)
 		  	{
 		  		$scope.model.thumbnail = thumbnail[0].img;
 		  		$scope.model.thumbnail_text = thumbnail[0].title;
-		  		console.log(thumbnail[0].img)
+		  		
 		  	}
 		 	Posts.Update($scope.model);
 		}
