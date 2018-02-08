@@ -41,6 +41,19 @@ POST_TYPES_CHOICES = (
 )
 
 
+ATTRIBUTES_TYPES_CHOICES = (
+
+    ('choices', 'Choices'),
+    ('text', 'Text'),
+    ('selectable', 'Selectable'),
+    ('date', 'Date'),
+
+)
+
+
+
+
+
 
 class PostCategory(MPTTModel, BaseDateTime, BasePublish, BaseSeo):
 
@@ -361,3 +374,110 @@ def updating_category_nav_slug(sender, instance, **kwargs):
         ).update(slug=instance.slug)                 
     except ObjectDoesNotExist:
         return None    
+
+class Attributes(BaseDateTime):
+
+    archetype = models.CharField(
+            max_length=20,
+            choices=ATTRIBUTES_TYPES_CHOICES,
+            default="text"
+        )
+    
+    name = models.CharField(
+            _('NAME_LABEL'),
+            max_length=255,        
+            blank=True      
+        )
+
+
+    priceable = models.BooleanField(
+            _('PRICEABLE_LABEL'),
+            default=True
+        )
+
+    def __unicode__(self):
+        return self.name
+
+
+    class Meta:
+        verbose_name = _('ATTRIBUTES_TITLE')
+        verbose_name_plural = _('ATTRIBUTES_TITLE_PLURAL')
+        get_latest_by = 'created'
+        ordering = ('-id',)
+        db_table = 'posts'
+        app_label = 'attributes'
+
+class Attributes(BaseDateTime):
+
+    archetype = models.CharField(
+            max_length=20,
+            choices=ATTRIBUTES_TYPES_CHOICES,
+            default="text"
+        )
+    
+    name = models.CharField(
+            _('NAME_LABEL'),
+            max_length=255,        
+            blank=True      
+        )
+
+
+    priceable = models.BooleanField(
+            _('PRICEABLE_LABEL'),
+            default=True
+        )
+
+    def __unicode__(self):
+        return self.name
+
+
+    class Meta:
+        verbose_name = _('ATTRIBUTES_TITLE')
+        verbose_name_plural = _('ATTRIBUTES_TITLE_PLURAL')
+        get_latest_by = 'created'
+        ordering = ('-id',)
+        db_table = 'posts'
+        app_label = 'posts_attributes'
+
+
+class ProductAttributes(BaseDateTime,BaseThumbnailFeatured):
+
+    product = models.ForeignKey(
+            PostItem,
+            verbose_name=_('PRODUCT_LABEL'),
+            null=True,
+            blank=True,
+            on_delete=models.CASCADE,
+            related_name='post_product_attributes_related_product'
+        )
+    attributes = models.ForeignKey(
+            Attributes,
+            verbose_name=_('ATTRIBUTES_LABEL'),
+            null=True,
+            blank=True,
+            on_delete=models.CASCADE,
+            related_name='post_product_attributes_related_attributes'
+        )
+
+    value = models.CharField(
+            _('NAME_LABEL'),
+            max_length=255,        
+            blank=True      
+        )
+
+    price = models.FloatField(
+            _('NAME_LABEL'),
+        )
+
+
+    def __unicode__(self):
+        return self.value
+
+
+    class Meta:
+        verbose_name = _('ATTRIBUTES_TITLE')
+        verbose_name_plural = _('ATTRIBUTES_TITLE_PLURAL')
+        get_latest_by = 'created'
+        ordering = ('-id',)
+        db_table = 'posts'
+        app_label = 'posts_product_attributes'
