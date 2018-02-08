@@ -95,6 +95,8 @@ define(['angular'],function(angular){
             'ADD_LABEL':'Add',
             'START_DATE_LABEL': "Start Date",
             'END_DATE_LABEL':'End Date',
+            'ATTRIBUTES_LABEL': 'Attribute',
+            'ATTRIBUTES_PLURAL_LABEL': 'Attributes',
       });
      
       $translateProvider.preferredLanguage('en');
