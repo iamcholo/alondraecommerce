@@ -26,10 +26,12 @@ from django.core.files.base import ContentFile
 from posts.models import PostItem
 
 class DiscountsSerializer(serializers.HyperlinkedModelSerializer):
+    product_pk = serializers.ReadOnlyField(source='product.id')
     class Meta:
         model = Discounts
         fields =    (
             'id',
+            'product_pk',
             'percent',
             'start_date',
             'end_date',

@@ -420,8 +420,7 @@ class Attributes(BaseDateTime):
             max_length=255,        
             blank=True      
         )
-
-
+    
     priceable = models.BooleanField(
             _('PRICEABLE_LABEL'),
             default=True

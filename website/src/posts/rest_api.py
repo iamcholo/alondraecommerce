@@ -10,10 +10,10 @@ from rest_framework.parsers import JSONParser
 from rest_framework import generics
 from posts.models import PostCategory
 from posts.models import PostItem
+from posts.models import Attributes,ProductAttributes
 from globaly.models import GlobalyTags
 from taxes.models import Taxes
 from taxes.rest_api import TaxesSerializer
-
 from globaly.rest_api import GlobalyTagsSerializer
 from media.models import MediaAlbum,MediaImage
 from django.contrib.auth.models import User
@@ -27,6 +27,35 @@ from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
 from navigation.models import NavigationItem
+
+
+class AttributesSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Attributes
+        fields =    (
+            'id', 
+            'archetype',
+            'name',
+            'priceable',
+            'created', 
+            'modified',
+        )
+
+
+class ProductAttributesSerializer(serializers.HyperlinkedModelSerializer):
+    product_id = serializers.ReadOnlyField(source='product.id')
+    attributes_id = serializers.ReadOnlyField(source='attributes.id')
+    class Meta:
+        model = ProductAttributes
+        fields =    (
+            'id', 
+            'product_id',
+            'attributes_id',
+            'value',
+            'price',
+            'created', 
+            'modified',
+        )
 
 class PostCategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -334,6 +363,95 @@ def category(request):
 
         if request.method == 'DELETE':
             category.delete()
+            return Response(
+                status=status.HTTP_204_NO_CONTENT
+            )
+
+    return Response(
+            serializer.errors, 
+            status=status.HTTP_400_BAD_REQUEST
+        )    
+
+
+
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated,))
+def attributes_list(request):
+
+    if request.method == 'GET':
+        posts = Attributes.objects.all().order_by('-id')
+        serializer = AttributesSerializer(
+            posts, 
+            many=True,
+            context={'request': request}
+        )
+        return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
+def attribute_details(request):
+    if request.method == 'POST':
+        try:
+            pk = request.data.get('id')
+            attribute = Attributes.objects.get(
+                pk=pk
+            )
+        except Attributes.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+        serializer = AttributesSerializer(
+            attribute,
+            context={'request': request}
+        )
+        return Response(serializer.data)
+    return Response(
+                status=status.HTTP_204_NO_CONTENT
+            )
+
+
+@api_view(['PUT','POST','DELETE'])
+@permission_classes((IsAuthenticated,))
+def attribute(request):
+    
+    if request.method == 'POST':
+        serializer = AttributesSerializer(
+            data=request.data,
+            context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(
+            serializer.errors, 
+            status=status.HTTP_400_BAD_REQUEST
+        )      
+    if request.method == 'PUT' or request.method == 'DELETE':
+        try:
+            pk = request.data.get('id')
+            attribute = Attributes.objects.get(
+                pk=int(pk)
+            )
+        except Attributes.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        if request.method == 'PUT':
+            serializer = AttributesSerializer(
+                attribute,
+                data=request.data,
+                context={'request': request}
+            )
+            if serializer.is_valid():
+                serializer.save()
+                
+                return Response(serializer.data)
+
+        if request.method == 'DELETE':
+            attribute.delete()
             return Response(
                 status=status.HTTP_204_NO_CONTENT
             )
