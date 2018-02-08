@@ -402,18 +402,16 @@
                         <div class="tab-pane" id="pills-10">
                             <div  ng-repeat="item2 in attributes" class="clearfix">
                            
-                                <div class="col-md-3" style="padding: 10px;">
-
-                                   <div class="form-group">
-                                        <label class="control-label">{{ 'ATTRIBUTES_LABEL' | translate}} {{item2.title}}</label>
-                                        <input class="form-control"  ng-model="model2.percent" type="text">
-                                       
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-3" style="padding: 10px;">
                                     <div class="form-group">
-                                        <label class="control-label">{{ 'START_DATE_LABEL' | translate}}</label>
-                                        <datepicker ng-id="start_date" ng-model="model2.start_date"></datepicker>
+                                        <label class="control-label">{{ 'ATTRIBUTES_LABEL' | translate}} &nbsp;{{item2.title}}</label>
+                                        <div ng-show="item2.archetype !== 'date' ">
+                                            <input class="form-control"  ng-model="item2.value" type="text">
+                                        </div>
+                                        <div ng-show="item2.archetype === 'date' ">
+                                            <datepicker ng-id="date{{item2.id}}_{{item2.title}}" ng-model="item2.value"></datepicker>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -425,10 +423,10 @@
 
                                 </div>
                                
-                                <table style="width: 100%;">
+                                <table ng-show="item2.archetype === 'choices' || item2.archetype === 'selectable' " style="width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th>{{ 'DISCOUNT_LABEL' | translate}}</th>
+                                            <th>{{ 'ATTRIBUTES_LABEL' | translate}}</th>
                                             <th>{{ 'START_DATE_LABEL' | translate}}</th>
                                             <th>{{ 'END_DATE_LABEL' | translate}}</th>
                                             <th>{{ 'ACTIONS_LABEL' | translate}}</th>
@@ -456,16 +454,7 @@
                                                 </div>
 
                                             </td>
-                                            <td style="padding: 15px">
-                                                <span ng-show="item.editable == false">
-                                                    {{item.end_date}}
-                                                </span>
-                                                 <div ng-show="item.editable == true" class="form-group">
-                                                    
-                                                    <datepicker ng-id="d_end_date_{{item.id}}" ng-model="item.end_date"></datepicker>
-                                                </div>
-
-                                            </td>
+                                            
                                             <td style="padding: 15px">
                                                 <a ng-show="item.editable == false " ng-click="edit_Discount(item.id)" class="btn btn-primary">
                                                     <i class="fa fa-pencil-square-o"></i>

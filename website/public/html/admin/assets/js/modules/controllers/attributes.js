@@ -35,7 +35,7 @@ define(['angular'],function(angular){
 				 	this.push({
 			        	id: value.id,
 
-
+			        	value: "",
 
 				        title: value.name,
 				        archetype: value.archetype,
