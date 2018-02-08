@@ -84,8 +84,10 @@ define(['angular','clipboard'],function(angular,clipboard){
 		};
 
 	}]).controller('PostsEditCtrl', 
-	[ '$scope','$state','$translate','$stateParams','Posts','Tags','Category','Media','MediaAlbum','Taxes','pvpCountries','Discounts',
-	  function ($scope,$state,$translate,$stateParams,Posts,Tags,Category,Media,MediaAlbum,Taxes,pvpCountries,Discounts) 
+	[ '$scope','$state','$translate','$stateParams','Posts','Tags',
+		'Category','Media','MediaAlbum','Taxes','pvpCountries','Discounts','Attributes',
+	  function ($scope,$state,$translate,$stateParams,Posts,Tags,
+	  	Category,Media,MediaAlbum,Taxes,pvpCountries,Discounts,Attributes) 
 	  {
 
 	  	new clipboard('.btn');
@@ -185,6 +187,9 @@ define(['angular','clipboard'],function(angular,clipboard){
 			$scope.tags = [];
 			$scope.discounts = [];
 			$scope.album = [];
+			$scope.attributes = [];
+
+			
 		    Category.list().then(function successCallback(response)
 		    {
 		    	angular.forEach(response.data, function(value, key){
@@ -236,6 +241,16 @@ define(['angular','clipboard'],function(angular,clipboard){
 				},$scope.discounts);
 			}, function errorCallback(response) {});
 
+	  		Attributes.list($stateParams.id).then(function successCallback(response){
+	  			angular.forEach(response.data, function(value, key){
+					this.push({
+						id:value.id,
+				        title: value.name,
+				        archetype: value.archetype,
+				        priceable: value.priceable,
+					});
+				},$scope.attributes);
+			}, function errorCallback(response) {});
 
 	  		MediaAlbum.list().then(function successCallback(response){
 	  			angular.forEach(response.data, function(value, key){

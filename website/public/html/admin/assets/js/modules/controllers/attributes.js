@@ -34,8 +34,12 @@ define(['angular'],function(angular){
 	         	angular.forEach(response.data, function(value, key){
 				 	this.push({
 			        	id: value.id,
+
+
+
 				        title: value.name,
-				        status: value.publish,
+				        archetype: value.archetype,
+				         priceable: value.priceable,
 			      	});
 			      	if(response.data.length-1 >= key)
 			      	{

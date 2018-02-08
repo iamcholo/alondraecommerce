@@ -400,12 +400,12 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="pills-10">
-                            <div class="clearfix">
+                            <div  ng-repeat="item2 in attributes" class="clearfix">
                            
                                 <div class="col-md-3" style="padding: 10px;">
 
                                    <div class="form-group">
-                                        <label class="control-label">{{ 'ATTRIBUTES_LABEL' | translate}}</label>
+                                        <label class="control-label">{{ 'ATTRIBUTES_LABEL' | translate}} {{item2.title}}</label>
                                         <input class="form-control"  ng-model="model2.percent" type="text">
                                        
                                     </div>
