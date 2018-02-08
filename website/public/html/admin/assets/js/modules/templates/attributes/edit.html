@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="col-md-12">
+    
+	    <div class="block block-condensed block">
+	        <!-- START HEADING -->
+	        <div class="app-heading app-heading-small">
+	            <div class="title">
+	                <h5>{{ 'ATTRIBUTES_LABEL' | translate}}</h5>
+	                <p>{{ 'EDIT_LABEL' | translate}}</p>
+	            </div>
+	        </div>
+	        <!-- END HEADING -->
+
+
+	        <div class="block-content ">
+
+
+				<div>
+               
+                    <div class="row clearfix">
+						<div class="form-group">
+					        <label class="control-label">
+                                {{ 'TITLE_LABEL' | translate}}
+                            </label>
+					        <input class="form-control"  ng-model="model.name" type="text">
+					      
+					    </div>
+                        <div class="form-group">
+                            <label class="control-label">
+                                {{ 'TYPE_LABEL' | translate}}
+                            </label>
+                            <select class="form-control"  ng-options="item.id as item.label for item in model.archetype_types"  ng-model="model.archetype" type="text"></select>
+                        </div>
+                        <div class="form-group">
+                            <div class="app-checkbox"> 
+                                <label>
+                                    <input name="app-checkbox-1" ng-model="model.priceable" type="checkbox"> 
+                                    {{ 'ENABLE_PRICES' | translate}} <span>  </span>
+                                </label> 
+                            </div>
+                        </div>
+					</div>
+					     	
+                    
+                    <button ng-click="save()" class="btn btn-primary">
+                         {{ 'SAVE_LABEL' | translate}}
+
+                    </button>
+                </div>
+
+
+	        
+	        </div>                            
+	    </div>
+    
+	</div>
+
+</div>
