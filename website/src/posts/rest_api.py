@@ -473,3 +473,98 @@ def attribute(request):
             serializer.errors, 
             status=status.HTTP_400_BAD_REQUEST
         )    
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated,))
+def attribute_products_list(request):
+
+    if request.method == 'GET':
+        pk = request.data.get('product_id')
+        pk2 = request.data.get('attributes_id')
+        posts = ProductAttributes.objects.filter(
+                attributes__pk=pk2,
+                product__id=pk,
+            ).order_by('-id')
+        serializer = ProductAttributesSerializer(
+            posts, 
+            many=True,
+            context={'request': request}
+        )
+        return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
+def attribute_product_details(request):
+    if request.method == 'POST':
+        try:
+
+
+            pk = request.data.get('product_id')
+            pk2 = request.data.get('attributes_id')
+            attribute = ProductAttributes.objects.get(
+                attributes__pk=pk2,
+                product__id=pk,
+            )
+        except ProductAttributes.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+        serializer = ProductAttributesSerializer(
+            attribute,
+            context={'request': request}
+        )
+        return Response(serializer.data)
+    return Response(
+                status=status.HTTP_204_NO_CONTENT
+            )
+
+@api_view(['PUT','POST','DELETE'])
+@permission_classes((IsAuthenticated,))
+def attribute_products(request):
+    
+    if request.method == 'POST':
+        serializer = AttributesSerializer(
+            data=request.data,
+            context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(
+            serializer.errors, 
+            status=status.HTTP_400_BAD_REQUEST
+        )      
+    if request.method == 'PUT' or request.method == 'DELETE':
+        try:
+            pk = request.data.get('id')
+            attribute = Attributes.objects.get(
+                pk=int(pk)
+            )
+        except Attributes.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        if request.method == 'PUT':
+            serializer = AttributesSerializer(
+                attribute,
+                data=request.data,
+                context={'request': request}
+            )
+            if serializer.is_valid():
+                serializer.save()
+                
+                return Response(serializer.data)
+
+        if request.method == 'DELETE':
+            attribute.delete()
+            return Response(
+                status=status.HTTP_204_NO_CONTENT
+            )
+
+    return Response(
+            serializer.errors, 
+            status=status.HTTP_400_BAD_REQUEST
+        )    

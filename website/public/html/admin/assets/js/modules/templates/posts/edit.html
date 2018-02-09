@@ -417,10 +417,12 @@
                                 </div>
                               
                                 <div class="col-md-3" style="padding: 34px 0px;">
-                                    <button ng-click="AddDiscounts()" class="btn btn-primary">
+                                    <button  ng-show="item2.archetype !== 'choices' || item2.archetype !== 'selectable' " ng-click="SaveUniqueAttribute(item2.id)" class="btn btn-primary">
+                                        {{ 'SAVE_LABEL' | translate}}
+                                    </button>
+                                    <button  ng-show="item2.archetype === 'choices' || item2.archetype === 'selectable' " ng-click="AddAttributes(item2.id)" class="btn btn-primary">
                                         {{ 'ADD_LABEL' | translate}}
                                     </button>
-
                                 </div>
                                
                                 <table ng-show="item2.archetype === 'choices' || item2.archetype === 'selectable' " style="width: 100%;">
@@ -433,7 +435,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="item in discounts" data-id="{{item.id}}">
+                                        <tr ng-repeat="item in item2.attributes" data-id="{{item.id}}">
                                             <td style="padding: 15px">
                                                 <span ng-show="item.editable == false">
                                                     {{item.percent}}%
