@@ -39,6 +39,18 @@ angular.module('app.services.attributes', [] )
                 'url': "/attributes/"              
             });
         },
+        'listChild': function(product_id){
+            return this.request({
+                'method': "POST",
+                'url': "/attributes/",
+                'data':{
+                    'product_id':product_id,
+                }            
+            });
+        },
+
+        
+
         'New': function(data){
             return this.request({
                 'method': "POST",

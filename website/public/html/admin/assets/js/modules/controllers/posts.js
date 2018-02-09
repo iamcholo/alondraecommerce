@@ -241,7 +241,7 @@ define(['angular','clipboard'],function(angular,clipboard){
 				},$scope.discounts);
 			}, function errorCallback(response) {});
 
-	  		Attributes.list($stateParams.id).then(function successCallback(response){
+	  		Attributes.listChild($stateParams.id).then(function successCallback(response){
 	  			angular.forEach(response.data, function(value, key){
 					this.push({
 						id:value.id,

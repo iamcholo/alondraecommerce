@@ -47,18 +47,60 @@ class ProductAttributesSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class AttributesSerializer(serializers.HyperlinkedModelSerializer):
+    child = serializers.SerializerMethodField('get_popularity')
     class Meta:
         model = Attributes
         fields =    (
             'id', 
             'archetype',
             'name',
+            'child',
             'priceable',
             'created', 
             'modified',
         )
+        
+
+    def get_popularity(self, obj):
+
+        request = self.context.get("request")
+        
+        pk = request.data.get('product_id')
+        pk2 = obj.id
+
+        if not request.data.has_key('product_id'):
+            return None
+
+        if obj.archetype in ['choices','selectable']:
+            posts = ProductAttributes.objects.filter(
+                    attributes__pk=pk2,
+                    product__id=pk,
+                ).order_by('-id')
+            serializer = ProductAttributesSerializer(
+                posts, 
+                many=True,
+                context={'request': request}
+            )
+            return serializer.data
+
+        if obj.archetype in ['text','date']:
+            try:
 
 
+                attribute = ProductAttributes.objects.get(
+                    attributes__pk=pk2,
+                    product__id=pk,
+                )
+                serializer = ProductAttributesSerializer(
+                    attribute,
+                    context={'request': request}
+                )
+                return serializer.data
+
+            except ProductAttributes.DoesNotExist:
+                return None
+        return None     
+            
 
 
 class PostCategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -392,11 +434,11 @@ def category(request):
 
 
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 @permission_classes((IsAuthenticated,))
 def attributes_list(request):
 
-    if request.method == 'GET':
+    if request.method in ['GET','POST']:
         posts = Attributes.objects.all().order_by('-id')
         serializer = AttributesSerializer(
             posts, 
