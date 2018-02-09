@@ -38,6 +38,10 @@ class ProductAttributesSerializer(serializers.HyperlinkedModelSerializer):
         model = ProductAttributes
         fields =    (
             'id', 
+            'thumbnail',
+            'thumbnail_text',
+            'featured_image',
+            'featured_image_text',
             'product_id',
             'attributes_id',
             'value',
@@ -64,12 +68,12 @@ class AttributesSerializer(serializers.HyperlinkedModelSerializer):
     def get_popularity(self, obj):
 
         request = self.context.get("request")
-        
-        pk = request.data.get('product_id')
-        pk2 = obj.id
-
         if not request.data.has_key('product_id'):
             return None
+        pk = request.data.get('product_id')
+        pk2 = obj.id
+        
+       
 
         if obj.archetype in ['choices','selectable']:
             posts = ProductAttributes.objects.filter(
@@ -567,7 +571,7 @@ def attribute_product_details(request):
 
 @api_view(['PUT','POST','DELETE'])
 @permission_classes((IsAuthenticated,))
-def attribute_products(request):
+def attribute_product(request):
     
     if request.method == 'POST':
         try:

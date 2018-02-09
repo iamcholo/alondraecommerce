@@ -429,6 +429,7 @@ class ProductAttributes(BaseDateTime,BaseThumbnailFeatured):
 
     price = models.FloatField(
             _('NAME_LABEL'),
+             blank=True   
         )
 
 

@@ -211,7 +211,7 @@ require.config({
         deps: ['angular']
       },
       'posts_controllers': {
-        deps: ['angular']
+        deps: ['angular','jquery']
       },
 
       'media_controller': {

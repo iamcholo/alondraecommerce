@@ -19,9 +19,9 @@ urlpatterns = [
 	url(r'^attributes/{0,1}$', views.attributes_list),
 	url(r'^attribute/{0,1}$', views.attribute),
 	url(r'^attribute/details/{0,1}$', views.attribute_details),
-	url(r'^attribute/product/{0,1}$', views.attribute_products_list),
-	url(r'^attribute/product/{0,1}$', views.attribute_product_details),
-	url(r'^attribute/product/details/{0,1}$', views.attribute_products),
+	url(r'^attribute/products/{0,1}$', views.attribute_products_list),
+	url(r'^attribute/product/{0,1}$', views.attribute_product),
+	url(r'^attribute/product/details/{0,1}$', views.attribute_product_details),
 ]
 
 

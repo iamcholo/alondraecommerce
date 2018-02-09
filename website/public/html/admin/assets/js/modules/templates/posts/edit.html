@@ -401,11 +401,28 @@
                         </div>
                         <div class="tab-pane" id="pills-10">
                             <div  ng-repeat="item2 in attributes" class="clearfix">
-                           
-                                
+                                <div class="col-md-12">
+                                    <h3>{{item2.title}}</h3>
+                                </div>
+                                <div class="col-md-3" style="padding: 10px;">
+
+                                   <div class="form-group">
+                                        <label class="control-label">{{ 'FEATURED_IMAGE_LABEL' | translate}}</label>
+                                        <input class="form-control"  ng-model="item2.image" type="text">
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="padding: 10px;">
+
+                                   <div class="form-group">
+                                        <label class="control-label">{{ 'PRICE_LABEL' | translate}}</label>
+                                        <input class="form-control"  ng-model="item2.price" type="text">
+                                       
+                                    </div>
+                                </div>
                                 <div class="col-md-3" style="padding: 10px;">
                                     <div class="form-group">
-                                        <label class="control-label">{{ 'ATTRIBUTES_LABEL' | translate}} &nbsp;{{item2.title}}</label>
+                                        <label class="control-label">{{ 'ATTRIBUTES_LABEL' | translate}} &nbsp; (*)</label>
                                         <div ng-show="item2.archetype !== 'date' ">
                                             <input class="form-control"  ng-model="item2.value" type="text">
                                         </div>
@@ -417,10 +434,10 @@
                                 </div>
                               
                                 <div class="col-md-3" style="padding: 34px 0px;">
-                                    <button  ng-show="item2.archetype !== 'choices' || item2.archetype !== 'selectable' " ng-click="SaveUniqueAttribute(item2.id)" class="btn btn-primary">
+                                    <button  ng-show="inAttribute(item2.archetype) === true " ng-click="SaveUniqueAttribute(item2)" class="btn btn-primary">
                                         {{ 'SAVE_LABEL' | translate}}
                                     </button>
-                                    <button  ng-show="item2.archetype === 'choices' || item2.archetype === 'selectable' " ng-click="AddAttributes(item2.id)" class="btn btn-primary">
+                                    <button  ng-show="inAttribute(item2.archetype) === false " ng-click="AddAttributes(item2)" class="btn btn-primary">
                                         {{ 'ADD_LABEL' | translate}}
                                     </button>
                                 </div>
@@ -435,7 +452,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="item in item2.attributes" data-id="{{item.id}}">
+                                        <tr ng-repeat="item in item2.child" data-id="{{item.id}}">
                                             <td style="padding: 15px">
                                                 <span ng-show="item.editable == false">
                                                     {{item.percent}}%
