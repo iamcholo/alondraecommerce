@@ -509,7 +509,17 @@ def attribute(request):
             )
             if serializer.is_valid():
                 serializer.save()
-                
+
+                if attribute.attribute != serializer.instance.archetype:
+
+                    if serializer.instance.archetype in ['choices','selectable']:
+                            
+                        attributes = ProductAttributes.objects.filter(
+                                attributes__pk=attribute.id,
+                                
+                            ).order_by('-id')
+                        attributes.delete()
+                        
                 return Response(serializer.data)
 
         if request.method == 'DELETE':
