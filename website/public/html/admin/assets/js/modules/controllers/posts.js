@@ -491,7 +491,8 @@ define(['angular','clipboard','jquery'],function(angular,clipboard,jquery){
 						'id':response.data.id,
 						'price':response.data.price,
 						'value':response.data.value,
-						'featured_image':response.data.featured_image,
+						'editable':false,
+						'image':response.data.featured_image,
 					});
 				}, function errorCallback(response) {});
 				
@@ -499,17 +500,56 @@ define(['angular','clipboard','jquery'],function(angular,clipboard,jquery){
 			
 		}
 
-		$scope.edit_Attribute = function(item2)
+		$scope.edit_Attribute = function(item2,id)
 		{
 			var item = item2.child.filter(function(item){
 	  				
-					return item.id == item2.id ;
+					return item.id == id ;
 				});
 			if(item.length > 0)
 			{
 				item[0].editable = true;
 			}
 		}
+
+
+		$scope.UpdateAttribute = function(item2,id)
+		{
+			var item = item2.child.filter(function(item){
+	  				
+					return item.id == id ;
+				});
+			if(item.length > 0)
+			{
+				item[0].editable = false;
+
+					var data = {
+						'id':item[0].id,
+						'featured_image':item[0].image,
+						'price':item[0].price,
+						'value':item[0].value,
+					}
+					AttributesProduct.Update(data).then(function successCallback(response){
+					
+					}, function errorCallback(response) {});
+			}
+		}
+
+
+		$scope.DELETE_Attribute = function(item2,id)
+		{
+			item2.child = item2.child.filter(function(item)
+			{
+				return item.id !== id ;
+			});
+			AttributesProduct.Delete(id).then(
+				function successCallback(response){}, 
+				function errorCallback(response) {}
+			);
+		}
+
+
+
 
 
 

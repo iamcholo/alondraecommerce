@@ -487,14 +487,14 @@
 
                                             
                                             <td style="padding: 15px">
-                                                <a ng-show="item.editable == false " ng-click="edit_Attribute(item.id)" class="btn btn-primary">
+                                                <a ng-show="item.editable == false " ng-click="edit_Attribute(item2,item.id)" class="btn btn-primary">
                                                     <i class="fa fa-pencil-square-o"></i>
                                                     {{ 'EDIT_LABEL' | translate}}
                                                 </a>
-                                                <a ng-show="item.editable == false " ng-click="DELETE_Attribute(item.id)" class="btn btn-danger">
+                                                <a ng-show="item.editable == false " ng-click="DELETE_Attribute(item2,item.id)" class="btn btn-danger">
                                                      <i class="fa fa-trash"></i>
                                                 </a>
-                                                <button ng-show="item.editable == true" ng-click="SaveDiscount(item.id)" class="btn btn-primary">
+                                                <button ng-show="item.editable == true" ng-click="UpdateAttribute(item2,item.id)" class="btn btn-primary">
                                                     {{ 'SAVE_LABEL' | translate}}
                                                 </button>
                                             </td>
