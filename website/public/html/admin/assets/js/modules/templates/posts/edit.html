@@ -445,9 +445,9 @@
                                 <table ng-show="item2.archetype === 'choices' || item2.archetype === 'selectable' " style="width: 100%;">
                                     <thead>
                                         <tr>
+                                            <th>{{ 'FEATURED_IMAGE_LABEL' | translate}}</th>
+                                            <th>{{ 'PRICE_LABEL' | translate}}</th>
                                             <th>{{ 'ATTRIBUTES_LABEL' | translate}}</th>
-                                            <th>{{ 'START_DATE_LABEL' | translate}}</th>
-                                            <th>{{ 'END_DATE_LABEL' | translate}}</th>
                                             <th>{{ 'ACTIONS_LABEL' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -455,31 +455,43 @@
                                         <tr ng-repeat="item in item2.child" data-id="{{item.id}}">
                                             <td style="padding: 15px">
                                                 <span ng-show="item.editable == false">
-                                                    {{item.percent}}%
+                                                  <img ng-src="{{item.image}}"> 
                                                 </span>
+
                                                 <div ng-show="item.editable == true" class="form-group">
                                                    
-                                                    <input class="form-control"  ng-model="item.percent" type="text">
+                                                    <input class="form-control"  ng-model="item.image" type="text">
                                                    
                                                 </div>
                                             </td>
                                             <td style="padding: 15px">
                                                 <span ng-show="item.editable == false">
-                                                    {{item.start_date}}
+                                                    {{item.price}}
                                                 </span>
                                                  <div ng-show="item.editable == true" class="form-group">
-                                                   
-                                                    <datepicker ng-id="d_start_date_{{item.id}}" ng-model="item.start_date"></datepicker>
+                                                    <input class="form-control"  ng-model="item.price" type="text">
+                                                </div>
+
+                                            </td>
+                                            <td style="padding: 15px">
+                                                <span ng-show="item.editable == false">
+                                                    {{item.value}}
+                                                </span>
+                                                 <div ng-show="item.editable == true" class="form-group">
+                                                    <input class="form-control"  ng-model="item.value" type="text">
                                                 </div>
 
                                             </td>
                                             
+                                            
+
+                                            
                                             <td style="padding: 15px">
-                                                <a ng-show="item.editable == false " ng-click="edit_Discount(item.id)" class="btn btn-primary">
+                                                <a ng-show="item.editable == false " ng-click="edit_Attribute(item.id)" class="btn btn-primary">
                                                     <i class="fa fa-pencil-square-o"></i>
                                                     {{ 'EDIT_LABEL' | translate}}
                                                 </a>
-                                                <a ng-show="item.editable == false " ng-click="DELETE_Discount(item.id)" class="btn btn-danger">
+                                                <a ng-show="item.editable == false " ng-click="DELETE_Attribute(item.id)" class="btn btn-danger">
                                                      <i class="fa fa-trash"></i>
                                                 </a>
                                                 <button ng-show="item.editable == true" ng-click="SaveDiscount(item.id)" class="btn btn-primary">

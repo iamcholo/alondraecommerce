@@ -243,6 +243,29 @@ define(['angular','clipboard','jquery'],function(angular,clipboard,jquery){
 
 	  		Attributes.listChild($stateParams.id).then(function successCallback(response){
 	  			angular.forEach(response.data, function(value, key){
+
+	  				var childs = []
+	  				if(jquery.isArray(value.child))
+	  				{
+	  					angular.forEach(value.child, function(value2, key){
+	  					
+		  					this.push({
+		  						id:value2.id,
+		  						thumbnail:value2.thumbnail,
+		  						thumbnail:value2.thumbnail_text,
+		  						featured_image:value2.featured_image,
+		  						featured_image_text:value2.featured_image_text,
+		  						product_id:value2.product_id,
+		  						'editable':false,
+		  						attributes_id:value2.attributes_id,
+		  						value:value2.value,
+		  						price:value2.price,
+		  					})
+
+	  					},childs);
+	  				}
+	  				
+	  				
 					this.push({
 						id:value.id,
 				        title: value.name,
@@ -250,7 +273,7 @@ define(['angular','clipboard','jquery'],function(angular,clipboard,jquery){
 				        child_id: jquery.isArray(value.child)? null : value.child === null? null :value.child.id,
 				        price: jquery.isArray(value.child)? null : value.child === null? null :value.child.price,
 				        value: jquery.isArray(value.child)? null : value.child === null? null :value.child.value,
-				        child: value.child,
+				        child: childs,
 				        archetype: value.archetype,
 				        priceable: value.priceable,
 					});
@@ -414,9 +437,6 @@ define(['angular','clipboard','jquery'],function(angular,clipboard,jquery){
 		{
 			if(item2.value.length > 0)
 			{
-				
-
-				
 				if(item2.child_id !== null)
 				{
 					var data = {
@@ -453,6 +473,45 @@ define(['angular','clipboard','jquery'],function(angular,clipboard,jquery){
 					}, function errorCallback(response) {});
 				}
 		}
+
+		$scope.AddAttributes = function(item2)
+		{
+			if(item2.value.length > 0)
+			{
+				var data = {
+					'price':item2.price,
+					'value':item2.value,
+					'featured_image':item2.image,
+					'product_id':$stateParams.id,
+					'attributes_id':item2.id,
+				}
+				AttributesProduct.New(data).then(function successCallback(response){
+					
+					item2.child.push({
+						'id':response.data.id,
+						'price':response.data.price,
+						'value':response.data.value,
+						'featured_image':response.data.featured_image,
+					});
+				}, function errorCallback(response) {});
+				
+			}
+			
+		}
+
+		$scope.edit_Attribute = function(item2)
+		{
+			var item = item2.child.filter(function(item){
+	  				
+					return item.id == item2.id ;
+				});
+			if(item.length > 0)
+			{
+				item[0].editable = true;
+			}
+		}
+
+
 
 
 		
