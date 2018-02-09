@@ -33,6 +33,8 @@ define(
         'app.controllers.navigation',
         'app.controllers.orders',
         'app.controllers.attributes',
+
+
         'app.services.user',
         'app.services.login',
         'app.services.posts',
@@ -48,6 +50,8 @@ define(
         'app.services.navigation_items',
         'app.services.orders',
         'app.services.attributes',
+        'app.services.attributes_product',
+
         'app.routes.posts',
         'app.routes.pages',
         'app.routes.media',

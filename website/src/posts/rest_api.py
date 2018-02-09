@@ -30,18 +30,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from navigation.models import NavigationItem
 
 
-class AttributesSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Attributes
-        fields =    (
-            'id', 
-            'archetype',
-            'name',
-            'priceable',
-            'created', 
-            'modified',
-        )
-
 
 class ProductAttributesSerializer(serializers.HyperlinkedModelSerializer):
     product_id = serializers.ReadOnlyField(source='product.id')
@@ -57,6 +45,21 @@ class ProductAttributesSerializer(serializers.HyperlinkedModelSerializer):
             'created', 
             'modified',
         )
+
+class AttributesSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Attributes
+        fields =    (
+            'id', 
+            'archetype',
+            'name',
+            'priceable',
+            'created', 
+            'modified',
+        )
+
+
+
 
 class PostCategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -525,12 +528,34 @@ def attribute_product_details(request):
 def attribute_products(request):
     
     if request.method == 'POST':
-        serializer = AttributesSerializer(
+        try:
+            pk = request.data.get('attributes_id')
+            attribute = Attributes.objects.get(
+                pk=int(pk)
+            )
+        except Attributes.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+        try:
+            pk = request.data.get('product_id')
+            product = PostItem.objects.get(
+                pk=int(pk)
+            )
+        except PostItem.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        serializer = ProductAttributesSerializer(
             data=request.data,
             context={'request': request}
         )
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(
+                    product=product, 
+                    attributes=attribute, 
+                )
             return Response(serializer.data)
         return Response(
             serializer.errors, 
@@ -539,17 +564,17 @@ def attribute_products(request):
     if request.method == 'PUT' or request.method == 'DELETE':
         try:
             pk = request.data.get('id')
-            attribute = Attributes.objects.get(
+            product_attribute = ProductAttributes.objects.get(
                 pk=int(pk)
             )
-        except Attributes.DoesNotExist:
+        except ProductAttributes.DoesNotExist:
             return Response(
                 status=status.HTTP_404_NOT_FOUND
             )
 
         if request.method == 'PUT':
-            serializer = AttributesSerializer(
-                attribute,
+            serializer = ProductAttributesSerializer(
+                product_attribute,
                 data=request.data,
                 context={'request': request}
             )
@@ -559,7 +584,7 @@ def attribute_products(request):
                 return Response(serializer.data)
 
         if request.method == 'DELETE':
-            attribute.delete()
+            product_attribute.delete()
             return Response(
                 status=status.HTTP_204_NO_CONTENT
             )

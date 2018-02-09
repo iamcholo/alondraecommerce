@@ -72,6 +72,7 @@ require.config({
       "attributes_controllers": "modules/controllers/attributes",
       "attributes_routers": "modules/routes/attributes",
       "attributes_services": "modules/services/attributes",
+      "attributes_product_services": "modules/services/attributes_product",
 
     },
     baseUrl: '/admin/assets/js/',
@@ -133,8 +134,6 @@ require.config({
           'navigation_services',
           'navigation_items_services',
    
-
-   
           'orders_controllers',
           'orders_routers',
           'orders_services',
@@ -143,6 +142,7 @@ require.config({
           'attributes_controllers',
           'attributes_routers',
           'attributes_services',
+          'attributes_product_services',
 
           'media_album_controllers',
           'media_album_routers',
@@ -364,6 +364,12 @@ require.config({
         deps: ['angular']
       },
 
+      'attributes_product_services': {
+        deps: ['angular']
+      },
+
+
+      
 
 
 
