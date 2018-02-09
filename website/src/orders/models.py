@@ -6,7 +6,7 @@ from django.utils.html import format_html
 from utilities.image_base64 import encode_image_2
 from utilities.models import BaseDateTime
 from django_countries.fields import CountryField
-from posts.models import PostItem
+from posts.models import PostItem,ProductAttributes,Attributes
 
 # Create your models here.
 STATUS_TYPES_CHOICES = (
@@ -48,12 +48,6 @@ class Orders(BaseDateTime):
             related_name='orders_related_autor'
         )
 
-    products = models.ManyToManyField(
-            PostItem,
-            verbose_name=_('MEDIA_ALBUM_TITLE_PLURAL'),
-            related_name='orders_related_products',
-            blank=True
-        )
 
     total = models.FloatField(
             _('PERCENTAJE_LABEL'),
@@ -72,8 +66,7 @@ class Orders(BaseDateTime):
         db_table = 'orders'
         app_label = 'orders'
 
-
-class Shipping(BaseDateTime):
+class OrderShippingItem(BaseDateTime):
 
 
     
@@ -95,6 +88,16 @@ class Shipping(BaseDateTime):
             on_delete=models.CASCADE,
             related_name='orders_shipping_related_product'
         )
+    #value can be attribute o default item selected
+    value = models.CharField(
+            max_length=20,
+            blank=True,
+        )
+    price = models.CharField(
+            max_length=20,
+            blank=True,
+        )
+
     status = models.CharField(
             max_length=20,
             choices=SHIPPING_TYPES_CHOICES,
@@ -121,4 +124,5 @@ class Shipping(BaseDateTime):
         get_latest_by = 'created'
         ordering = ('-id',)
         db_table = 'orders'
-        app_label = 'orders_shipping'
+        app_label = 'orders_shipping_items'
+

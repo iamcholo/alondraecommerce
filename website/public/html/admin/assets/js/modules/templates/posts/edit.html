@@ -453,10 +453,16 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in item2.child" data-id="{{item.id}}">
+                                            <td ng-show="item.editable == false" style="padding: 15px" class="app-timeline-item" width="20px;">
+                                                <div class=" padding-top-20" style="height: 102px;">
+                                                    <div class="contact contact-rounded contact-bordered contact-xlg margin-bottom-0">
+                                                       <img  ng-src="{{item.image}}"  alt="{{item.image}}">
+                                                    </div>
+                                                </div>
+                                                    
+                                            </td>
                                             <td style="padding: 15px">
-                                                <span ng-show="item.editable == false">
-                                                  <img ng-src="{{item.image}}"> 
-                                                </span>
+                                             
 
                                                 <div ng-show="item.editable == true" class="form-group">
                                                    
