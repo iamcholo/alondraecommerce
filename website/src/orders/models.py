@@ -18,7 +18,7 @@ STATUS_TYPES_CHOICES = (
 
 SHIPPING_TYPES_CHOICES = (
     ('shipped', 'Shipped'),
-    ('in_transit', 'In_transit'),
+    ('in_transit', 'In transit'),
 )
 
 CARRIER_TYPES_CHOICES = (
@@ -101,7 +101,7 @@ class OrderShippingItem(BaseDateTime):
     status = models.CharField(
             max_length=20,
             choices=SHIPPING_TYPES_CHOICES,
-            default="approved"
+            default="in_transit"
         )
     carrier = models.CharField(
             max_length=20,
