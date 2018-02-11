@@ -7,6 +7,7 @@ from utilities.image_base64 import encode_image_2
 from utilities.models import BaseDateTime
 from django_countries.fields import CountryField
 
+
 # Create your models here.
 ADDRESSES_TYPES_CHOICES = (
     ('shipping', _('SHIPPING_ADDRESS_LABEL')),
@@ -14,6 +15,14 @@ ADDRESSES_TYPES_CHOICES = (
 )
 
 class Addresess(BaseDateTime):
+    autor = models.ForeignKey(
+            User,
+            verbose_name=_('AUTOR_LABEL'),
+            null=True,
+            blank=True,
+            on_delete=models.CASCADE,
+            related_name='orders_related_autor'
+        )
 
     city = models.CharField(
             _('TITLE_LABEL'),
