@@ -48,7 +48,7 @@ class Orders(BaseDateTime):
             on_delete=models.CASCADE,
             related_name='orders_related_autor'
         )
-   billing_addresss = models.ForeignKey(
+    billing_addresss = models.ForeignKey(
             Addresess,
             verbose_name=_('BILLING_LABEL'),
             null=True,
@@ -56,7 +56,7 @@ class Orders(BaseDateTime):
             on_delete=models.CASCADE,
             related_name='orders_related_billing_addresss'
         )
-   shipping_addresss = models.ForeignKey(
+    shipping_addresss = models.ForeignKey(
             Addresess,
             verbose_name=_('SHIPPING_LABEL'),
             null=True,
