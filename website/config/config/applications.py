@@ -21,7 +21,7 @@ INSTALLED_APPS = (
     'utilities',   
     'globaly',   
     'posts',
-
+    'user_addresses',
     'taxes',
     'media',
     'discount',
