@@ -45,7 +45,7 @@ class AddresessSerializer(serializers.HyperlinkedModelSerializer):
 
 @api_view(['GET'])
 @permission_classes((IsAuthenticated,))
-def addresess_list(request):
+def address_list(request):
         
     if request.method == 'GET':
         media = Addresess.objects.all()
@@ -59,7 +59,7 @@ def addresess_list(request):
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))
-def addresess_create(request):
+def address_create(request):
         
     if request.method == 'POST':
         serializer = AddresessSerializer(
@@ -79,7 +79,7 @@ def addresess_create(request):
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))
-def addresess_details(request):
+def address_details(request):
     
     try:
         pk = request.data.get('id')
