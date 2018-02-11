@@ -14,7 +14,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.parsers import FileUploadParser
 from rest_framework import generics
-from taxes.models import Taxes
+from user_addresses.models import Addresess
 from user.rest_authentication import IsAuthenticated
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -25,14 +25,19 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
 
-class TaxesSerializer(serializers.HyperlinkedModelSerializer):
+class AddresessSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Taxes
+        model = Addresess
         fields =    (
             'id',
             'city',
             'country',
-            'percent',
+            'zip_code',
+            'first_name',
+            'last_name',
+            'address_line_1',
+            'address_line_2',
+            'address_type',
             'created', 
             'modified',
         )
@@ -40,11 +45,11 @@ class TaxesSerializer(serializers.HyperlinkedModelSerializer):
 
 @api_view(['GET'])
 @permission_classes((IsAuthenticated,))
-def taxes_list(request):
+def addresess_list(request):
         
     if request.method == 'GET':
-        media = Taxes.objects.all()
-        serializer = TaxesSerializer(
+        media = Addresess.objects.all()
+        serializer = AddresessSerializer(
             media, 
             many=True,
             context={'request': request}
@@ -54,10 +59,10 @@ def taxes_list(request):
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))
-def taxes_create(request):
+def addresess_create(request):
         
     if request.method == 'POST':
-        serializer = TaxesSerializer(
+        serializer = AddresessSerializer(
             data=request.data,
             context={'request': request}
         )
@@ -74,20 +79,20 @@ def taxes_create(request):
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))
-def taxes_details(request):
+def addresess_details(request):
     
     try:
         pk = request.data.get('id')
-        tax = Taxes.objects.get(
+        tax = Addresess.objects.get(
             pk=int(pk)
         )
-    except Taxes.DoesNotExist:
+    except Addresess.DoesNotExist:
         return Response(
             status=status.HTTP_404_NOT_FOUND
         )
 
     if request.method == 'POST':
-        serializer = TaxesSerializer(
+        serializer = AddresessSerializer(
             tax,
             context={'request': request}
         )
@@ -100,21 +105,21 @@ def taxes_details(request):
 
 @api_view(['DELETE','PUT','POST'])
 @permission_classes((IsAuthenticated,))
-def tax(request):
+def address(request):
     if request.method in ['DELETE','PUT']:
         try:
             pk = request.data.get('id')
-            tax = Taxes.objects.get(
+            tax = Addresess.objects.get(
                 pk=int(pk)
             )
-        except Taxes.DoesNotExist:
+        except Addresess.DoesNotExist:
             return Response(
                 status=status.HTTP_404_NOT_FOUND
             )
     if request.method == 'DELETE':
         tax.delete()
     if request.method == 'POST':
-        serializer = TaxesSerializer(
+        serializer = AddresessSerializer(
             data=request.data,
             context={'request': request}
         )
@@ -123,7 +128,7 @@ def tax(request):
             return Response(serializer.data)  
  
     if request.method == 'PUT':
-        serializer = TaxesSerializer(
+        serializer = AddresessSerializer(
             tax,
             data=request.data,
             context={'request': request}
