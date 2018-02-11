@@ -21,7 +21,7 @@ class Addresess(BaseDateTime):
             null=True,
             blank=True,
             on_delete=models.CASCADE,
-            related_name='orders_related_autor'
+            related_name='user_addresses_related_autor'
         )
 
     city = models.CharField(
@@ -72,5 +72,5 @@ class Addresess(BaseDateTime):
         verbose_name_plural = _('DISCOUNTS_TITLE_PLURAL')
         get_latest_by = 'created'
         ordering = ('-id',)
-        db_table = 'taxes'
-        app_label = 'taxes'
+        db_table = 'user_addresses'
+        app_label = 'user_addresses'
