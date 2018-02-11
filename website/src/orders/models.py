@@ -7,6 +7,7 @@ from utilities.image_base64 import encode_image_2
 from utilities.models import BaseDateTime
 from django_countries.fields import CountryField
 from posts.models import PostItem,ProductAttributes,Attributes
+from user_addresses.models import Addresess
 
 # Create your models here.
 STATUS_TYPES_CHOICES = (
@@ -47,7 +48,22 @@ class Orders(BaseDateTime):
             on_delete=models.CASCADE,
             related_name='orders_related_autor'
         )
-
+   billing_addresss = models.ForeignKey(
+            Addresess,
+            verbose_name=_('BILLING_LABEL'),
+            null=True,
+            blank=True,
+            on_delete=models.CASCADE,
+            related_name='orders_related_billing_addresss'
+        )
+   shipping_addresss = models.ForeignKey(
+            Addresess,
+            verbose_name=_('SHIPPING_LABEL'),
+            null=True,
+            blank=True,
+            on_delete=models.CASCADE,
+            related_name='orders_related_shipping_addresss'
+        )
 
     total = models.FloatField(
             _('PERCENTAJE_LABEL'),
