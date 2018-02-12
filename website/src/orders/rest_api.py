@@ -8,17 +8,15 @@ from django.contrib.auth.models import User
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
     billing_addresss_id = serializers.ReadOnlyField(source='billing_addresss.id')
-    shipping_addresss_id = serializers.ReadOnlyField(source='shipping_addresss.id')    
+    shipping_addresss_id = serializers.ReadOnlyField(source='shipping_addresss.id') 
+    payment_method_id = serializers.ReadOnlyField(source='payment_method.id')    
     class Meta:
         model = Orders
         fields =    (
             'id',
             'status',
             'autor',
-            'order_number',
-            'amount',
-            'currency',
-            'payment_mehtod',
+            'payment_method_id',
             'billing_addresss_id',
             'shipping_addresss_id',
             'created', 

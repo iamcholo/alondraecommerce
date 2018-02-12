@@ -27,6 +27,7 @@ INSTALLED_APPS = (
     'media',
     'discount',
     'navigation',
+    'payments',
     'comments',   
 
 )

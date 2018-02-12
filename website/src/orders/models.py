@@ -5,6 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from utilities.models import BaseDateTime
 from posts.models import PostItem,ProductAttributes,Attributes
 from user_addresses.models import Addresess
+from payments.models import PaymentMethod
+
 
 # Create your models here.
 STATUS_TYPES_CHOICES = (
@@ -60,16 +62,14 @@ class Orders(BaseDateTime):
             on_delete=models.CASCADE,
             related_name='orders_related_shipping_addresss'
         )
-    currency = models.CharField(
-            max_length=3,
+    payment_method = models.ForeignKey(
+            PaymentMethod,
+            verbose_name=_('SHIPPING_LABEL'),
+            null=True,
             blank=True,
+            on_delete=models.CASCADE,
+            related_name='orders_related_payment_method'
         )
-    amount = models.FloatField(
-            _('PERCENTAJE_LABEL'),
-            max_length=255,
-            blank=True      
-        )
-
 
     def __unicode__(self):
         return self.status
@@ -93,7 +93,7 @@ class OrderShippingItem(BaseDateTime):
             null=True,
             blank=True,
             on_delete=models.CASCADE,
-            related_name='orders_shipping_related_order'
+            related_name='orders_items_shipping_related_order'
         )
 
     
@@ -103,12 +103,7 @@ class OrderShippingItem(BaseDateTime):
             null=True,
             blank=True,
             on_delete=models.CASCADE,
-            related_name='orders_shipping_related_product'
-        )
-    #value can be attribute o default item selected
-    value = models.CharField(
-            max_length=20,
-            blank=True,
+            related_name='orders_items_shipping_related_product'
         )
     price = models.CharField(
             max_length=20,
@@ -140,6 +135,6 @@ class OrderShippingItem(BaseDateTime):
         verbose_name_plural = _('SHIPPING_TITLE_PLURAL')
         get_latest_by = 'created'
         ordering = ('-id',)
-        db_table = 'orders'
-        app_label = 'orders_shipping_items'
+        db_table = 'orders_items'
+        app_label = 'orders'
 
