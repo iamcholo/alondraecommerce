@@ -126,7 +126,9 @@ define(['angular'],function(angular){
             'QTY_LABEL':'Cantidad',
             'AMOUNT_LABEL':'Monto',
             'CURRENCY_LABEL':'Moneda',
-
+            'TRACKING_NUMBER_LABEL':'Numero de Envio',
+            'CARRIER_LABEL':'Carrier',
+            'STATUS_LABEL':'Estatus',
       });   
      
       $translateProvider.preferredLanguage('ES');
