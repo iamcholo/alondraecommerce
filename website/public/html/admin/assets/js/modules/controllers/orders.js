@@ -152,13 +152,18 @@ define(['angular'],function(angular){
 
 	  	$scope.model = { 
 	  		'id':$stateParams.id,
+	  		'order_id':null,
             'status':null,
             'autor':null,
-            'billing_addresss_id':{},
-            'shipping_addresss_id':{},
+            'payment_method':{},
+            'billing_address':{},
+            'shipping_address':{},
+            'todos':[],
             'total':0.00,
+            'currency':"USD",
             'created':null, 
             'modified':null,
+
 	  	} 
 
 	
@@ -166,13 +171,29 @@ define(['angular'],function(angular){
 
 	  	Orders.Get( $stateParams.id ).then(function successCallback(response){
 	  			$scope.model.status = response.data.status;
-	  			$scope.model.autor = response.data.autor;
-	  			$scope.model.billing_addresss_id = response.data.billing_addresss_id;
-	  			$scope.model.shipping_addresss_id = response.data.shipping_addresss_id;
+	  			$scope.model.order_id = response.data.order_id;
+	  			$scope.model.payment_method = response.data.payment_methodx;
+	  			//$scope.model.currency = response.data.currency;
+	  			$scope.model.autor = response.data.autorx;
+	  			$scope.model.billing_address = response.data.billing_addresssx;
+	  			$scope.model.shipping_address = response.data.shipping_addressx;
 	  			$scope.model.total = response.data.total;
 	  			$scope.model.created = response.data.created;
 	  			$scope.model.modified = response.data.modified;
-
+	  			OrdersItems.list($stateParams.id).then(function successCallback(response){
+		  			angular.forEach(response.data, function(value, key){
+					 	this.push({
+				        	id: value.id,
+				        	thumbnail: value.productx.thumbnail
+					        title: value.productx.title,
+					        status: value.status,
+					        price: value.price,
+					        currency: $scope.model.payment_method.currency,
+					        carrier: value.carrier,
+					        tracking_number: value.tracking_number,
+				      	});
+					},$scope.model.todos);
+	  			}, function errorCallback(response) {});
 			}, function errorCallback(response) {});
 	}]);
   

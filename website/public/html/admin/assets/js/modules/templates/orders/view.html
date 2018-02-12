@@ -24,7 +24,7 @@
                                {{ 'ORDER_NUMBER_LABEL' | translate}}
                           </th>
                           <td>
-                              {{model.order_number}}
+                              {{model.order_id}}
                           </td>
                       </tr>
 
@@ -33,7 +33,7 @@
                                {{ 'AMOUNT_LABEL' | translate}}
                           </th>
                           <td>
-                              {{model.amount}}
+                              {{model.total}}
                           </td>
                       </tr>
                        <tr>
@@ -67,17 +67,18 @@
                                  {{'FULL_NAME_LABEL'| translate}}
                             </th>
                             <td>
-                                {{model.billing_address.full_name}}
+                                {{model.billing_address.first_name}} -
+                                {{model.billing_address.last_name}}
                             </td>
                          </tr>
 
                          <tr>
 
                             <th >
-                                    {{'ADDRESS_LABEL'| translate}}
+                              {{'ADDRESS_LABEL'| translate}}
                             </th>
                             <td>
-                                {{model.billing_address.address_line_1}} - 
+                                {{model.billing_address.address_line_1}} 
                                 {{model.billing_address.address_line_2}}
                             </td>
                          </tr>
@@ -134,7 +135,8 @@
                                 {{'FULL_NAME_LABEL'| translate}}
                            </th>
                            <td>
-                               {{model.shipping_address.full_name}}
+                              {{model.shipping_address.first_name}} 
+                              {{model.shipping_address.last_name}}
                            </td>
                         </tr>
 
@@ -218,18 +220,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="item in todos" data-id="{{item.id}}">
+                    <tr ng-repeat="item in model.todos" data-id="{{item.id}}">
                           <td class="app-timeline-item" width="20px;">
                               <div class=" padding-top-20" style="height: 102px;">
                                   <div class="contact contact-rounded contact-bordered contact-xlg margin-bottom-0">
-                                     <img  ng-src="{{item.article.thumbnail}}"  alt="{{item.article.title}}}">
+                                     <img  ng-src="{{item.thumbnail}}"  alt="{{item.article.title}}}">
                                   </div>
                               </div>
                                   
                           </td>
                           <td width="75%" >
                               <a class="btn btn-default preview">
-                                  <strong >{{item.article.title}}</strong>
+                                  <strong >{{item.title}}</strong>
                               </a>
                           </td>
 
@@ -242,7 +244,7 @@
                           </td>
                           <td>
                               
-                              {{item.amount}}
+                              {{item.price}}
                              
                           </td>
                            <td>

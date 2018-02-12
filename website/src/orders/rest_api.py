@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from user.rest_api import UserSerializer
 from payments.rest_api import PaymentMethodSerializer
 from user_addresses.rest_api import AddresessSerializer
-
+from posts.rest_api import PostItemSerializer
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
     billing_addresssx = AddresessSerializer(source='billing_addresss',many=False, read_only = True)
@@ -35,16 +35,15 @@ class OrdersSerializer(serializers.HyperlinkedModelSerializer):
 
 class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
     order_ids = serializers.ReadOnlyField(source='order.id')
-    product_ids = serializers.ReadOnlyField(source='product.id')
+    productx = PostItemSerializer(source='product')
     class Meta:
         model = OrderShippingItem
         fields =    (
             'id',
             'order_ids',
-            'product_ids',
-            'value',
+            'productx',
             'price',
-            'status',
+            #'status',
             'carrier',
             'tracking_number',
             'created', 
@@ -127,7 +126,7 @@ def order_shipping_item_list(request):
         
     if request.method == 'POST':
         pk = request.data.get('id')
-        order_shipping_items = OrderShippingItem.objects.filter(order_pk=pk)
+        order_shipping_items = OrderShippingItem.objects.filter(order__pk=pk)
         serializer = OrderShippingItemSerializer(
             order_shipping_items, 
             many=True,

@@ -109,12 +109,15 @@ class OrderShippingItem(BaseDateTime):
             max_length=20,
             blank=True,
         )
-
-    status = models.CharField(
-            max_length=20,
-            choices=SHIPPING_TYPES_CHOICES,
-            default="in_transit"
+    qty = models.IntegerField(
+            blank=True,
+            default=0
         )
+#    status = models.CharField(
+#            max_length=20,
+#            choices=SHIPPING_TYPES_CHOICES,
+#            default="in_transit"
+#        )
     carrier = models.CharField(
             max_length=20,
             choices=CARRIER_TYPES_CHOICES,
