@@ -38,13 +38,13 @@ class Command(BaseCommand):
         p.last_name = "thonson"
         p.city = "FL"
         p.country = "US"
-        p.amount = 0.00
+        p.amount = 100.00
         p.currency = "USD"
         p.email = "cocoaremix@gmail.com"
         p.payment_method = "paypal"
         p.save()
         
-        for o in range(1,1000000):
+        for o in range(1,100):
             orders = Orders()
             orders.status = "approved"
             orders.autor = User.objects.get(id=1)
@@ -52,6 +52,11 @@ class Command(BaseCommand):
             orders.shipping_addresss = b
             orders.payment_method = p
             orders.save()
-
+            item = OrderShippingItem()
+            item.order = orders
+            item.product =PostItem.objects.get(id=1)
+            item.price = 1.00
+            item.qty = 15
+            item.save()
 
         pass
