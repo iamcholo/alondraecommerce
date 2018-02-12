@@ -14,7 +14,8 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.parsers import FileUploadParser
 from rest_framework import generics
-from taxes.models import Taxes
+from taxes.models import Orders,OrderShippingItem
+from user_addresses.rest_api import AddresessSerializer
 from user.rest_authentication import IsAuthenticated
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -25,14 +26,36 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
 
-class TaxesSerializer(serializers.HyperlinkedModelSerializer):
+class OrdersSerializer(serializers.HyperlinkedModelSerializer):
+    billing_addresss_id = serializers.ReadOnlyField(source='billing_addresss.id')
+    shipping_addresss_id = serializers.ReadOnlyField(source='shipping_addresss.id')    
     class Meta:
-        model = Taxes
+        model = Orders
         fields =    (
             'id',
-            'city',
-            'country',
-            'percent',
+            'status',
+            'autor',
+            'billing_addresss_id',
+            'shipping_addresss_id',
+            'total',
+            'created', 
+            'modified',
+        )
+
+class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
+    order_id = serializers.ReadOnlyField(source='order.id')
+    product_id = serializers.ReadOnlyField(source='product.id')
+    class Meta:
+        model = OrderShippingItem
+        fields =    (
+            'id',
+            'order_id',
+            'product',
+            'value',
+            'price',
+            'status',
+            'carrier',
+            'tracking_number',
             'created', 
             'modified',
         )
@@ -40,11 +63,11 @@ class TaxesSerializer(serializers.HyperlinkedModelSerializer):
 
 @api_view(['GET'])
 @permission_classes((IsAuthenticated,))
-def taxes_list(request):
+def order_list(request):
         
     if request.method == 'GET':
-        media = Taxes.objects.all()
-        serializer = TaxesSerializer(
+        media = Orders.objects.all()
+        serializer = OrdersSerializer(
             media, 
             many=True,
             context={'request': request}
@@ -52,69 +75,24 @@ def taxes_list(request):
         return Response(serializer.data)
 
 
-@api_view(['POST'])
-@permission_classes((IsAuthenticated,))
-def taxes_create(request):
-        
-    if request.method == 'POST':
-        serializer = TaxesSerializer(
-            data=request.data,
-            context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save(
-                    product=product
-                )
-           
-            return Response(serializer.data)     
-            
-    return Response(
-                status=status.HTTP_204_NO_CONTENT
-            )
-
-@api_view(['POST'])
-@permission_classes((IsAuthenticated,))
-def taxes_details(request):
-    
-    try:
-        pk = request.data.get('id')
-        tax = Taxes.objects.get(
-            pk=int(pk)
-        )
-    except Taxes.DoesNotExist:
-        return Response(
-            status=status.HTTP_404_NOT_FOUND
-        )
-
-    if request.method == 'POST':
-        serializer = TaxesSerializer(
-            tax,
-            context={'request': request}
-        )
-        return Response(serializer.data)
-    return Response(
-            status=status.HTTP_204_NO_CONTENT
-        )
-
-
 
 @api_view(['DELETE','PUT','POST'])
 @permission_classes((IsAuthenticated,))
-def tax(request):
+def order(request):
     if request.method in ['DELETE','PUT']:
         try:
             pk = request.data.get('id')
-            tax = Taxes.objects.get(
+            order = Orders.objects.get(
                 pk=int(pk)
             )
-        except Taxes.DoesNotExist:
+        except Orders.DoesNotExist:
             return Response(
                 status=status.HTTP_404_NOT_FOUND
             )
     if request.method == 'DELETE':
-        tax.delete()
+        order.delete()
     if request.method == 'POST':
-        serializer = TaxesSerializer(
+        serializer = OrdersSerializer(
             data=request.data,
             context={'request': request}
         )
@@ -123,8 +101,8 @@ def tax(request):
             return Response(serializer.data)  
  
     if request.method == 'PUT':
-        serializer = TaxesSerializer(
-            tax,
+        serializer = OrdersSerializer(
+            order,
             data=request.data,
             context={'request': request}
         )
