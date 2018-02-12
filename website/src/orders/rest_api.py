@@ -9,6 +9,7 @@ from user.rest_api import UserSerializer
 from payments.rest_api import PaymentMethodSerializer
 from user_addresses.rest_api import AddresessSerializer
 from posts.rest_api import PostItemSerializer
+from utilities.paginator import paginator
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
     billing_addresssx = AddresessSerializer(source='billing_addresss',many=False, read_only = True)
@@ -52,17 +53,28 @@ class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 def order_list(request):
-        
-    if request.method == 'GET':
-        media = Orders.objects.all()
+
+    if request.method == 'POST':
+        page = int(request.data.get('page',1))
+        media = paginator(
+                page, 
+                Orders.objects.all(),
+                100
+            )
+       
         serializer = OrdersSerializer(
             media, 
             many=True,
             context={'request': request}
         )
-        return Response(serializer.data)
+        return Response({
+            'pages':posts.paginator.num_pages,
+            'items':serializer.data,
+            'next_page':next_page,
+            'previous_page':previous_page,
+        })
 
 @api_view(['DELETE','PUT','POST'])
 def order(request):

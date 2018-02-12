@@ -31,7 +31,7 @@ define(['angular'],function(angular){
 			$scope.filteredTodos = [];
 		    Orders.list().then(function successCallback(response)
 		    {
-	         	angular.forEach(response.data, function(value, key){
+	         	angular.forEach(response.data.items, function(value, key){
 				 	this.push({
 			        	id: value.id,
 				        title: value.order_id,
