@@ -7,7 +7,7 @@ from payments.models import PaymentMethod
 
 class PaymentMethodSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Taxes
+        model = PaymentMethod
         fields =    (
             'id',
             'first_name',
