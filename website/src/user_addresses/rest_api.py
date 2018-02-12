@@ -1,28 +1,8 @@
-import json
-import os 
-import sys
-import hashlib
-import time
-from django.conf import settings
-from rest_framework.views import APIView
-from django.http import Http404, HttpResponseRedirect, HttpResponse
-from django.conf.urls import url, include
-from rest_framework import routers, serializers, viewsets, generics
+from rest_framework.decorators import api_view,permission_classes
+from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
-from rest_framework.parsers import FileUploadParser
-from rest_framework import generics
 from user_addresses.models import Addresess
-from user.rest_authentication import IsAuthenticated
-from user.models import CustomUser as User
-from django.db.models import Q
-from decimal import Decimal as D
-from django.db.models import Max
-from django.utils.translation import ugettext_lazy as _
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
 
 
 class AddresessSerializer(serializers.HyperlinkedModelSerializer):

@@ -1,6 +1,6 @@
 
-from user.models import CustomUser as User 
-from rest_framework.decorators import api_view,permission_classes
+
+from rest_framework.decorators import api_view
 from rest_framework import serializers
 from rest_framework import status
 from rest_framework.response import Response
@@ -11,6 +11,7 @@ from django.contrib.auth import (
     REDIRECT_FIELD_NAME, get_user_model,authenticate, login as auth_login,
     logout as auth_logout, update_session_auth_hash,
 )
+from user.models import CustomUser as User 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     
