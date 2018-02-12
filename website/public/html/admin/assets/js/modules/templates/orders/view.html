@@ -266,15 +266,7 @@
                                 {{item.tracking_number}}
                             </span>
                             <div ng-show="item.editable == true" class="form-group">
-                                <input class="form-control"  ng-model="item.tracking_number" type="text">
-                            </div>
-                          </td>
-                          <td>
-                            <span ng-show="item.editable == false">
-                                {{item.status}}
-                            </span>
-                            <div ng-show="item.editable == true" class="form-group">
-                                <input class="form-control"  ng-model="item.status" type="text">
+                                <textarea class="form-control"  ng-model="item.tracking_number" type="text"></textarea> 
                             </div>
                           </td>
                           <td>

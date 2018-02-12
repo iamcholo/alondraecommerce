@@ -186,7 +186,6 @@ define(['angular'],function(angular){
 				        	id: value.id,
 				        	thumbnail: value.productx.thumbnail
 					        title: value.productx.title,
-					        status: value.status,
 					        price: value.price,
 					        currency: $scope.model.payment_method.currency,
 					        carrier: value.carrier,
