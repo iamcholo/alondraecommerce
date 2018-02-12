@@ -159,7 +159,7 @@ define(['angular'],function(angular){
             'billing_address':{},
             'shipping_address':{},
             'todos':[],
-            'total':0.00,
+            'total':0,
             'currency':"USD",
             'created':null, 
             'modified':null,
@@ -177,16 +177,19 @@ define(['angular'],function(angular){
 	  			$scope.model.autor = response.data.autorx;
 	  			$scope.model.billing_address = response.data.billing_addresssx;
 	  			$scope.model.shipping_address = response.data.shipping_addressx;
-	  			$scope.model.total = response.data.total;
+	  			//$scope.model.total = response.data.total;
 	  			$scope.model.created = response.data.created;
 	  			$scope.model.modified = response.data.modified;
 	  			OrdersItems.list($stateParams.id).then(function successCallback(response){
 		  			angular.forEach(response.data, function(value, key){
+		  				$scope.model.total += value.price;
 					 	this.push({
 				        	id: value.id,
-				        	thumbnail: value.productx.thumbnail
+				        	thumbnail: value.productx.thumbnail,
 					        title: value.productx.title,
 					        price: value.price,
+					        qty: value.qty,
+					        editable: false,
 					        currency: $scope.model.payment_method.currency,
 					        carrier: value.carrier,
 					        tracking_number: value.tracking_number,

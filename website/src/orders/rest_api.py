@@ -43,6 +43,7 @@ class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
             'order_ids',
             'productx',
             'price',
+            'qty',
             #'status',
             'carrier',
             'tracking_number',
