@@ -5,7 +5,7 @@
 	        <!-- START HEADING -->
 	        <div class="app-heading app-heading-small">
 	            <div class="title">
-	                <h5>{{ 'ORDERS_LABEL' | translate}}</h5>
+	                <h5>{{ 'ORDER_PLURAL_LABEL' | translate}}</h5>
 	                <p>{{ 'VIEW_LABEL' | translate}}</p>
 	            </div>
 	        </div>
@@ -14,404 +14,258 @@
 	        <div class="block-content ">
 
 
-				<div>
-                    <ul class="nav nav-pills">
-                        <li class="active">
-                        	<a href="#pills-1"  data-toggle="tab" aria-expanded="true">
-                        		{{ 'CONTENT_LABEL' | translate}}
-                        	</a>
-                        </li>
-                   
-                         <li class="">
-                            <a href="#pills-3"  data-toggle="tab" aria-expanded="false">
-                                {{ 'TRACKING_LABEL' | translate}}
-                            </a>
-                        </li>
-                    
-                      
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="pills-1">
-                            <h1>
-                                {{ 'ORDERS_DETAILS_LABEL' | translate}}
-                            </h1>
-                           <table class="table">
-                               <tbody>
-                                   <tr>
-                                       <th width="75px">
-                                            {{ 'ORDER_NUMBER_LABEL' | translate}}
-                                       </th>
-                                       <td>
-                                           {{model.order_number}}
-                                       </td>
-                                   </tr>
+              <h1>
+                  {{ 'ORDERS_DETAILS_LABEL' | translate}}
+              </h1>
+              <table class="table">
+                  <tbody>
+                      <tr>
+                          <th width="75px">
+                               {{ 'ORDER_NUMBER_LABEL' | translate}}
+                          </th>
+                          <td>
+                              {{model.order_number}}
+                          </td>
+                      </tr>
 
-                                   <tr>
-                                       <th>
-                                            {{ 'AMOUNT_LABEL' | translate}}
-                                       </th>
-                                       <td>
-                                           {{model.amount}}
-                                       </td>
-                                   </tr>
-                                    <tr>
-                                       <th>
-                                            {{ 'CURRENCY_LABEL' | translate}}
-                                       </th>
-                                       <td>
-                                           {{model.currency}}
-                                       </td>
-                                   </tr>
-                                    <tr>
-                                       <th>
-                                            {{ 'PAYMENT_METHOD_LABEL' | translate}}
-                                       </th>
-                                       <td>
-                                           {{model.payment_mehtod}}
-                                       </td>
-                                    </tr>
-                                    
-                                   <tr>
-                                       <th>
-                                            {{ 'USER_DETAILS_LABEL' | translate}}
-                                       </th>
-                                       <td>
-                                          
-                                           <table>
-                                           <tbody>
-                                                 <tr>
-
-                                                   <td>
-                                                        <h1>{{'BILLING_ADDRESS_LABEL'| translate}}</h1>
-
-                                                       <table>
-                                                           <tbody>
-                                                                <tr>
-
-                                                                   <th width="75px">
-                                                                        {{'FULL_NAME_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{model.billing_address.full_name}}
-                                                                   </td>
-                                                                </tr>
-
-                                                                <tr>
-
-                                                                   <th >
-                                                                           {{'ADDRESS_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{model.billing_address.address_line_1}} - 
-                                                                       {{model.billing_address.address_line_2}}
-                                                                   </td>
-                                                                </tr>
-                                                                <tr>
-                                                                   <th >
-                                                                        {{'CITY_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{model.billing_address.city}} 
-                                                                       
-                                                                   </td>
-                                                                </tr>
-                                                                <tr>
-                                                                   <th >
-                                                                        {{'COUNTRY_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{ model.billing_address.country}} 
-                                                                       
-                                                                   </td>
-                                                                </tr>
-                                                                <tr>
-                                                                   <th >
-                                                                         {{'ZIP_CODE_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{ model.billing_address.zip_code}} 
-                                                                       
-                                                                   </td>
-                                                                </tr>
-                                                                <tr>
-                                                                   <th >
-                                                                        {{'PHONE_NUMBER_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{ model.billing_address.phone_number}} 
-                                                                       
-                                                                   </td>
-                                                                </tr>
-                                                               
-                                                            
-                                                           </tbody>
-                                                         
-                                                        </table>
-                                                   </td>
-                                                   <td>
-                                                        <h1>{{'SHIPPING_ADDRESS_LABEL'| translate}}</h1>
-                                                         <table>
-                                                           <tbody>
-                                                                <tr>
-
-                                                                   <th width="75px">
-                                                                        {{'FULL_NAME_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{model.shipping_address.full_name}}
-                                                                   </td>
-                                                                </tr>
-
-                                                                <tr>
-
-                                                                   <th >
-                                                                           {{'ADDRESS_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{model.shipping_address.address_line_1}} - 
-                                                                       {{model.shipping_address.address_line_2}}
-                                                                   </td>
-                                                                </tr>
-                                                                <tr>
-                                                                   <th >
-                                                                        {{'CITY_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{model.shipping_address.city}} 
-                                                                       
-                                                                   </td>
-                                                                </tr>
-                                                                <tr>
-                                                                   <th >
-                                                                        {{'COUNTRY_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{ model.shipping_address.country}} 
-                                                                       
-                                                                   </td>
-                                                                </tr>
-                                                                <tr>
-                                                                   <th >
-                                                                         {{'ZIP_CODE_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{ model.shipping_address.zip_code}} 
-                                                                       
-                                                                   </td>
-                                                                </tr>
-                                                                <tr>
-                                                                   <th >
-                                                                        {{'PHONE_NUMBER_LABEL'| translate}}
-                                                                   </th>
-                                                                   <td>
-                                                                       {{ model.shipping_address.phone_number}} 
-                                                                       
-                                                                   </td>
-                                                                </tr>
-                                                               
-                                                            
-                                                           </tbody>
-                                                         
-                                                        </table>
-                                                   </td>
-                                               </tr>
-                                           </tbody>
-                                             
-                                           </table>
-                                       </td>
-                                   </tr>
-
-
-
-                               </tbody>
-                           </table>
-					     	
-                            <h6>
-                                {{ 'ORDERS_ITEMS_PLURAL_LABEL' | translate}}
-                            </h6>
-
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>{{ 'THUMB_LABEL' | translate}}</th>
-                            <th>{{ 'TITLE_LABEL' | translate}}</th>
-                            <th>{{ 'QTY_LABEL' | translate}}</th>
-                            <th>{{ 'AMOUNT_LABEL' | translate}}</th>
-                            <th>{{ 'CURRENCY_LABEL' | translate}}</th>
-                           
-
-                            
-                     
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="item in todos" data-id="{{item.id}}">
-                            <td class="app-timeline-item" width="20px;">
-                                <div class=" padding-top-20" style="height: 102px;">
-                                    <div class="contact contact-rounded contact-bordered contact-xlg margin-bottom-0">
-                                       <img  ng-src="{{item.article.thumbnail}}"  alt="{{item.article.title}}}">
-                                    </div>
-                                </div>
-                                    
-                            </td>
-                            <td width="75%" >
-                                <a class="btn btn-default preview">
-                                    <strong >{{item.article.title}}</strong>
-                                </a>
-                            </td>
-
-
-
-                            <td>
-                                
-                                {{item.qty}}
-                               
-                            </td>
-                            <td>
-                                
-                                {{item.amount}}
-                               
-                            </td>
-                             <td>
-                                
-                               {{item.currency}}
-                               
-                            </td>
-
-                         
-                      
-                      
-                    </tr>
-                     
-                </tbody>
-            </table>
-
-                 </div>
-                    
-            <div class="tab-pane" id="pills-3">
-
-
-                        <div class="clearfix">
-                           
-                                <div class="col-md-3" style="padding: 10px;">
-                                   <div class="form-group">
-                                        <label class="control-label">{{ 'TRACKING_LABEL' | translate}}</label>
-                                        <input class="form-control"  ng-model="model2.tracking_number" type="text">
-                                   </div>
-                                </div>
-                                <div class="col-md-3" style="padding: 10px;">
-                                    <div class="form-group">
-                                        <label class="control-label">
-                                          {{ 'ESTIMATE_DELIVERY_DATE_LABEL' | translate}}
-                                        </label>
-                                        <datepicker ng-id="start_date" ng-model="model2.estimate_delivery_date"></datepicker>
-                                    </div>
-                                </div>
-                                <div class="col-md-2" style="padding: 10px;">
-                                    <div class="form-group">
-                                        <label class="control-label">{{ 'STATUS_LABEL' | translate}}</label>
-                                        <select class="form-control"  ng-options="item for item in model2.statuses"  ng-model="model2.status" type="text"></select>
-                                    </div>
-
-                                </div>
-                                 <div class="col-md-2" style="padding: 10px;">
-                                    <div class="form-group">
-                                        <label class="control-label">{{ 'CARRIER_LABEL' | translate}}</label>
-                                        <select class="form-control"  ng-options="item for item in model2.carrier"  ng-model="model2.tracker" type="text"></select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3" style="padding: 34px 0px;">
-                                    <button ng-click="AddTrackingNumber()" class="btn btn-primary">
-                                        {{ 'ADD_LABEL' | translate}}
-                                    </button>
-
-                                </div>
-                                <h1>{{ 'TRACKING_LABEL' | translate}}</h1>
-                                <table style="width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>{{ 'TRACKING_LABEL' | translate}}</th>
-                                            <th>{{ 'ESTIMATE_DELIVERY_DATE_LABEL' | translate}}</th>
-                                            <th>{{ 'STATUS_LABEL' | translate}}</th>
-                                            <th>{{ 'CARRIER_LABEL' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="item in tracking_numbers" data-id="{{item.id}}">
-                                            <td style="padding: 15px">
-                                                <span ng-show="item.editable == false">
-                                                    {{item.tracking_number}}
-                                                </span>
-                                                <div ng-show="item.editable == true" class="form-group">
-                                                   
-                                                    <input class="form-control"  ng-model="item.tracking_number" type="text">
-                                                </div>
-                                            </td>
-                                            
-                                            <td style="padding: 15px">
-                                                <span ng-show="item.editable == false">
-                                                    {{item.estimate_delivery_date}}
-                                                </span>
-                                                <div ng-show="item.editable == true" class="form-group">
-                                                    <datepicker ng-id="s_d_date_{{item.id}}" ng-model="item.estimate_delivery_date"></datepicker>
-                                                </div>
-                                            </td>
-                                            <td style="padding: 15px">
-                                              <span ng-show="item.editable == false">
-                                                    {{item.status}}
-                                              </span>
-                                              <div  ng-show="item.editable == true"  class="form-group">
-                                                  <select class="form-control"  ng-options="item for item in model2.statuses"  ng-model="item.status" type="text"></select>
-                                              </div>
-                                            </td>
-                                            <td style="padding: 15px">
-                                                <span ng-show="item.editable == false">
-                                                    {{item.tracker}}
-                                                </span>
-                                                <div  ng-show="item.editable == true"  class="form-group">
-                                                  <select class="form-control"  ng-options="item for item in model2.carrier"  ng-model="item.tracker" type="text"></select>
-                                                </div>
-                                            </td>
-
-
-
-
-                                            <td style="padding: 15px">
-                                                <a ng-show="item.editable == false " ng-click="edit_TrackingNumber(item.id)" class="btn btn-primary">
-                                                    <i class="fa fa-pencil-square-o"></i>
-                                                    {{ 'EDIT_LABEL' | translate}}
-                                                </a>
-                                                <a ng-show="item.editable == false " ng-click="DELETE_TrackingNumber(item.id)" class="btn btn-danger">
-                                                     <i class="fa fa-trash"></i>
-                                                </a>
-                                                <button ng-show="item.editable == true" ng-click="SaveTrackingNumber(item.id)" class="btn btn-primary">
-                                                    {{ 'SAVE_LABEL' | translate}}
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                              
-                                 
-                            </div>
-
-
-
-             
-            </div>
+                      <tr>
+                          <th>
+                               {{ 'AMOUNT_LABEL' | translate}}
+                          </th>
+                          <td>
+                              {{model.amount}}
+                          </td>
+                      </tr>
+                       <tr>
+                          <th>
+                               {{ 'CURRENCY_LABEL' | translate}}
+                          </th>
+                          <td>
+                              {{model.currency}}
+                          </td>
+                      </tr>
+                       <tr>
+                          <th>
+                               {{ 'PAYMENT_METHOD_LABEL' | translate}}
+                          </th>
+                          <td>
+                              {{model.payment_mehtod}}
+                          </td>
+                       </tr>
                        
+                      <tr>
+                          <th>
+                               {{ 'USER_DETAILS_LABEL' | translate}}
+                          </th>
+                          <td>
+                             
+                              <table>
+                              <tbody>
+                                    <tr>
+
+                                      <td>
+                                           <h1>{{'BILLING_ADDRESS_LABEL'| translate}}</h1>
+
+                                          <table>
+                                              <tbody>
+                                                   <tr>
+
+                                                      <th width="75px">
+                                                           {{'FULL_NAME_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{model.billing_address.full_name}}
+                                                      </td>
+                                                   </tr>
+
+                                                   <tr>
+
+                                                      <th >
+                                                              {{'ADDRESS_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{model.billing_address.address_line_1}} - 
+                                                          {{model.billing_address.address_line_2}}
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <th >
+                                                           {{'CITY_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{model.billing_address.city}} 
+                                                          
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <th >
+                                                           {{'COUNTRY_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{ model.billing_address.country}} 
+                                                          
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <th >
+                                                            {{'ZIP_CODE_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{ model.billing_address.zip_code}} 
+                                                          
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <th >
+                                                           {{'PHONE_NUMBER_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{ model.billing_address.phone_number}} 
+                                                          
+                                                      </td>
+                                                   </tr>
+                                                  
+                                               
+                                              </tbody>
+                                            
+                                           </table>
+                                      </td>
+                                      <td>
+                                           <h1>{{'SHIPPING_ADDRESS_LABEL'| translate}}</h1>
+                                            <table>
+                                              <tbody>
+                                                   <tr>
+
+                                                      <th width="75px">
+                                                           {{'FULL_NAME_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{model.shipping_address.full_name}}
+                                                      </td>
+                                                   </tr>
+
+                                                   <tr>
+
+                                                      <th >
+                                                              {{'ADDRESS_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{model.shipping_address.address_line_1}} - 
+                                                          {{model.shipping_address.address_line_2}}
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <th >
+                                                           {{'CITY_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{model.shipping_address.city}} 
+                                                          
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <th >
+                                                           {{'COUNTRY_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{ model.shipping_address.country}} 
+                                                          
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <th >
+                                                            {{'ZIP_CODE_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{ model.shipping_address.zip_code}} 
+                                                          
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <th >
+                                                           {{'PHONE_NUMBER_LABEL'| translate}}
+                                                      </th>
+                                                      <td>
+                                                          {{ model.shipping_address.phone_number}} 
+                                                          
+                                                      </td>
+                                                   </tr>
+                                                  
+                                               
+                                              </tbody>
+                                            
+                                           </table>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                                
+                              </table>
+                          </td>
+                      </tr>
+
+
+
+                  </tbody>
+              </table>
+					     	
+              <h6>
+                {{ 'ORDERS_ITEMS_PLURAL_LABEL' | translate}}
+              </h6>
+
+
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>{{ 'THUMB_LABEL' | translate}}</th>
+                          <th>{{ 'TITLE_LABEL' | translate}}</th>
+                          <th>{{ 'QTY_LABEL' | translate}}</th>
+                          <th>{{ 'AMOUNT_LABEL' | translate}}</th>
+                          <th>{{ 'CURRENCY_LABEL' | translate}}</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="item in todos" data-id="{{item.id}}">
+                          <td class="app-timeline-item" width="20px;">
+                              <div class=" padding-top-20" style="height: 102px;">
+                                  <div class="contact contact-rounded contact-bordered contact-xlg margin-bottom-0">
+                                     <img  ng-src="{{item.article.thumbnail}}"  alt="{{item.article.title}}}">
+                                  </div>
+                              </div>
+                                  
+                          </td>
+                          <td width="75%" >
+                              <a class="btn btn-default preview">
+                                  <strong >{{item.article.title}}</strong>
+                              </a>
+                          </td>
+
+
+
+                          <td>
+                              
+                              {{item.qty}}
+                             
+                          </td>
+                          <td>
+                              
+                              {{item.amount}}
+                             
+                          </td>
+                           <td>
+                              
+                             {{item.currency}}
+                             
+                          </td>
+
+                    </tr>
+                   
+                  </tbody>
+                </table>
                     
-                    <br>
-                    <button ng-click="Save()" class="btn btn-primary">
-                         {{ 'SAVE_LABEL' | translate}}
-
-                    </button>
-                </div>
-
-
-	        
+                <br>
+                <button ng-click="Save()" class="btn btn-primary">
+                  {{ 'SAVE_LABEL' | translate}}
+                </button>
 	        </div>                            
 	    </div>
     

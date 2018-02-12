@@ -104,9 +104,30 @@ define(['angular'],function(angular){
             'SELECTABLE': 'Seleccionable',
             'ENABLE_PRICES': 'Prices Enabled',
             'DATE': 'Fecha',
-            'VALUES_LABEL': 'Valores del campo',
+            'VALUES_LABEL': 'Valores del campo',      
+            'VIEW_LABEL':'Detalles',
+            'ORDERS_DETAILS_LABEL':'Detalles De Orden',
+            'ORDER_NUMBER_LABEL':'Numero de Orden',
+            'AMOUNT_LABEL':'Monto',
+            'CURRENCY_LABEL':'Moneda',
+            'PAYMENT_METHOD_LABEL':'Metodo de pago',
+            'USER_DETAILS_LABEL':'User Details',
+            'BILLING_ADDRESS_LABEL':'Billing Address',
+            'FULL_NAME_LABEL':'Nombre Completo',
+            'ADDRESS_LABEL':'Direccion',
+            'CITY_LABEL':'Ciudad',
+            'COUNTRY_LABEL':'Pais',
+            'ZIP_CODE_LABEL':'Codigo Postal',
+            'PHONE_NUMBER_LABEL':'Numero de Telefono',
+            'SHIPPING_ADDRESS_LABEL':'Direccion de Envio',
+            'ORDERS_ITEMS_PLURAL_LABEL':'Items de Ordenes',
+            'THUMB_LABEL':'Foto',
+            'TITLE_LABEL':'Titulo',
+            'QTY_LABEL':'Cantidad',
+            'AMOUNT_LABEL':'Monto',
+            'CURRENCY_LABEL':'Moneda',
 
-      });
+      });   
      
       $translateProvider.preferredLanguage('ES');
     }]);
