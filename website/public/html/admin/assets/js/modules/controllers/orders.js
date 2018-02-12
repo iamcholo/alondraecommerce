@@ -193,7 +193,11 @@ define(['angular'],function(angular){
 		{
 			
 			item.editable = false;
-				
+			OrdersItems.Update({
+				'id':item.id,
+				'carrier':item.carrier,
+				'tracking_number':item.tracking_number
+			})	
 
 		}
 
