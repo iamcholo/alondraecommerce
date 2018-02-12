@@ -65,9 +65,9 @@ def order_list(request):
             )
         next_page = 0
         previous_page = 0
-        if posts.has_next():
+        if media.has_next():
             next_page = media.next_page_number()
-        if posts.has_previous():
+        if media.has_previous():
             previous_page = media.previous_page_number()
                    
         serializer = OrdersSerializer(
