@@ -11,10 +11,10 @@ from user_addresses.rest_api import AddresessSerializer
 
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
-    billing_addresss_ids = AddresessSerializer(source='billing_addresss.id', read_only = True)
-    shipping_addresss_ids = AddresessSerializer(source='shipping_addresss.id', read_only = True) 
-    payment_method_ids = PaymentMethodSerializer(source='payment_method.id', read_only = True)   
-    autor_ids = UserSerializer(source='autor.id', read_only = True)  
+    billing_addresss_ids = AddresessSerializer(source='billing_addresss',many=False, read_only = True)
+    shipping_addresss_ids = AddresessSerializer(source='shipping_addresss',many=False, read_only = True) 
+    payment_method_ids = PaymentMethodSerializer(source='payment_method',many=False, read_only = True)   
+    autor_ids = UserSerializer(source='autor',many=False, read_only = True)  
     order_id = serializers.SerializerMethodField('my_order_id')
 
     def my_order_id(self, obj):
