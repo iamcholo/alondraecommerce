@@ -35,7 +35,7 @@ angular.module('app.services.orders', [] )
         },
         'list': function(){
             return this.request({
-                'method': "GET",
+                'method': "POST",
                 'url': "/orders/"              
             });
         },

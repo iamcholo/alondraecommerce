@@ -63,14 +63,20 @@ def order_list(request):
                 Orders.objects.all(),
                 100
             )
-       
+        next_page = 0
+        previous_page = 0
+        if posts.has_next():
+            next_page = media.next_page_number()
+        if posts.has_previous():
+            previous_page = media.previous_page_number()
+                   
         serializer = OrdersSerializer(
             media, 
             many=True,
             context={'request': request}
         )
         return Response({
-            'pages':posts.paginator.num_pages,
+            'pages':media.paginator.num_pages,
             'items':serializer.data,
             'next_page':next_page,
             'previous_page':previous_page,
