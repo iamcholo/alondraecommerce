@@ -2,8 +2,6 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.translation import ugettext_lazy as _
-from django.utils.html import format_html
-from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from utilities.image_base64 import encode_image_3

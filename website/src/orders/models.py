@@ -2,10 +2,7 @@
 from django.db import models
 from user.models import CustomUser as User
 from django.utils.translation import ugettext_lazy as _
-from django.utils.html import format_html
-from utilities.image_base64 import encode_image_2
 from utilities.models import BaseDateTime
-from django_countries.fields import CountryField
 from posts.models import PostItem,ProductAttributes,Attributes
 from user_addresses.models import Addresess
 

@@ -2,8 +2,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from django.utils.html import format_html
-from utilities.image_base64 import encode_image_2
 from utilities.models import BaseDateTime
 from utilities.models import BaseSeo
 from globaly.models import GlobalyTags
