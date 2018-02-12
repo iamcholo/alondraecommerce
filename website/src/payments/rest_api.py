@@ -55,7 +55,7 @@ def payment_create(request):
             )
 
 @api_view(['POST'])
-def taxes_details(request):
+def payment_details(request):
     
     try:
         pk = request.data.get('id')

@@ -1,11 +1,11 @@
 from django.conf.urls import include, url
-from taxes import rest_api as views 
+from payment import rest_api as views 
 from utilities.rest_api_urls import router 
 register_url = True
 urlpatterns = [
-	url(r'^taxes/{0,1}$', views.taxes_list),
-	url(r'^tax/{0,1}$', views.tax),
-	url(r'^tax/details/{0,1}$', views.taxes_details),
+	url(r'^payments/{0,1}$', views.payment_list),
+	url(r'^payment/{0,1}$', views.payment),
+	url(r'^payment/details/{0,1}$', views.payment_create),
 ]
 
 
