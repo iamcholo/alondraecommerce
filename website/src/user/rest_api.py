@@ -1,13 +1,9 @@
-import json
-import random
-import hashlib
-from django.conf import settings
+
 from user.models import CustomUser as User 
-from rest_framework import routers, serializers, viewsets, generics
+from rest_framework.decorators import api_view,permission_classes
+from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
 from utilities.send_email import send_mail
 from user.rest_authentication import IsAuthenticated,IsSuperUser
 from django.utils.translation import ugettext_lazy as _
