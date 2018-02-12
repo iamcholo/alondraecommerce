@@ -20,7 +20,7 @@
               <table class="table">
                   <tbody>
                       <tr>
-                          <th width="75px">
+                          <th width="155px">
                                {{ 'ORDER_NUMBER_LABEL' | translate}}
                           </th>
                           <td>
@@ -52,162 +52,152 @@
                               {{model.payment_mehtod}}
                           </td>
                        </tr>
-                       
-                      <tr>
-                          <th>
-                               {{ 'USER_DETAILS_LABEL' | translate}}
-                          </th>
-                          <td>
-                             
-                              <table>
-                              <tbody>
-                                    <tr>
-
-                                      <td>
-                                           <h1>{{'BILLING_ADDRESS_LABEL'| translate}}</h1>
-
-                                          <table>
-                                              <tbody>
-                                                   <tr>
-
-                                                      <th width="75px">
-                                                           {{'FULL_NAME_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{model.billing_address.full_name}}
-                                                      </td>
-                                                   </tr>
-
-                                                   <tr>
-
-                                                      <th >
-                                                              {{'ADDRESS_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{model.billing_address.address_line_1}} - 
-                                                          {{model.billing_address.address_line_2}}
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <th >
-                                                           {{'CITY_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{model.billing_address.city}} 
-                                                          
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <th >
-                                                           {{'COUNTRY_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{ model.billing_address.country}} 
-                                                          
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <th >
-                                                            {{'ZIP_CODE_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{ model.billing_address.zip_code}} 
-                                                          
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <th >
-                                                           {{'PHONE_NUMBER_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{ model.billing_address.phone_number}} 
-                                                          
-                                                      </td>
-                                                   </tr>
-                                                  
-                                               
-                                              </tbody>
-                                            
-                                           </table>
-                                      </td>
-                                      <td>
-                                           <h1>{{'SHIPPING_ADDRESS_LABEL'| translate}}</h1>
-                                            <table>
-                                              <tbody>
-                                                   <tr>
-
-                                                      <th width="75px">
-                                                           {{'FULL_NAME_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{model.shipping_address.full_name}}
-                                                      </td>
-                                                   </tr>
-
-                                                   <tr>
-
-                                                      <th >
-                                                              {{'ADDRESS_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{model.shipping_address.address_line_1}} - 
-                                                          {{model.shipping_address.address_line_2}}
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <th >
-                                                           {{'CITY_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{model.shipping_address.city}} 
-                                                          
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <th >
-                                                           {{'COUNTRY_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{ model.shipping_address.country}} 
-                                                          
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <th >
-                                                            {{'ZIP_CODE_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{ model.shipping_address.zip_code}} 
-                                                          
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <th >
-                                                           {{'PHONE_NUMBER_LABEL'| translate}}
-                                                      </th>
-                                                      <td>
-                                                          {{ model.shipping_address.phone_number}} 
-                                                          
-                                                      </td>
-                                                   </tr>
-                                                  
-                                               
-                                              </tbody>
-                                            
-                                           </table>
-                                      </td>
-                                  </tr>
-                              </tbody>
-                                
-                              </table>
-                          </td>
-                      </tr>
-
-
 
                   </tbody>
               </table>
-					     	
+              <h1> {{ 'USER_DETAILS_LABEL' | translate}}</h1>
+					    <div class="col-md-6">
+                <h1>{{'BILLING_ADDRESS_LABEL'| translate}}</h1>
+
+                <table class="table">
+                    <tbody>
+                         <tr>
+
+                            <th width="165px">
+                                 {{'FULL_NAME_LABEL'| translate}}
+                            </th>
+                            <td>
+                                {{model.billing_address.full_name}}
+                            </td>
+                         </tr>
+
+                         <tr>
+
+                            <th >
+                                    {{'ADDRESS_LABEL'| translate}}
+                            </th>
+                            <td>
+                                {{model.billing_address.address_line_1}} - 
+                                {{model.billing_address.address_line_2}}
+                            </td>
+                         </tr>
+                         <tr>
+                            <th >
+                                 {{'CITY_LABEL'| translate}}
+                            </th>
+                            <td>
+                                {{model.billing_address.city}} 
+                                
+                            </td>
+                         </tr>
+                         <tr>
+                            <th >
+                                 {{'COUNTRY_LABEL'| translate}}
+                            </th>
+                            <td>
+                                {{ model.billing_address.country}} 
+                                
+                            </td>
+                         </tr>
+                         <tr>
+                            <th >
+                                  {{'ZIP_CODE_LABEL'| translate}}
+                            </th>
+                            <td>
+                                {{ model.billing_address.zip_code}} 
+                                
+                            </td>
+                         </tr>
+                         <tr>
+                            <th >
+                                 {{'PHONE_NUMBER_LABEL'| translate}}
+                            </th>
+                            <td>
+                                {{ model.billing_address.phone_number}} 
+                                
+                            </td>
+                         </tr>
+                        
+                     
+                    </tbody>
+                  
+                </table>
+             </div>
+             <div class="col-md-6">
+                <h1>{{'SHIPPING_ADDRESS_LABEL'| translate}}</h1>
+
+                <table  class="table">
+                   <tbody>
+                        <tr>
+
+                           <th width="165px">
+                                {{'FULL_NAME_LABEL'| translate}}
+                           </th>
+                           <td>
+                               {{model.shipping_address.full_name}}
+                           </td>
+                        </tr>
+
+                        <tr>
+
+                           <th >
+                                   {{'ADDRESS_LABEL'| translate}}
+                           </th>
+                           <td>
+                               {{model.shipping_address.address_line_1}} - 
+                               {{model.shipping_address.address_line_2}}
+                           </td>
+                        </tr>
+                        <tr>
+                           <th >
+                                {{'CITY_LABEL'| translate}}
+                           </th>
+                           <td>
+                               {{model.shipping_address.city}} 
+                               
+                           </td>
+                        </tr>
+                        <tr>
+                           <th >
+                                {{'COUNTRY_LABEL'| translate}}
+                           </th>
+                           <td>
+                               {{ model.shipping_address.country}} 
+                               
+                           </td>
+                        </tr>
+                        <tr>
+                           <th >
+                                 {{'ZIP_CODE_LABEL'| translate}}
+                           </th>
+                           <td>
+                               {{ model.shipping_address.zip_code}} 
+                               
+                           </td>
+                        </tr>
+                        <tr>
+                           <th >
+                                {{'PHONE_NUMBER_LABEL'| translate}}
+                           </th>
+                           <td>
+                               {{ model.shipping_address.phone_number}} 
+                               
+                           </td>
+                        </tr>
+                       
+                    
+                   </tbody>
+                 
+                </table>
+             
+             </div>
+                             
+ 
+                            
+
+                   
+                          
+             
               <h6>
                 {{ 'ORDERS_ITEMS_PLURAL_LABEL' | translate}}
               </h6>
