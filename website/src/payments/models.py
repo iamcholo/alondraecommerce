@@ -70,5 +70,5 @@ class PaymentMethod(BaseDateTime):
         verbose_name_plural = _('DISCOUNTS_TITLE_PLURAL')
         get_latest_by = 'created'
         ordering = ('-id',)
-        db_table = 'taxes'
-        app_label = 'taxes'
+        db_table = 'payment_methods'
+        app_label = 'payments'
