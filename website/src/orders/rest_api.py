@@ -5,17 +5,26 @@ from rest_framework.response import Response
 from orders.models import Orders,OrderShippingItem
 from user_addresses.rest_api import AddresessSerializer
 from django.contrib.auth.models import User
+from user.rest_api import UserSerializer
+from payments.rest_api import PaymentMethodSerializer
+from user_addresses.rest_api import AddresessSerializer
+
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
-    billing_addresss_ids = serializers.ReadOnlyField(source='billing_addresss.id')
-    shipping_addresss_ids = serializers.ReadOnlyField(source='shipping_addresss.id') 
-    payment_method_ids = serializers.ReadOnlyField(source='payment_method.id')   
-    autor_ids = serializers.ReadOnlyField(source='autor.id')    
+    billing_addresss_ids = AddresessSerializer(source='billing_addresss.id', read_only = True)
+    shipping_addresss_ids = AddresessSerializer(source='shipping_addresss.id', read_only = True) 
+    payment_method_ids = PaymentMethodSerializer(source='payment_method.id', read_only = True)   
+    autor_ids = UserSerializer(source='autor.id', read_only = True)  
+    order_id = serializers.SerializerMethodField('my_order_id')
+
+    def my_order_id(self, obj):
+        return str(obj.id).zfill(15)
     class Meta:
         model = Orders
         fields =    (
             'id',
             'status',
+            'order_id',
             'autor_ids',
             'payment_method_ids',
             'billing_addresss_ids',

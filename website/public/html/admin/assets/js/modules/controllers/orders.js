@@ -34,7 +34,7 @@ define(['angular'],function(angular){
 	         	angular.forEach(response.data, function(value, key){
 				 	this.push({
 			        	id: value.id,
-				        title: value.name,
+				        title: value.order_id,
 				        status: value.publish,
 			      	});
 			      	if(response.data.length-1 >= key)
