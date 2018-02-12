@@ -269,11 +269,11 @@
                             </div>
                           </td>
                           <td>
-                            <a ng-show="item.editable == false " ng-click="edit_shipping_item(item.id)" class="btn btn-primary">
+                            <a ng-show="item.editable == false " ng-click="edit_shipping_item(item)" class="btn btn-primary">
                               <i class="fa fa-pencil-square-o"></i>
                               {{ 'EDIT_LABEL' | translate}}
                             </a>
-                            <button ng-show="item.editable == true" ng-click="SaveShipping(item.id)" class="btn btn-primary">
+                            <button ng-show="item.editable == true" ng-click="SaveShipping(item)" class="btn btn-primary">
                                   {{ 'SAVE_LABEL' | translate}}
                             </button>
                              

@@ -166,7 +166,13 @@ define(['angular'],function(angular){
 
 	  	} 
 
-	
+		$scope.edit_shipping_item = function(item)
+		{
+			
+			item.editable = true;
+				
+
+		}
 
 
 	  	Orders.Get( $stateParams.id ).then(function successCallback(response){
