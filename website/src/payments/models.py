@@ -43,18 +43,18 @@ class PaymentMethod(BaseDateTime):
             max_length=255,
             blank=True      
         )
-    currency = models.FloatField(
+    currency = models.CharField(
             _('CURRENCY_LABEL'),
             max_length=3,
             blank=True,
             choices=CURRENCY_TYPES_CHOICES,
         )
-    email = models.FloatField(
+    email = models.CharField(
             _('EMAIL_LABEL'),
             max_length=255,
             blank=True      
         )
-    payment_method = models.FloatField(
+    payment_method = models.CharField(
             _('PERCENTAJE_LABEL'),
             max_length=255,
             blank=True,
