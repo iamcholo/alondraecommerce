@@ -31,22 +31,21 @@ define(['angular'],function(angular){
 			$scope.filteredTodos = [];
 		    Orders.list().then(function successCallback(response)
 		    {
+		    	
 	         	angular.forEach(response.data.items, function(value, key){
+
 				 	this.push({
 			        	id: value.id,
 				        title: value.order_id,
-				        status: value.publish,
+				        status: value.status,
 			      	});
-			      	if(response.data.length-1 >= key)
+			      	if(response.data.items.length-1 >= key)
 			      	{
 			      		$scope.figureOutTodosToDisplay(1);
 			      	}
 			      	
 				},$scope.todos);
-				if(response.data.length > 0)
-				{
-					$scope.figureOutTodosToDisplay(1);
-				}
+				
         	}, function errorCallback(response) {});
 
 
