@@ -7,31 +7,32 @@ from user_addresses.rest_api import AddresessSerializer
 from django.contrib.auth.models import User
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
-    billing_addresss_id = serializers.ReadOnlyField(source='billing_addresss.id')
-    shipping_addresss_id = serializers.ReadOnlyField(source='shipping_addresss.id') 
-    payment_method_id = serializers.ReadOnlyField(source='payment_method.id')    
+    billing_addresss_ids = serializers.ReadOnlyField(source='billing_addresss.id')
+    shipping_addresss_ids = serializers.ReadOnlyField(source='shipping_addresss.id') 
+    payment_method_ids = serializers.ReadOnlyField(source='payment_method.id')   
+    autor_ids = serializers.ReadOnlyField(source='autor.id')    
     class Meta:
         model = Orders
         fields =    (
             'id',
             'status',
-            'autor',
-            'payment_method_id',
-            'billing_addresss_id',
-            'shipping_addresss_id',
+            'autor_ids',
+            'payment_method_ids',
+            'billing_addresss_ids',
+            'shipping_addresss_ids',
             'created', 
             'modified',
         )
 
 class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
-    order_id = serializers.ReadOnlyField(source='order.id')
-    product_id = serializers.ReadOnlyField(source='product.id')
+    order_ids = serializers.ReadOnlyField(source='order.id')
+    product_ids = serializers.ReadOnlyField(source='product.id')
     class Meta:
         model = OrderShippingItem
         fields =    (
             'id',
-            'order_id',
-            'product',
+            'order_ids',
+            'product_ids',
             'value',
             'price',
             'status',
