@@ -36,7 +36,7 @@ class OrdersSerializer(serializers.HyperlinkedModelSerializer):
 
 class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
     order_ids = serializers.ReadOnlyField(source='order.id')
-    productx = PostItemSerializer(source='product')
+    productx = PostItemSerializer(source='product',read_only = True)
     class Meta:
         model = OrderShippingItem
         fields =    (
@@ -185,6 +185,7 @@ def order_shipping_item(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+        
     return Response(
             status=status.HTTP_204_NO_CONTENT
         )

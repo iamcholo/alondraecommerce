@@ -191,7 +191,6 @@ define(['angular'],function(angular){
 		}
 		$scope.SaveShipping = function(item)
 		{
-			
 			item.editable = false;
 			OrdersItems.Update({
 				'id':item.id,
