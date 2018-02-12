@@ -3,39 +3,43 @@ from rest_framework.decorators import api_view
 from rest_framework import serializers
 from rest_framework import status
 from rest_framework.response import Response
-from taxes.models import Taxes
+from payments.models import PaymentMethod
 
-class TaxesSerializer(serializers.HyperlinkedModelSerializer):
+class PaymentMethodSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Taxes
         fields =    (
             'id',
+            'first_name',
+            'last_name',
             'city',
             'country',
-            'percent',
+            'amount',
+            'currency',
+            'email',
+            'payment_method',
             'created', 
             'modified',
         )
 
 
 @api_view(['GET'])
-def taxes_list(request):
+def payment_list(request):
         
     if request.method == 'GET':
-        media = Taxes.objects.all()
-        serializer = TaxesSerializer(
+        media = PaymentMethod.objects.all()
+        serializer = PaymentMethodSerializer(
             media, 
             many=True,
             context={'request': request}
         )
         return Response(serializer.data)
 
-
 @api_view(['POST'])
-def taxes_create(request):
+def payment_create(request):
         
     if request.method == 'POST':
-        serializer = TaxesSerializer(
+        serializer = PaymentMethodSerializer(
             data=request.data,
             context={'request': request}
         )
@@ -55,17 +59,17 @@ def taxes_details(request):
     
     try:
         pk = request.data.get('id')
-        tax = Taxes.objects.get(
+        payment = PaymentMethod.objects.get(
             pk=int(pk)
         )
-    except Taxes.DoesNotExist:
+    except PaymentMethod.DoesNotExist:
         return Response(
             status=status.HTTP_404_NOT_FOUND
         )
 
     if request.method == 'POST':
         serializer = TaxesSerializer(
-            tax,
+            payment,
             context={'request': request}
         )
         return Response(serializer.data)
@@ -73,24 +77,22 @@ def taxes_details(request):
             status=status.HTTP_204_NO_CONTENT
         )
 
-
-
 @api_view(['DELETE','PUT','POST'])
-def tax(request):
+def payment(request):
     if request.method in ['DELETE','PUT']:
         try:
             pk = request.data.get('id')
-            tax = Taxes.objects.get(
+            payment = PaymentMethod.objects.get(
                 pk=int(pk)
             )
-        except Taxes.DoesNotExist:
+        except PaymentMethod.DoesNotExist:
             return Response(
                 status=status.HTTP_404_NOT_FOUND
             )
     if request.method == 'DELETE':
-        tax.delete()
+        payment.delete()
     if request.method == 'POST':
-        serializer = TaxesSerializer(
+        serializer = PaymentMethodSerializer(
             data=request.data,
             context={'request': request}
         )
@@ -99,7 +101,7 @@ def tax(request):
             return Response(serializer.data)  
  
     if request.method == 'PUT':
-        serializer = TaxesSerializer(
+        serializer = PaymentMethodSerializer(
             tax,
             data=request.data,
             context={'request': request}
