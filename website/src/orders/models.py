@@ -64,7 +64,10 @@ class Orders(BaseDateTime):
             on_delete=models.CASCADE,
             related_name='orders_related_shipping_addresss'
         )
-
+    currency = models.CharField(
+            max_length=3,
+            blank=True,
+        )
     total = models.FloatField(
             _('PERCENTAJE_LABEL'),
             max_length=255,
