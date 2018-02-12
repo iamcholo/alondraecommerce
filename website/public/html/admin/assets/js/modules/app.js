@@ -49,6 +49,7 @@ define(
         'app.services.navigation',
         'app.services.navigation_items',
         'app.services.orders',
+        'app.services.orders_items',
         'app.services.attributes',
         'app.services.attributes_product',
 

@@ -63,6 +63,7 @@ require.config({
       "orders_controllers": "modules/controllers/orders",
       "orders_routers": "modules/routes/orders",
       "orders_services": "modules/services/orders",
+      "orders_items_services": "modules/services/orders_items",
 
       "media_album_controllers": "modules/controllers/media_album",
       "media_album_routers": "modules/routes/media_album",
@@ -137,7 +138,7 @@ require.config({
           'orders_controllers',
           'orders_routers',
           'orders_services',
-
+          'orders_items_services',
 
           'attributes_controllers',
           'attributes_routers',

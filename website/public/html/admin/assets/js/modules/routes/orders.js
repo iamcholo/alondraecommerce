@@ -34,6 +34,18 @@ define(['angular'],function(angular){
             } 
           }
          
+        }).state('root.orders_view', {
+          url: '/orders/view/{id:int}',
+          params: {
+            id:{ value: 0}
+          },
+          views: {
+          'content': {
+              controller: 'OrdersViewCtrl',
+              templateUrl: '/admin/assets/js/modules/templates/orders/view.html',
+            } 
+          }
+         
         })  
         .state('root.orders_new', {
           url: '/orders/new',

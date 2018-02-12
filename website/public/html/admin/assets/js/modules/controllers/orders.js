@@ -94,12 +94,7 @@ define(['angular'],function(angular){
 	  		'meta_description':''
 	  	} 
 
-	  	
-	  	$scope.ChangeTitle = function()
-	  	{
-	  		 $scope.model.meta_title = $scope.model.name
-	  		 $scope.model.slug = window.string_to_slug($scope.model.name)
-	  	}
+	
 
 
 	  	Orders.Get( $stateParams.id ).then(function successCallback(response){
@@ -150,6 +145,35 @@ define(['angular'],function(angular){
 	 
 	  
 
+	}]).controller('OrdersViewCtrl', 
+	[ 
+		'$scope','$state','$translate','$stateParams','Orders','OrdersItems',
+	  	function ($scope,$state,$translate,$stateParams,Orders,OrdersItems){
+
+	  	$scope.model = { 
+	  		'id':$stateParams.id,
+            'status':null,
+            'autor':null,
+            'billing_addresss_id':{},
+            'shipping_addresss_id':{},
+            'total':0.00,
+            'created':null, 
+            'modified':null,
+	  	} 
+
+	
+
+
+	  	Orders.Get( $stateParams.id ).then(function successCallback(response){
+	  			$scope.model.status = response.data.status;
+	  			$scope.model.autor = response.data.autor;
+	  			$scope.model.billing_addresss_id = response.data.billing_addresss_id;
+	  			$scope.model.shipping_addresss_id = response.data.shipping_addresss_id;
+	  			$scope.model.total = response.data.total;
+	  			$scope.model.created = response.data.created;
+	  			$scope.model.modified = response.data.modified;
+
+			}, function errorCallback(response) {});
 	}]);
   
 });

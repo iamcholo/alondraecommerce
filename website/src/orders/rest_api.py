@@ -113,6 +113,29 @@ def order(request):
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))
+def order_details(request):
+    if request.method == 'POST':
+        try:
+            pk = request.data.get('id')
+            order = Orders.objects.get(
+                pk=pk
+            )
+        except Orders.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+        serializer = OrdersSerializer(
+            order,
+            context={'request': request}
+        )
+        return Response(serializer.data)
+    return Response(
+                status=status.HTTP_204_NO_CONTENT
+            )
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def order_shipping_item_list(request):
         
     if request.method == 'POST':
