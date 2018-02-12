@@ -253,11 +253,18 @@
                           </td>
                          
                           <td>
-                            <span ng-show="item.editable == false">
-                                {{item.carrier}}
-                            </span>
+                            <div ng-show="item.editable == false">
+                              <span ng-show="item.carrier !== 'EMPTY'">
+                             
+                                {{item.carrier| translate}}
+                              </span>
+                              <span  ng-show="item.carrier == 'EMPTY'">
+                                {{'PLEASE_ADD_CARRIER_LABEL'| translate}}
+                              </span>
+                            </div>
+                           
                             <div ng-show="item.editable == true" class="form-group">
-                                <input class="form-control"  ng-model="item.carrier" type="text">
+                                <select class="form-control"  ng-options="item.id as item.label for item in model.carriers"  ng-model="item.carrier" type="text"></select>
                             </div>
                           </td>
                           <td>
@@ -266,6 +273,8 @@
                             </span>
                             <div ng-show="item.editable == true" class="form-group">
                                 <textarea class="form-control"  ng-model="item.tracking_number" type="text"></textarea> 
+                                {{'PASTE_TRACKING_NUMBER_LABEL'| translate}}
+                                
                             </div>
                           </td>
                           <td>

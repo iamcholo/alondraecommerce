@@ -27,6 +27,8 @@ CARRIER_TYPES_CHOICES = (
     ('DHL', _('DHL')),
     ('MRW', _('MRW')),
     ('ZOOM', _('ZOOM')),
+    ('PERSONAL_DELIVERY', _('PERSONAL DELIVERY')),
+    ('EMPTY', _('EMPTY')),
 )
 
 
@@ -121,7 +123,7 @@ class OrderShippingItem(BaseDateTime):
     carrier = models.CharField(
             max_length=20,
             choices=CARRIER_TYPES_CHOICES,
-            default="USPS"
+            default="EMPTY"
         )
     
     tracking_number = models.TextField(

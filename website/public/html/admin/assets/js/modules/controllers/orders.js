@@ -158,12 +158,29 @@ define(['angular'],function(angular){
             'billing_address':{},
             'shipping_address':{},
             'todos':[],
+            'carriers':[
+
+            ],
             'total':0,
             'currency':"USD",
             'created':null, 
             'modified':null,
 
 	  	} 
+
+	  	$translate(['PERSONAL_DELIVERY',]).then(function (translations)
+	  	{
+
+			$scope.model.carriers = [
+				{'id':'USPS','label':'USPS'},
+				{'id':'FEDEX','label':'FEDEX'},
+				{'id':'DHL','label':'DHL'},
+				{'id':'MRW','label':'MRW'},
+				{'id':'PERSONAL_DELIVERY','label':translations.PERSONAL_DELIVERY},
+			];
+				
+			   
+		}, function (translationIds) {});
 
 		$scope.edit_shipping_item = function(item)
 		{
@@ -172,7 +189,13 @@ define(['angular'],function(angular){
 				
 
 		}
+		$scope.SaveShipping = function(item)
+		{
+			
+			item.editable = false;
+				
 
+		}
 
 	  	Orders.Get( $stateParams.id ).then(function successCallback(response){
 	  			$scope.model.status = response.data.status;
@@ -188,6 +211,7 @@ define(['angular'],function(angular){
 	  			OrdersItems.list($stateParams.id).then(function successCallback(response){
 		  			angular.forEach(response.data, function(value, key){
 		  				$scope.model.total += value.price;
+		  				 	
 					 	this.push({
 				        	id: value.id,
 				        	thumbnail: value.productx.thumbnail,

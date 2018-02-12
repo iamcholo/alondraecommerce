@@ -126,8 +126,11 @@ define(['angular'],function(angular){
             'AMOUNT_LABEL':'Amount',
             'CURRENCY_LABEL':'Currency',
             'TRACKING_NUMBER_LABEL':'Tracking Number',
+            'PASTE_TRACKING_NUMBER_LABEL':'if you want to paste many diferents tracking number paste separate with commas ","',
             'CARRIER_LABEL':'Carrier',
             'STATUS_LABEL':'Status',
+            'PLEASE_ADD_CARRIER_LABEL':'Please add a carrier to ship',
+            'PERSONAL_DELIVERY': "Personal Delivery"
       });
      
       $translateProvider.preferredLanguage('en');
