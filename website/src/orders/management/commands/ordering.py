@@ -44,7 +44,7 @@ class Command(BaseCommand):
         p.payment_method = "paypal"
         p.save()
         
-        for o in range(1,100000000):
+        for o in range(1,1000000):
             orders = Orders()
             orders.status = "approved"
             orders.autor = User.objects.get(id=1)
