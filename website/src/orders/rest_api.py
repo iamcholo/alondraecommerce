@@ -74,8 +74,6 @@ def order_list(request):
         )
         return Response(serializer.data)
 
-
-
 @api_view(['DELETE','PUT','POST'])
 @permission_classes((IsAuthenticated,))
 def order(request):
@@ -103,6 +101,57 @@ def order(request):
     if request.method == 'PUT':
         serializer = OrdersSerializer(
             order,
+            data=request.data,
+            context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+    return Response(
+            status=status.HTTP_204_NO_CONTENT
+        )
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
+def order_shipping_item_list(request):
+        
+    if request.method == 'POST':
+        pk = request.data.get('id')
+        order_shipping_items = OrderShippingItem.objects.filter(order_pk=pk)
+        serializer = OrderShippingItemSerializer(
+            order_shipping_items, 
+            many=True,
+            context={'request': request}
+        )
+        return Response(serializer.data)
+
+@api_view(['DELETE','PUT','POST'])
+@permission_classes((IsAuthenticated,))
+def order_shipping_item(request):
+    if request.method in ['DELETE','PUT']:
+        try:
+            pk = request.data.get('id')
+            order_shipping = OrderShippingItem.objects.get(
+                pk=int(pk)
+            )
+        except OrderShippingItem.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+    if request.method == 'DELETE':
+        order_shipping.delete()
+    if request.method == 'POST':
+        serializer = OrdersSerializer(
+            data=request.data,
+            context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)  
+ 
+    if request.method == 'PUT':
+        serializer = OrderShippingItemSerializer(
+            order_shipping,
             data=request.data,
             context={'request': request}
         )
