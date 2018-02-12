@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         s = Addresess()
-        s.autor = User
+        s.autor = User.objects.get(id=1)
         s.city = "Montreal"
         s.country = "CA"
         s.zip_code = "2003"
@@ -22,7 +22,7 @@ class Command(BaseCommand):
         s.save()
         
         b = Addresess()
-        b.autor = User
+        b.autor = User.objects.get(id=1)
         b.city = "Montreal"
         b.country = "CA"
         b.zip_code = "2003"
