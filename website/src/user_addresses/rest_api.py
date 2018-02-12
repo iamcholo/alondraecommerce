@@ -16,7 +16,7 @@ from rest_framework.parsers import FileUploadParser
 from rest_framework import generics
 from user_addresses.models import Addresess
 from user.rest_authentication import IsAuthenticated
-from django.contrib.auth.models import User
+from user.models import CustomUser as User
 from django.db.models import Q
 from decimal import Decimal as D
 from django.db.models import Max

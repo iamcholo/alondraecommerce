@@ -36,34 +36,34 @@ angular.module('app.services.orders', [] )
         'list': function(){
             return this.request({
                 'method': "GET",
-                'url': "/tags/"              
+                'url': "/orders/"              
             });
         },
         'New': function(data){
             return this.request({
                 'method': "POST",
-                'url': "/tag/",
+                'url': "/order/",
                 'data': data              
             });
         },
         'Update': function(data){
             return this.request({
                 'method': "PUT",
-                'url': "/tag/",
+                'url': "/order/",
                 'data': data       
             });
         },
         'Get': function(id){
             return this.request({
                 'method': "POST",
-                'url': "/tag/details/",
+                'url': "/order/details/",
                 'data': {'id':id,}                 
             });
         },
         'Delete': function(id){
             return this.request({
                 'method': "DELETE",
-                'url': "/tag/", 
+                'url': "/order/", 
                 'data': {'id':id}             
             });
         },
