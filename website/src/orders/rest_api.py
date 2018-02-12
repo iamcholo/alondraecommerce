@@ -1,30 +1,10 @@
-import json
-import os 
-import sys
-import hashlib
-import time
-from django.conf import settings
-from rest_framework.views import APIView
-from django.http import Http404, HttpResponseRedirect, HttpResponse
-from django.conf.urls import url, include
-from rest_framework import routers, serializers, viewsets, generics
+from rest_framework.decorators import api_view
+from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
-from rest_framework.parsers import FileUploadParser
-from rest_framework import generics
-from taxes.models import Orders,OrderShippingItem
+from orders.models import Orders,OrderShippingItem
 from user_addresses.rest_api import AddresessSerializer
-from user.rest_authentication import IsAuthenticated
 from django.contrib.auth.models import User
-from django.db.models import Q
-from decimal import Decimal as D
-from django.db.models import Max
-from django.utils.translation import ugettext_lazy as _
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
-
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
     billing_addresss_id = serializers.ReadOnlyField(source='billing_addresss.id')
@@ -35,9 +15,12 @@ class OrdersSerializer(serializers.HyperlinkedModelSerializer):
             'id',
             'status',
             'autor',
+            'order_number',
+            'amount',
+            'currency',
+            'payment_mehtod',
             'billing_addresss_id',
             'shipping_addresss_id',
-            'total',
             'created', 
             'modified',
         )
@@ -62,7 +45,6 @@ class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def order_list(request):
         
     if request.method == 'GET':
@@ -75,7 +57,6 @@ def order_list(request):
         return Response(serializer.data)
 
 @api_view(['DELETE','PUT','POST'])
-@permission_classes((IsAuthenticated,))
 def order(request):
     if request.method in ['DELETE','PUT']:
         try:
@@ -112,7 +93,6 @@ def order(request):
         )
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def order_details(request):
     if request.method == 'POST':
         try:
@@ -135,7 +115,6 @@ def order_details(request):
 
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def order_shipping_item_list(request):
         
     if request.method == 'POST':
@@ -149,7 +128,6 @@ def order_shipping_item_list(request):
         return Response(serializer.data)
 
 @api_view(['DELETE','PUT','POST'])
-@permission_classes((IsAuthenticated,))
 def order_shipping_item(request):
     if request.method in ['DELETE','PUT']:
         try:

@@ -76,7 +76,6 @@ def login(request):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def user_list(request):
         
     if request.method == 'GET':
@@ -136,7 +135,6 @@ def user_details(request):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'PUT'])
-@permission_classes((IsAuthenticated,))
 def user(request):
 
     try:
@@ -167,7 +165,6 @@ def user(request):
         )    
 
 @api_view(['PUT'])
-@permission_classes((IsAuthenticated,))
 def user_udpate_password(request):
 
     try:
@@ -212,7 +209,6 @@ def user_udpate_password(request):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def user_create(request):
     if request.method == 'POST':
         user = User.objects.filter(

@@ -36,7 +36,6 @@ class GlobalyTagsSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def tag_list(request):
 
     if request.method == 'GET':
@@ -49,7 +48,6 @@ def tag_list(request):
         return Response(serializer.data)
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def tag_details(request):
     if request.method == 'POST':
         try:
@@ -72,7 +70,6 @@ def tag_details(request):
 
 
 @api_view(['PUT','POST','DELETE'])
-@permission_classes((IsAuthenticated,))
 def tag(request):
     
     if request.method == 'POST':

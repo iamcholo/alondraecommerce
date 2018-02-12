@@ -44,7 +44,6 @@ class AddresessSerializer(serializers.HyperlinkedModelSerializer):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def address_list(request):
         
     if request.method == 'GET':
@@ -58,7 +57,6 @@ def address_list(request):
 
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def address_create(request):
         
     if request.method == 'POST':
@@ -78,7 +76,6 @@ def address_create(request):
             )
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def address_details(request):
     
     try:
@@ -104,7 +101,6 @@ def address_details(request):
 
 
 @api_view(['DELETE','PUT','POST'])
-@permission_classes((IsAuthenticated,))
 def address(request):
     if request.method in ['DELETE','PUT']:
         try:

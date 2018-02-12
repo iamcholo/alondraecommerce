@@ -1,5 +1,5 @@
 from django.conf.urls import include, url
-from rest_api import rest_api as views 
+from orders import rest_api as views 
 from utilities.rest_api_urls import router 
 register_url = True
 urlpatterns = [

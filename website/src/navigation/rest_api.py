@@ -1,20 +1,12 @@
-import json
-from django.conf import settings
-from django.http import Http404, HttpResponseRedirect, HttpResponse
-from django.conf.urls import url, include
-from rest_framework import routers, serializers, viewsets, generics
+from rest_framework.decorators import api_view
+from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
 from navigation.models import NavigationPosition
-
 from django.contrib.auth.models import User
 from navigation.models import NavigationItem
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
-from user.rest_authentication import IsAuthenticated,IsSuperUser
-from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework_recursive.fields import RecursiveField
 
@@ -44,7 +36,6 @@ class NavigationItemSerializer(serializers.HyperlinkedModelSerializer):
         return ob.item.id
         
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def nav_list(request):
         
     if request.method == 'GET':
@@ -57,7 +48,6 @@ def nav_list(request):
         return Response(serializer.data)
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def nav(request):
     if request.method == 'POST':
         try:
@@ -96,7 +86,6 @@ def getnav_item(nav):
         return None    
 
 @api_view(['POST', 'PUT', 'DELETE'])
-@permission_classes((IsAuthenticated,))
 def nav_details(request):
     pk = request.data.get('id', None)
     navigations = request.data.get('navigation', [])
@@ -172,7 +161,6 @@ def nav_details(request):
 
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def nav_item_list(request):
         
     if request.method == 'POST':
@@ -189,7 +177,6 @@ def nav_item_list(request):
         return Response(serializer.data)
 
 @api_view(['POST', 'PUT', 'DELETE'])
-@permission_classes((IsAuthenticated,))
 def nav_item_details(request):
 
     try:

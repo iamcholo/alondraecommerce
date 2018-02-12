@@ -39,7 +39,6 @@ class TaxesSerializer(serializers.HyperlinkedModelSerializer):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def taxes_list(request):
         
     if request.method == 'GET':
@@ -53,7 +52,6 @@ def taxes_list(request):
 
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def taxes_create(request):
         
     if request.method == 'POST':
@@ -73,7 +71,6 @@ def taxes_create(request):
             )
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def taxes_details(request):
     
     try:
@@ -99,7 +96,6 @@ def taxes_details(request):
 
 
 @api_view(['DELETE','PUT','POST'])
-@permission_classes((IsAuthenticated,))
 def tax(request):
     if request.method in ['DELETE','PUT']:
         try:

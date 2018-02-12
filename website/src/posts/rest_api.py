@@ -1,13 +1,14 @@
-import json
+
 from django.conf import settings
-from django.http import Http404, HttpResponseRedirect, HttpResponse
-from django.conf.urls import url, include
-from rest_framework import routers, serializers, viewsets, generics
+from rest_framework.decorators import api_view
+from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
-from rest_framework import generics
+from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ObjectDoesNotExist
+
+from django.contrib.auth.models import User
+from navigation.models import NavigationItem
 from posts.models import PostCategory
 from posts.models import PostItem
 from posts.models import Attributes,ProductAttributes
@@ -17,18 +18,6 @@ from taxes.models import Taxes
 from taxes.rest_api import TaxesSerializer
 from globaly.rest_api import GlobalyTagsSerializer
 from media.models import MediaAlbum,MediaImage
-from django.contrib.auth.models import User
-from user.rest_authentication import IsAuthenticated
-from django.db.models import Q
-from decimal import Decimal as D
-from django.db.models import Max
-from django.utils.translation import ugettext_lazy as _
-from django.dispatch import receiver
-from django.db.models.signals import post_save
-from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ObjectDoesNotExist
-from navigation.models import NavigationItem
-
 
 
 class ProductAttributesSerializer(serializers.HyperlinkedModelSerializer):
@@ -158,7 +147,6 @@ class PostItemSerializer(serializers.HyperlinkedModelSerializer):
         )
  
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def post_list(request):
         
     if request.method == 'POST':
@@ -174,7 +162,6 @@ def post_list(request):
 
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def post_details(request):
     if request.method == 'POST':
         try:
@@ -196,7 +183,6 @@ def post_details(request):
             )
 
 @api_view(['PUT','POST','DELETE'])
-@permission_classes((IsAuthenticated,))
 def post(request):
     
     if request.method == 'POST':
@@ -332,7 +318,6 @@ def post(request):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def categories_list(request):
 
     if request.method == 'GET':
@@ -345,7 +330,6 @@ def categories_list(request):
         return Response(serializer.data)
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def category_details(request):
     if request.method == 'POST':
         try:
@@ -368,7 +352,6 @@ def category_details(request):
 
 
 @api_view(['PUT','POST','DELETE'])
-@permission_classes((IsAuthenticated,))
 def category(request):
     
     if request.method == 'POST':
@@ -439,7 +422,6 @@ def category(request):
 
 
 @api_view(['GET','POST'])
-@permission_classes((IsAuthenticated,))
 def attributes_list(request):
 
     if request.method in ['GET','POST']:
@@ -452,7 +434,6 @@ def attributes_list(request):
         return Response(serializer.data)
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def attribute_details(request):
     if request.method == 'POST':
         try:
@@ -475,7 +456,6 @@ def attribute_details(request):
 
 
 @api_view(['PUT','POST','DELETE'])
-@permission_classes((IsAuthenticated,))
 def attribute(request):
     
     if request.method == 'POST':
@@ -535,7 +515,6 @@ def attribute(request):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def attribute_products_list(request):
 
     if request.method == 'GET':
@@ -554,7 +533,6 @@ def attribute_products_list(request):
 
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated,))
 def attribute_product_details(request):
     if request.method == 'POST':
         try:
@@ -580,7 +558,6 @@ def attribute_product_details(request):
             )
 
 @api_view(['PUT','POST','DELETE'])
-@permission_classes((IsAuthenticated,))
 def attribute_product(request):
     
     if request.method == 'POST':

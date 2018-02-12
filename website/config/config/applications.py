@@ -23,6 +23,7 @@ INSTALLED_APPS = (
     'posts',
     'user_addresses',
     'taxes',
+    'orders',
     'media',
     'discount',
     'navigation',

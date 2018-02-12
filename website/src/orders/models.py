@@ -11,25 +11,24 @@ from user_addresses.models import Addresess
 
 # Create your models here.
 STATUS_TYPES_CHOICES = (
-    ('approved', 'Approved'),
-    ('pending', 'Pending'),
-    ('refunded', 'Refunded'),
-    ('shipped', 'Approved'),
+    ('approved', _('Approved')),
+    ('pending', _('Pending')),
+    ('refunded', _('Refunded')),
+    ('shipped', _('Approved')),
 )
 
 SHIPPING_TYPES_CHOICES = (
-    ('shipped', 'Shipped'),
-    ('in_transit', 'In transit'),
+    ('shipped', _('Shipped')),
+    ('in_transit', _('In transit')),
 )
 
 CARRIER_TYPES_CHOICES = (
-    ('USPS', 'USPS'),
-    ('FEDEX', 'FEDEX'),
-    ('DHL', 'DHL'),
-    ('MRW', 'MRW'),
-    ('ZOOM', 'ZOOM'),
+    ('USPS', _('USPS')),
+    ('FEDEX', _('FEDEX')),
+    ('DHL', _('DHL')),
+    ('MRW', _('MRW')),
+    ('ZOOM', _('ZOOM')),
 )
-
 
 
 class Orders(BaseDateTime):
@@ -68,11 +67,13 @@ class Orders(BaseDateTime):
             max_length=3,
             blank=True,
         )
-    total = models.FloatField(
+    amount = models.FloatField(
             _('PERCENTAJE_LABEL'),
             max_length=255,
             blank=True      
         )
+
+
     def __unicode__(self):
         return self.status
 

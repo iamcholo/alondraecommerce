@@ -1,20 +1,9 @@
-import json
-from django.conf import settings
-from django.http import Http404, HttpResponseRedirect, HttpResponse
-from django.conf.urls import url, include
-from rest_framework import routers, serializers, viewsets, generics
+
+from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
-from rest_framework import generics
 from comments.models import Comments
-from django.contrib.auth.models import User
-from user.rest_authentication import IsAuthenticated
-from django.db.models import Q
-from decimal import Decimal as D
-from django.db.models import Max
-from django.utils.translation import ugettext_lazy as _
 
 class CommentsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -31,7 +20,6 @@ class CommentsSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def comments(request):
         
     if request.method == 'GET':
@@ -45,7 +33,6 @@ def comments(request):
 
 
 @api_view(['PUT','POST','DELETE'])
-@permission_classes((IsAuthenticated,))
 def comment(request):
     
     if request.method == 'POST':
