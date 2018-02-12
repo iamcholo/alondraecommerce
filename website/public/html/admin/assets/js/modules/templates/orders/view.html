@@ -49,7 +49,7 @@
                                {{ 'PAYMENT_METHOD_LABEL' | translate}}
                           </th>
                           <td>
-                              {{model.payment_mehtod}}
+                              {{model.payment_method.payment_method}}
                           </td>
                        </tr>
 
@@ -255,7 +255,7 @@
                           <td>
                             <div ng-show="item.editable == false">
                               <span ng-show="item.carrier !== 'EMPTY'">
-                             
+
                                 {{item.carrier| translate}}
                               </span>
                               <span  ng-show="item.carrier == 'EMPTY'">
