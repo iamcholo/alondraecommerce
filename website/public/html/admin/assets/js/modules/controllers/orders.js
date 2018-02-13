@@ -6,7 +6,7 @@ define(['angular'],function(angular){
 	  {
 
 	  	$scope.filteredTodos = [];
-	  	$scope.itemsPerPage = 8;
+	  	$scope.itemsPerPage = 100;
 	  	$scope.currentPage = 1;
 		$scope.model = {'query':''};
 	  	$scope.search = function()
