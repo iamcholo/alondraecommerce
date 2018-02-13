@@ -137,6 +137,7 @@ define(['angular'],function(angular){
             'payment_date': "Payment Date",
             'email': "Email Address",
             'city': "City",
+            'country':"Country",
             'last_name': "Last Name",
             'first_name': "First Name",
       });

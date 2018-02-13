@@ -138,6 +138,7 @@ define(['angular'],function(angular){
             'payment_date': "Fecha de pago",
             'email': "Correo Electronico",
             'city': "Ciudad/Departmento",
+            'country':"Pais",
             'last_name': "Apellido",
             'first_name': "Nombre",
 
