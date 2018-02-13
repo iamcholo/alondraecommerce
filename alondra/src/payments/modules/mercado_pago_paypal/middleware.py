@@ -68,7 +68,6 @@ class PaymentPaypalMiddleware(object):
 
 
                         try:
-
                             o.shipping_addresss = Addresess.objects.get(id=int(params['shipping_addresss_id']))
                         except Addresess.DoesNotExist:
                             pass

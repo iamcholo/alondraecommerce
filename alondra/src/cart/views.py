@@ -7,9 +7,8 @@ from django.template.response import TemplateResponse
 from cart2 import Cart,Cart2, CART_ID, ItemAlreadyExists
 from django.utils import timezone
 from django.core.urlresolvers import reverse
-from store.models import StoreItem
+from posts.models import PostItem
 from django.shortcuts import get_object_or_404
-from store_orders.models import StoreOrder, StoreOrderItem
 from user_site.models import UserSite
 from user_site.decorators import login_required
 from django.conf import settings
@@ -17,7 +16,7 @@ from django.conf import settings
 def add_to_cart(request, product_id, variation=0 ):
     quantity = 1
    
-    product = get_object_or_404(StoreItem,id=product_id )
+    product = get_object_or_404(PostItem,id=product_id )
     price = 0.00
     cart = Cart(request)
     variation = int(variation)
@@ -36,7 +35,7 @@ def add_to_cart(request, product_id, variation=0 ):
     return HttpResponseRedirect(my_url)
 
 def remove_from_cart(request, product_id):
-    product = StoreItem.objects.get(id=product_id)
+    product = PostItem.objects.get(id=product_id)
     cart = Cart(request)
     cart.remove(product)
     my_url = reverse("get_cart")

@@ -4,14 +4,14 @@ from django.conf import settings
 from django.conf.urls import url, include
 from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from django.utils.translation import ugettext_lazy as _
-from store.models import StoreItem
 from cart2 import Cart,Cart2, CART_ID, ItemAlreadyExists
+from posts.models import PostItem
 
 @api_view(['POST'])
 @permission_classes((AllowAny,))
@@ -23,7 +23,7 @@ def add_to_cart(request):
         variation = request.data.get('variation')
         try:
             quantity=1
-            product = StoreItem.objects.get(id=product_id)
+            product = PostItem.objects.get(id=product_id)
             price = 0.00
             if variation == 1 :
                price = product.pricing
@@ -37,7 +37,7 @@ def add_to_cart(request):
                 data['success'] = True
             except ItemAlreadyExists: 
                 pass
-        except StoreItem.DoesNotExist:
+        except PostItem.DoesNotExist:
             pass
 
     return Response(

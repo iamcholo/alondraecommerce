@@ -98,7 +98,6 @@ class OrderShippingItem(BaseDateTime):
             related_name='orders_items_shipping_related_order'
         )
 
-    
     product = models.ForeignKey(
             PostItem,
             verbose_name=_('AUTOR_LABEL'),

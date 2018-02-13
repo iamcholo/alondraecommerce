@@ -27,7 +27,10 @@ INSTALLED_APPS = (
     'media',
     'discount',
     'navigation',
+    'cart',
     'payments',
+
+    'payments.modules.mercado_pago_paypal',
     'comments',   
 
 )
