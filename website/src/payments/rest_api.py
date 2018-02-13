@@ -37,7 +37,7 @@ class PaymentMethodSerializer(serializers.HyperlinkedModelSerializer):
         request = self.context.get("request")
         posts = PaymentMethodFields.objects.filter(
                 payment__id=obj.id,
-            ).order_by('-id')
+            ).order_by('id')
         serializer = PaymentMethodFieldsSerializer(
             posts, 
             many=True,
