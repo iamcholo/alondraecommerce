@@ -34,7 +34,7 @@ class PaymentMethodSerializer(serializers.HyperlinkedModelSerializer):
         )
 
     def get_popularity(self, obj):
-        
+        request = self.context.get("request")
         posts = PaymentMethodFields.objects.filter(
                 payment__id=obj.id,
             ).order_by('-id')
