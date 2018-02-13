@@ -130,7 +130,15 @@ define(['angular'],function(angular){
             'CARRIER_LABEL':'Carrier',
             'STATUS_LABEL':'Status',
             'PLEASE_ADD_CARRIER_LABEL':'Please add a carrier to ship',
-            'PERSONAL_DELIVERY': "Personal Delivery"
+            'PERSONAL_DELIVERY': "Personal Delivery",
+            'bank_name': "Nombre del banco",
+            'payment_method': "Payment Mode",
+            'transfer_number': "Transfer Number",
+            'payment_date': "Payment Date",
+            'email': "Email Address",
+            'city': "City",
+            'last_name': "Last Name",
+            'first_name': "First Name",
       });
      
       $translateProvider.preferredLanguage('en');

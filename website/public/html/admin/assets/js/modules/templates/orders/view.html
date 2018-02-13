@@ -53,6 +53,16 @@
                           </td>
                        </tr>
 
+                         <tr  ng-repeat="item in model.payment_method.payment_info" data-id="{{item.id}}" >
+                          <th>
+                            {{ item.key | translate}}
+                          </th>
+                          <td>
+                            {{item.value}}
+                          </td>
+                       </tr>
+
+
                   </tbody>
               </table>
               <h1> {{ 'USER_DETAILS_LABEL' | translate}}</h1>
