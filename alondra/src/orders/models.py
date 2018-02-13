@@ -115,11 +115,11 @@ class OrderShippingItem(BaseDateTime):
             blank=True,
             default=0
         )
-#    status = models.CharField(
-#            max_length=20,
-#            choices=SHIPPING_TYPES_CHOICES,
-#            default="in_transit"
-#        )
+    variant_id = models.IntegerField(
+            blank=True,
+            null=True,
+            default=0
+        )
     carrier = models.CharField(
             max_length=20,
             choices=CARRIER_TYPES_CHOICES,
