@@ -1,6 +1,6 @@
 from django.core.management import BaseCommand
 from posts.models import PostItem
-from payments.models import PaymentMethod
+from payments.models import PaymentMethod,PaymentMethodFields
 from orders.models import Orders,OrderShippingItem
 from user_addresses.models import Addresess
 from user.models import CustomUser as User
@@ -34,16 +34,44 @@ class Command(BaseCommand):
         b.save()
 
         p = PaymentMethod()
-        p.first_name = "mike"
-        p.last_name = "thonson"
-        p.city = "FL"
-        p.country = "US"
         p.amount = 100.00
         p.currency = "USD"
-        p.email = "cocoaremix@gmail.com"
         p.payment_method = "paypal"
         p.save()
         
+        pf = PaymentMethodFields()
+        pf.key = "first_name"
+        pf.value = "mike"
+        pf.payment = p
+        pf.save()
+
+        pf = PaymentMethodFields()
+        pf.key = "last_name"
+        pf.value = "thonson"
+        pf.payment = p
+        pf.save()
+
+        pf = PaymentMethodFields()
+        pf.key = "city"
+        pf.value = "FL"
+        pf.payment = p
+        pf.save()
+
+        pf = PaymentMethodFields()
+        pf.key = "country"
+        pf.value = "US"
+        pf.payment = p
+        pf.save()
+
+
+        pf = PaymentMethodFields()
+        pf.key = "email"
+        pf.value = "cocoaremix@gmail.com"
+        pf.payment = p
+        pf.save()
+
+        
+
         for o in range(1,100):
             orders = Orders()
             orders.status = "approved"
