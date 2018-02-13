@@ -22,22 +22,22 @@ CURRENCY_TYPES_CHOICES = (
 )
 
 class PaymentMethod(BaseDateTime):
-    first_name = models.CharField(
-            _('FIRST_NAME_LABEL'),
-            max_length=255,
-            blank=True      
-        )
-    last_name = models.CharField(
-            _('LAST_NAME_LABEL'),
-            max_length=255,
-            blank=True      
-        )
-    city = models.CharField(
-            _('TITLE_LABEL'),
-            max_length=255,
-            blank=True      
-        )
-    country = CountryField( null=True, blank=True)
+#    first_name = models.CharField(
+#            _('FIRST_NAME_LABEL'),
+#            max_length=255,
+#            blank=True      
+#        )
+#    last_name = models.CharField(
+#            _('LAST_NAME_LABEL'),
+#            max_length=255,
+#            blank=True      
+#        )
+#    city = models.CharField(
+#            _('TITLE_LABEL'),
+#            max_length=255,
+#            blank=True      
+#        )
+#    country = CountryField( null=True, blank=True)
     amount = models.FloatField(
             _('PERCENTAJE_LABEL'),
             max_length=255,
@@ -49,13 +49,13 @@ class PaymentMethod(BaseDateTime):
             blank=True,
             choices=CURRENCY_TYPES_CHOICES,
         )
-    email = models.CharField(
-            _('EMAIL_LABEL'),
-            max_length=255,
-            blank=True      
-        )
+#    email = models.CharField(
+#            _('EMAIL_LABEL'),
+#            max_length=255,
+#            blank=True      
+#        )
     payment_method = models.CharField(
-            _('PERCENTAJE_LABEL'),
+#            _('PERCENTAJE_LABEL'),
             max_length=255,
             blank=True,
             choices=PAYMENT_METHOD_TYPES_CHOICES,
@@ -70,4 +70,40 @@ class PaymentMethod(BaseDateTime):
         get_latest_by = 'created'
         ordering = ('-id',)
         db_table = 'payment_methods'
+        app_label = 'payments'
+"""
+uses to add payment information like 
+first_name
+last_name
+email
+and others payments info
+"""
+class PaymentMethodFields(BaseDateTime):
+    payment = models.ForeignKey(
+            PaymentMethod,
+            verbose_name=_('AUTOR_LABEL'),
+            null=True,
+            blank=True,
+            on_delete=models.CASCADE,
+        )
+    key = models.CharField(
+            _('KEY_LABEL'),
+            max_length=255,
+         
+        )
+    value = models.CharField(
+            _('VALUE_LABEL'),
+            max_length=255,
+            blank=True      
+        )
+    def __unicode__(self):
+        return self.key
+
+
+    class Meta:
+        verbose_name = _('PAYMENT_METHOD_TITLE')
+        verbose_name_plural = _('PAYMENT_METHOD_TITLE_PLURAL')
+        get_latest_by = 'created'
+        ordering = ('-id',)
+        db_table = 'payment_methods_fields'
         app_label = 'payments'

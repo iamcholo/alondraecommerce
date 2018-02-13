@@ -3,24 +3,47 @@ from rest_framework.decorators import api_view
 from rest_framework import serializers
 from rest_framework import status
 from rest_framework.response import Response
-from payments.models import PaymentMethod
+from payments.models import PaymentMethod,PaymentMethodFields
+
+
+class PaymentMethodFieldsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PaymentMethodFields
+        fields =    (
+            'id',
+            'key',
+            'value',
+            'created', 
+            'modified',
+        )
+
+
 
 class PaymentMethodSerializer(serializers.HyperlinkedModelSerializer):
+    payment_info = serializers.SerializerMethodField('get_popularity')
     class Meta:
         model = PaymentMethod
         fields =    (
             'id',
-            'first_name',
-            'last_name',
-            'city',
-            'country',
+            'payment_info',
             'amount',
             'currency',
-            'email',
             'payment_method',
             'created', 
             'modified',
         )
+
+    def get_popularity(self, obj):
+        
+        posts = PaymentMethodFields.objects.filter(
+                payment__id=obj.id,
+            ).order_by('-id')
+        serializer = PaymentMethodFieldsSerializer(
+            posts, 
+            many=True,
+            context={'request': request}
+        )
+        return serializer.data
 
 
 @api_view(['GET'])
