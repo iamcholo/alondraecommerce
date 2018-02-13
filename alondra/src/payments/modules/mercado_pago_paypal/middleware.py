@@ -6,7 +6,7 @@ from payments.models import PaymentMethod, PaymentMethodFields
 from orders.models import Orders, OrderShippingItem
 from user_addresses.models import Addresess
 from user.models import CustomUser as User
-from cart.cart2 import Cart,Cart2, CART_ID, ItemAlreadyExists
+from cart.cart2 import Cart, CART_ID, ItemAlreadyExists
 from urlparse  import urlsplit, parse_qs
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse

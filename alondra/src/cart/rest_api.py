@@ -10,7 +10,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from django.utils.translation import ugettext_lazy as _
-from cart2 import Cart,Cart2, CART_ID, ItemAlreadyExists
+from cart2 import Cart, CART_ID, ItemAlreadyExists
 from posts.models import PostItem
 
 @api_view(['POST'])
