@@ -39,8 +39,7 @@
                             <div ng-show="model.editable == true" class="form-group">
                               <select class="form-control"  ng-options="item.id as item.label for item in model.statuses"  ng-model="model.status" type="text"></select>
                             </div>
-                          </td>
-                          <td>
+                          
                             <a ng-show="model.editable == false " ng-click="editable(model)" class="btn btn-primary">
                               <i class="fa fa-pencil-square-o"></i>
                               {{ 'EDIT_LABEL' | translate}}
