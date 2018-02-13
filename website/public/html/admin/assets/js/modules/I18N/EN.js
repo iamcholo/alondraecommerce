@@ -140,6 +140,10 @@ define(['angular'],function(angular){
             'country':"Country",
             'last_name': "Last Name",
             'first_name': "First Name",
+            'approved':'Approved',
+            'pending':'Pending',
+            'refunded':'Refunded',
+            'processed':'Processed',
       });
      
       $translateProvider.preferredLanguage('en');

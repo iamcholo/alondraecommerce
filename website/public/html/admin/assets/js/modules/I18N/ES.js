@@ -141,7 +141,10 @@ define(['angular'],function(angular){
             'country':"Pais",
             'last_name': "Apellido",
             'first_name': "Nombre",
-
+            'approved':'Aprobado',
+            'pending':'Pendiente',
+            'refunded':'Refundado',
+            'processed':'Procesado',
       });   
      
       $translateProvider.preferredLanguage('ES');

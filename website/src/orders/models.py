@@ -13,7 +13,7 @@ STATUS_TYPES_CHOICES = (
     ('approved', _('Approved')),
     ('pending', _('Pending')),
     ('refunded', _('Refunded')),
-    ('shipped', _('Approved')),
+    ('processed', _('Processed')),
 )
 
 SHIPPING_TYPES_CHOICES = (
