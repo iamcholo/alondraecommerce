@@ -153,6 +153,7 @@ define(['angular'],function(angular){
 	  		'id':$stateParams.id,
 	  		'order_id':null,
             'status':null,
+            'statuses':[],
             'autor':null,
             'payment_method':{},
             'billing_address':{},
@@ -182,13 +183,42 @@ define(['angular'],function(angular){
 			   
 		}, function (translationIds) {});
 
-		$scope.edit_shipping_item = function(item)
+	  	$translate(['approved','pending','refunded','processed',]).then(function (translations)
+	  	{
+
+			$scope.model.statuses = [
+				{'id':'approved','label':translations.approved},
+				{'id':'pending','label':translations.pending},
+				{'id':'refunded','label':translations.refunded},
+				{'id':'processed','label':translations.processed},
+			];
+				
+			   
+		}, function (translationIds) {});
+
+		$scope.editable = function(item)
 		{
 			
 			item.editable = true;
 				
 
 		}
+
+		$scope.save_status = function(item)
+		{
+			
+			item.editable = false;
+				
+			Orders.Update({
+				'id':item.id,
+				'status':item.status,
+			})	
+		}
+
+
+
+
+
 		$scope.SaveShipping = function(item)
 		{
 			item.editable = false;

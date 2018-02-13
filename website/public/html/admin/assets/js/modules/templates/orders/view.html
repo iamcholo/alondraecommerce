@@ -32,7 +32,23 @@
                                {{ 'STATUS_LABEL' | translate}}
                           </th>
                           <td>
-                              {{model.status| translate}}
+                             <div ng-show="model.editable == false">
+                                {{item.status| translate}}
+                            </div>
+                           
+                            <div ng-show="model.editable == true" class="form-group">
+                              <select class="form-control"  ng-options="item.id as item.label for item in model.statuses"  ng-model="item.statuses" type="text"></select>
+                            </div>
+                          </td>
+                          <td>
+                            <a ng-show="model.editable == false " ng-click="editable(model)" class="btn btn-primary">
+                              <i class="fa fa-pencil-square-o"></i>
+                              {{ 'EDIT_LABEL' | translate}}
+                            </a>
+                            <button ng-show="model.editable == true" ng-click="save_status(item)" class="btn btn-primary">
+                                  {{ 'SAVE_LABEL' | translate}}
+                            </button>
+                             
                           </td>
                       </tr>
                       <tr>
@@ -295,7 +311,7 @@
                             </div>
                           </td>
                           <td>
-                            <a ng-show="item.editable == false " ng-click="edit_shipping_item(item)" class="btn btn-primary">
+                            <a ng-show="item.editable == false " ng-click="editable(item)" class="btn btn-primary">
                               <i class="fa fa-pencil-square-o"></i>
                               {{ 'EDIT_LABEL' | translate}}
                             </a>
