@@ -49,9 +49,10 @@ class PaymentMethod(BaseDateTime):
             blank=True,
             choices=CURRENCY_TYPES_CHOICES,
         )
-    payment_date = models.DatetimeField(
+    payment_date = models.DateTimeField(
             _('PAYMENT_DATE_LABEL'),
-            blank=True      
+            blank=True,
+            auto_now_add=True
         )
     payment_method = models.CharField(
 #            _('PERCENTAJE_LABEL'),
