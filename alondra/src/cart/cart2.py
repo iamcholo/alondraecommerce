@@ -92,38 +92,33 @@ class Cart:
         else:
             item.delete()
 
-    def count_attributes(self, item, variant):
-        name= variant.attribute.name
-        value= variant.value
-        return len(models.ItemAttributes.objects.filter(
-                item__id = item.id,
-                attribute_key = name,
-                attribute_value = value,    
-            ).annotate(count=Count("attribute_value")))
+    def add_variant(self,product, variant,quantity):
+       
+        from posts.models import ProductAttributes
+        try:
+            variant = ProductAttributes.objects.get(
+                product__id=item.id,
+                attributes__id=variant
+            )
+            try:
+                item = models.Item.objects.get(
+                        cart=self.cart,
+                        product=product,
+                    )
+                item.quantity = quantity
+                item.variant_id = variant
+                if variant.price:
+                    item.unit_price = variant.price
+                item.save()
 
-    def add_variant(self,item, variant):
-        name = variant.attribute.name
-        value = variant.value
-        models.ItemAttributes.objects.filter(
-                item__id = item.id,
-                attribute_key = name,
-                attribute_value = value,    
-            ).delete()
-        item_attribute = models.ItemAttributes()
-        item_attribute.item = item
-        item_attribute.attribute_key = name
-        item_attribute.attribute_value = value
-        item_attribute.save()
+            except models.Item.DoesNotExist:
+                raise ItemDoesNotExist
 
-    def save_item_attr(self, item, meta_list):
-        #models.ItemAttributes.objects.filter(item__id=item.id).delete()
-        if len(meta_list) > 0:
-            for meta in meta_list:              
-                item_attribute = models.ItemAttributes()
-                item_attribute.item = item
-                item_attribute.attribute_key = meta['parent_name']
-                item_attribute.attribute_value = meta['item_value']
-                item_attribute.save()
+
+        except ProductAttributes.Item.DoesNotExist:
+            raise ItemDoesNotExist
+  
+        
 
     def update(self, product, quantity, unit_price=None):
         try:

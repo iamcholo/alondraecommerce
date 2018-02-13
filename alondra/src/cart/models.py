@@ -32,7 +32,7 @@ class Item(models.Model):
     # product as generic relation
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
-
+    variant_id = models.PositiveIntegerField(null=True,)
     objects = ItemManager()
 
     class Meta:
