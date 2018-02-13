@@ -131,7 +131,7 @@ define(['angular'],function(angular){
             'STATUS_LABEL':'Estatus',
             'PASTE_TRACKING_NUMBER_LABEL':'Si vas enviar varios numeros de envio pegalos separados por coma ","',
             'PLEASE_ADD_CARRIER_LABEL':'Hola agrega una compañia de envios',
-            'PERSONAL_DELIVERY': "Retiro Personal"
+            'PERSONAL_DELIVERY': "Retiro Personal",
             'bank_name': "Nombre del banco",
             'payment_method': "Modo de pago",
             'transfer_number': "Numero de transferencia/Deposito",
