@@ -166,6 +166,7 @@ define(['angular'],function(angular){
             'currency':"USD",
             'created':null, 
             'modified':null,
+            'editable':false,
 
 	  	} 
 
@@ -208,9 +209,9 @@ define(['angular'],function(angular){
 		{
 			
 			item.editable = false;
-				
+			console.log(item.status)
 			Orders.Update({
-				'id':item.id,
+				'id':$stateParams.id,
 				'status':item.status,
 			})	
 		}

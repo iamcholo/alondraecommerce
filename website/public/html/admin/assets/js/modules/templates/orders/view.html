@@ -33,11 +33,11 @@
                           </th>
                           <td>
                              <div ng-show="model.editable == false">
-                                {{item.status| translate}}
+                                {{model.status| translate}}
                             </div>
                            
                             <div ng-show="model.editable == true" class="form-group">
-                              <select class="form-control"  ng-options="item.id as item.label for item in model.statuses"  ng-model="item.statuses" type="text"></select>
+                              <select class="form-control"  ng-options="item.id as item.label for item in model.statuses"  ng-model="model.status" type="text"></select>
                             </div>
                           </td>
                           <td>
@@ -45,7 +45,7 @@
                               <i class="fa fa-pencil-square-o"></i>
                               {{ 'EDIT_LABEL' | translate}}
                             </a>
-                            <button ng-show="model.editable == true" ng-click="save_status(item)" class="btn btn-primary">
+                            <button ng-show="model.editable == true" ng-click="save_status(model)" class="btn btn-primary">
                                   {{ 'SAVE_LABEL' | translate}}
                             </button>
                              
