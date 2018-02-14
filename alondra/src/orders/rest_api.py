@@ -2,13 +2,13 @@ from rest_framework.decorators import api_view
 from rest_framework import serializers
 from rest_framework import status
 from rest_framework.response import Response
-from orders.models import Orders,OrderShippingItem
+from orders.models import Orders, OrderShippingItem
 from user_addresses.rest_api import AddresessSerializer
 from django.contrib.auth.models import User
 from user.rest_api import UserSerializer
 from payments.rest_api import PaymentMethodSerializer
 from user_addresses.rest_api import AddresessSerializer
-from posts.rest_api import PostItemSerializer
+from posts.rest_api import PostItemSerializer, ProductAttributesSerializer
 from utilities.paginator import paginator
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
@@ -20,6 +20,8 @@ class OrdersSerializer(serializers.HyperlinkedModelSerializer):
 
     def my_order_id(self, obj):
         return str(obj.id).zfill(15)
+
+
     class Meta:
         model = Orders
         fields =    (
@@ -37,12 +39,14 @@ class OrdersSerializer(serializers.HyperlinkedModelSerializer):
 class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
     order_ids = serializers.ReadOnlyField(source='order.id')
     productx = PostItemSerializer(source='product',read_only = True)
+    variant = serializers.SerializerMethodField('get_popularity')
     class Meta:
         model = OrderShippingItem
         fields =    (
             'id',
             'order_ids',
             'productx',
+            'variant',
             'price',
             'qty',
             #'status',
@@ -51,7 +55,23 @@ class OrderShippingItemSerializer(serializers.HyperlinkedModelSerializer):
             'created', 
             'modified',
         )
+    def get_popularity(self, obj):
+    
+        try:
+            attribute = ProductAttributes.objects.get(
+                attributes__pk=int(obj.variant_id),
+                product__id=obj.product.id,
+            )
+            serializer = ProductAttributesSerializer(
+                attribute,
+                context={'request': request}
+            )
+            return serializer.data
 
+        except ProductAttributes.DoesNotExist:
+            return None
+        
+            
 
 @api_view(['POST'])
 def order_list(request):
