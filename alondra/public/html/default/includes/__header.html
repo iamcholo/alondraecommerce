@@ -1,0 +1,58 @@
+{% load mptt_tags %}
+{% load navigation_tags %}
+{% get_navigation_items "top" as topnav %}
+<div id="search_form" class="padding-top-20 padding-bottom-20 background-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{% url "search" %}" class="form-inline">
+                    <div class="form-group col-md-8 col-xs-10">
+                        <input class="form-control" name="q" type="text" placeholder="Buscar">
+                    </div>
+                    <button class="btn  no-style font-white" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <nav class="navbar navbar-default navigation-clean">
+        <div class="container">
+            
+            <div class="inline">
+              <a href="/">sample</a>
+            </div>
+          
+            <div
+                class="collapse navbar-collapse " id="navcol-1">
+                <ul class="nav navbar-nav subnav hide-sm">
+                     {% recursetree topnav %}
+                         {% url "page_details" slug=node.slug as home_url  %}
+                          <li {% if request.get_full_path == home_url %}class="active"{% endif %}{% if not node.is_leaf_node %}class="dropdown"{% endif %}>
+                            <a href="{{home_url}}"
+                              {% if not node.is_leaf_node %}
+                                class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                              {% endif %}
+                            >
+                              {{ node.title }} 
+                              {% if not node.is_leaf_node %}
+                                <span class="caret"></span>
+                              {% endif %}
+                            </a>
+                            {% if not node.is_leaf_node %}
+                            <ul class="dropdown-menu" role="menu">
+                                 {{ children }}
+                            </ul>
+                            {% endif %}
+                          </li>
+                        {% endrecursetree %}
+                  
+                </ul>
+        </div>
+          
+</div>
+</nav>
+</div>
+

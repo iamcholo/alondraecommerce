@@ -1,0 +1,38 @@
+{% extends "layouts/default.html" %}
+{% load set_var %}
+{% load media_tags %}
+{% load posts_tags %}
+{% load comment_tags %}
+{% load markup_tags  %}
+{% block title %} | {{post.meta_title}} {% endblock %}
+{% block description %} | {{post.meta_description}} {% endblock %}
+{% block extra_meta %}
+<meta property="og:url" content="{{current_domain}}{% url "page_details" slug=post.slug %}"/>
+<meta property="og:title" content="Aprende Unreal engine - fansite | {{post.meta_title}}"/>
+<meta property="og:description" content="{{post.meta_description}}"/>
+{% if post.featured_image|length > 0 %}
+<meta property="og:image" content="{{current_domain}}{{post.featured_image}}"/>
+{% else %}
+<meta property="og:image" content="{{current_domain}}{{STATIC_URL}}img/logo.png"/>
+{% endif %}
+ {% endblock %}
+{% block content %}
+{% get_oembed_object post.content|get_markdown|album_short_code as post_content %}
+
+<!--=================================
+Blog
+=================================-->
+
+
+        <div class="post detail clearfix">
+            	
+    
+           	<h1><a href="{% url "page_details" post.slug %}">{{post.title}}</a></h1>
+            {{ post_content|safe}}
+                   
+                  
+              
+        </div><!--post-->
+
+
+{% endblock %}

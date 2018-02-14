@@ -1,0 +1,17 @@
+<?xml-stylesheet type='text/xsl' href='{% url "sitemap_xsl_theme_normal" %}'?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+	<url>
+		<loc>{{current_domain}}</loc>
+		<changefreq>Daily</changefreq>
+		<priority>1</priority>
+	</url>
+
+	{% for post in posts %}
+	<url>
+		<loc>{{ current_domain }}/{{post.slug}}</loc>
+		<lastmod>{{post.created|date:"Y-m-d" }}</lastmod>		
+		<changefreq>Monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	{% endfor %}
+</urlset>
