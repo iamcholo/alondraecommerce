@@ -135,6 +135,7 @@ def process_mercadopago(request):
                 os = OrderShippingItem()
                 os.order =o
                 os.product = c.product
+                os.variant_id = c.variant_id
                 os.price = c.unit_price
                 os.qty = c.quantity
                 os.save()
