@@ -14,19 +14,12 @@ from user_site.decorators import login_required
 from django.conf import settings
 
 def add_to_cart(request, product_id, variation=0 ):
-    quantity = 1
-   
+    quantity = 1   
     product = get_object_or_404(PostItem,id=product_id )
     price = 0.00
     cart = Cart(request)
     variation = int(variation)
-    if variation == 1 :
-       price = product.pricing       
-    if variation == 2 :
-       price = product.pricing_comercial
-    if variation == 3 :
-       price = product.pricing_developer
-    
+    price = product.price       
     try:
         cart.add(product, price, quantity)
     except ItemAlreadyExists: 
