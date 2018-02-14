@@ -8,6 +8,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'corsheaders',
+    'registration',
     'django_countries',
     'rest_framework',
     'rest_framework.authtoken',
@@ -29,7 +30,6 @@ INSTALLED_APPS = (
     'navigation',
     'cart',
     'payments',
-
     'payments.modules.mercado_pago_paypal',
     'comments',   
 

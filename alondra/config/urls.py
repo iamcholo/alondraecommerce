@@ -63,7 +63,7 @@ urlpatterns = [
         name='page_details'
     ),
 
-  
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
 
 
  
