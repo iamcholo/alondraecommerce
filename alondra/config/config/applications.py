@@ -8,6 +8,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'corsheaders',
+    'social_auth',
     'registration',
     'django_countries',
     'rest_framework',
