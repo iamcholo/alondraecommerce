@@ -22,7 +22,7 @@ django-recaptcha==1.4.0
 django-registration==2.4.1
 django-social-auth==0.7.28
 django-widget-tweaks==1.4.1
-djangorestframework==3.4.6
+djangorestframework==3.11.2
 djangorestframework-recursive==0.1.1
 enum34==1.1.6
 html2text==2018.1.9
